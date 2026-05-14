@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0F0A0B;
+  --foreground: #F5F0E8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #722F37;
+  color: #F5F0E8;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #1A1416;
+}
+::-webkit-scrollbar-thumb {
+  background: #722F37;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8B1A1A;
+}
+
+@layer components {
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .heading-serif {
+    @apply font-serif tracking-tight;
+  }
+  .gold-divider {
+    @apply h-px w-16 bg-gold/70 my-4;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3
+           bg-burgundy hover:bg-burgundy-400 text-cream
+           transition-colors duration-200 font-medium
+           border border-burgundy-300/30
+           shadow-[0_0_0_0_rgba(212,175,55,0)] hover:shadow-[0_0_24px_-4px_rgba(212,175,55,0.5)];
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3
+           bg-gradient-gold text-ink font-semibold
+           transition-all duration-200
+           hover:brightness-110 hover:shadow-[0_0_24px_-4px_rgba(212,175,55,0.7)];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3
+           border border-gold/40 text-cream hover:bg-gold/10 hover:border-gold/70
+           transition-colors duration-200 font-medium;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm
+           text-xs uppercase tracking-wider font-medium;
+  }
+  .badge-red { @apply badge bg-burgundy/30 text-burgundy-100 border border-burgundy-400/30; }
+  .badge-white { @apply badge bg-gold/15 text-gold-light border border-gold/30; }
+  .badge-rose { @apply badge bg-pink-900/30 text-pink-200 border border-pink-700/30; }
+  .badge-sparkling { @apply badge bg-amber-900/20 text-amber-200 border border-amber-600/30; }
+
+  .card-surface {
+    @apply bg-surface border border-burgundy-700/40 rounded-sm;
+  }
+  .input-field {
+    @apply w-full bg-surface border border-burgundy-700/40
+           rounded-sm px-4 py-2.5 text-cream placeholder:text-muted/60
+           focus:outline-none focus:border-gold/70 focus:ring-1 focus:ring-gold/30
+           transition-colors;
+  }
+  .link-gold {
+    @apply text-gold hover:text-gold-light transition-colors;
+  }
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(26,20,22,1) 0%,
+      rgba(45,30,35,1) 50%,
+      rgba(26,20,22,1) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s linear infinite;
+  }
+}
+
+.hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(15,10,11,0.4) 0%,
+    rgba(15,10,11,0.7) 50%,
+    rgba(15,10,11,1) 100%
+  );
+}
+
+.wine-seal {
+  border: 1.5px solid #D4AF37;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-playfair), serif;
+  font-style: italic;
+  color: #D4AF37;
+  letter-spacing: 0.05em;
+}
