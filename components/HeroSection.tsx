@@ -67,7 +67,15 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.8 }}
-          className="text-cream/80 max-w-xl mt-6 font-light"
+          className="font-serif italic text-gold/90 text-lg sm:text-xl mt-6"
+        >
+          Strong partnerships build stronger companies
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.85, duration: 0.8 }}
+          className="text-cream/80 max-w-xl mt-3 font-light"
         >
           Importer & distributor of fine wines in Cyprus. Curating the great
           regions of the world — for the Cypriot table.

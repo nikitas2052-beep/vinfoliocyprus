@@ -1,6 +1,8 @@
-# Vinfolio — Wine Enthusiasts
+# Vinfolio
 
-Production-ready e-commerce front-end for **Vinfolio Ltd**, a Cypriot wine importer & distributor based in Kato Polemidia, Limassol.
+> *Strong partnerships build stronger companies.*
+
+Production-ready e-commerce front-end for **Vinfolio Ltd**, a Cypriot wine importer & distributor based in Kato Polemidia, Limassol. Founded by Yiannakis Aristidou with 25+ years in the wine and beverage sector.
 
 > 🍷 70 curated bottles from Cyprus, Greece, Italy, France, Chile, Argentina, Australia, New Zealand and South Africa.
 

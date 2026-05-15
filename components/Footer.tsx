@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -22,10 +23,16 @@ export default function Footer() {
     <footer className="mt-24 bg-gradient-to-b from-ink to-burgundy-900/40 border-t border-burgundy-700/40">
       <div className="container-wide py-16 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <h3 className="font-serif text-2xl tracking-[0.25em] text-cream">
-            VINFOLIO
-          </h3>
-          <p className="font-serif italic text-gold mt-2">Wine Enthusiasts</p>
+          <Image
+            src="https://vinfolio.com.cy/wp-content/uploads/2020/03/Logo-Transparent-1.png"
+            alt="Vinfolio"
+            width={200}
+            height={56}
+            className="h-12 w-auto object-contain brightness-110"
+          />
+          <p className="font-serif italic text-gold mt-3">
+            Strong partnerships build stronger companies
+          </p>
           <p className="text-muted text-sm mt-4 max-w-xs">
             Importer & distributor of fine wines in Cyprus. Curating the great
             regions of the world for the Cypriot table.

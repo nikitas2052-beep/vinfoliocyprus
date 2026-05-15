@@ -21,11 +21,11 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.vinfolio.com.cy"),
   title: {
-    default: "Vinfolio · Wine Enthusiasts · Cyprus",
+    default: "Vinfolio · Fine Wine Importer · Cyprus",
     template: "%s · Vinfolio",
   },
   description:
-    "Vinfolio Ltd — importer and distributor of fine wines in Cyprus. Curated bottles from Cyprus, Greece, Italy, France, Chile and beyond.",
+    "Vinfolio Ltd — importer & distributor of fine wines in Cyprus. Strong partnerships build stronger companies. Curated bottles from Cyprus, Greece, Italy, France, Chile and beyond.",
   keywords: [
     "wine Cyprus",
     "Limassol wine shop",
@@ -36,18 +36,24 @@ export const metadata: Metadata = {
     "fine wine importer Cyprus",
   ],
   openGraph: {
-    title: "Vinfolio · Wine Enthusiasts",
+    title: "Vinfolio · Fine Wine Importer · Cyprus",
     description:
-      "Curated wines from Cyprus and the great regions of the world. Importer & distributor — Limassol, Cyprus.",
+      "Strong partnerships build stronger companies. Curated wines from Cyprus and the great regions of the world. Importer & distributor — Limassol, Cyprus.",
     url: "https://www.vinfolio.com.cy",
     siteName: "Vinfolio",
     locale: "en_CY",
     type: "website",
+    images: [
+      {
+        url: "https://vinfolio.com.cy/wp-content/uploads/2020/03/Logo-Transparent-1.png",
+        alt: "Vinfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vinfolio · Wine Enthusiasts",
-    description: "Curated wines from Cyprus and the great regions of the world.",
+    title: "Vinfolio · Cyprus",
+    description: "Strong partnerships build stronger companies — fine wine importer in Cyprus.",
   },
 };
 

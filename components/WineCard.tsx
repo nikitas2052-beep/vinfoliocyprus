@@ -50,13 +50,13 @@ export default function WineCard({ wine, index = 0 }: { wine: Wine; index?: numb
                    hover:-translate-y-1 hover:border-gold/50
                    hover:shadow-[0_20px_40px_-20px_rgba(212,175,55,0.4)]"
       >
-        <div className="relative aspect-[3/4] bg-gradient-to-b from-burgundy-900/40 to-ink overflow-hidden">
+        <div className="relative aspect-[3/4] bg-gradient-to-b from-burgundy-900/50 via-ink to-ink overflow-hidden">
           <Image
             src={wine.image}
             alt={wine.name}
             fill
             sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 25vw"
-            className="object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
+            className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" />
           <span className={cn("absolute top-3 left-3", typeBadgeClass(wine.type))}>

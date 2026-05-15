@@ -68,14 +68,14 @@ export default function CartView() {
             >
               <Link
                 href={`/products/${wine.id}`}
-                className="relative w-24 h-32 flex-shrink-0 bg-ink rounded-sm overflow-hidden"
+                className="relative w-24 h-32 flex-shrink-0 bg-gradient-to-b from-burgundy-900/40 to-ink rounded-sm overflow-hidden"
               >
                 <Image
                   src={wine.image}
                   alt={wine.name}
                   fill
                   sizes="96px"
-                  className="object-cover"
+                  className="object-contain p-1.5"
                 />
               </Link>
               <div className="flex-1 min-w-0">

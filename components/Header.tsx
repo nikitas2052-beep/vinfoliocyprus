@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, Search, ShoppingBag, X } from "lucide-react";
@@ -48,10 +49,21 @@ export default function Header() {
       )}
     >
       <div className="container-wide flex items-center justify-between h-20">
-        <Link href="/" className="group flex items-center gap-2">
-          <span className="font-serif text-2xl md:text-3xl tracking-[0.25em] text-cream group-hover:text-gold transition-colors">
-            VINFOLIO
-          </span>
+        <Link
+          href="/"
+          className="group flex items-center gap-3"
+          aria-label="Vinfolio home"
+        >
+          <Image
+            src="https://vinfolio.com.cy/wp-content/uploads/2020/03/Logo-Transparent-1.png"
+            alt="Vinfolio"
+            width={180}
+            height={48}
+            priority
+            className="h-10 md:h-12 w-auto object-contain
+                       transition-opacity group-hover:opacity-90
+                       brightness-110"
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">

@@ -92,14 +92,14 @@ export default function CartDrawer() {
                       <Link
                         href={`/products/${wine.id}`}
                         onClick={closeCart}
-                        className="relative w-20 h-24 flex-shrink-0 bg-ink rounded-sm overflow-hidden"
+                        className="relative w-20 h-24 flex-shrink-0 bg-gradient-to-b from-burgundy-900/40 to-ink rounded-sm overflow-hidden"
                       >
                         <Image
                           src={wine.image}
                           alt={wine.name}
                           fill
                           sizes="80px"
-                          className="object-cover"
+                          className="object-contain p-1"
                         />
                       </Link>
                       <div className="flex-1 min-w-0">

@@ -161,17 +161,20 @@ export default function HomePage() {
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-gold">About</p>
               <h2 className="heading-serif text-4xl md:text-5xl text-cream mt-2">
-                A Cypriot House of Wine
+                More than wine —<br />
+                <span className="italic text-gold">a way of life.</span>
               </h2>
               <div className="gold-divider" />
               <p className="text-cream/85 mt-4">
-                Founded by <span className="font-serif italic text-gold">Yiannakis Aristidou</span>,
-                Vinfolio Ltd imports and distributes a hand-picked portfolio of fine wines
-                across Cyprus — for restaurants, retailers and private enthusiasts.
+                Founded by{" "}
+                <span className="font-serif italic text-gold">Yiannakis Aristidou</span>
+                {" "}with over 25 years in the wine and beverage sector, Vinfolio Ltd
+                curates fine wines from renowned wineries worldwide — wines with
+                character, quality, and a story to tell.
               </p>
               <p className="text-muted mt-4">
-                Based in Kato Polemidia, Limassol, our cellar bridges the Cypriot table
-                with the great vineyards of Europe and the New World.
+                Our work is built on trust, collaboration and respect — for the
+                land, for our growers, and for the Cypriot table.
               </p>
               <div className="mt-6 flex gap-3">
                 <Link href="/about" className="btn-primary">Our story</Link>

@@ -1,5 +1,9 @@
 import type { Wine } from "./types";
 
+// Real Vinfolio bottle photos (from vinfolio.com.cy CDN)
+const B = (n: string) =>
+  `https://vinfolio.com.cy/wp-content/uploads/2025/10/VINFOLIO_ALL_WINES_09-25-${n}-315x420.png`;
+
 const RED_IMG =
   "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80";
 const RED_IMG_2 =
@@ -37,7 +41,7 @@ export const wines: Wine[] = [
       "Slow-braised lamb shoulder, wild boar ragu, aged Pecorino, or a classic daube provençale.",
     producerInfo:
       "Chateau Gigognan is one of the oldest estates of the appellation, with vineyards on the prized Clos du Roi terroir, farmed sustainably.",
-    image: RED_IMG_2,
+    image: B("34"),
     stock: stock(1),
     featured: true,
   },
@@ -60,7 +64,7 @@ export const wines: Wine[] = [
       "Grilled sausages, mushroom risotto, ratatouille, or a simple roast chicken.",
     producerInfo:
       "Chateau Gigognan blends classic Rhone varieties with respect for terroir, expressing the warmth of the region in an accessible style.",
-    image: RED_IMG,
+    image: B("35"),
     stock: stock(2),
     featured: false,
   },
@@ -83,7 +87,7 @@ export const wines: Wine[] = [
       "Fresh oysters, goat's cheese, pan-fried sea bream, or Cypriot meze with grilled halloumi.",
     producerInfo:
       "A historic Chablis house farming Chardonnay on limestone-rich Kimmeridgian soils, producing benchmark unoaked styles.",
-    image: WHITE_IMG,
+    image: B("36"),
     stock: stock(3),
     featured: true,
   },
@@ -193,7 +197,7 @@ export const wines: Wine[] = [
     pairing: "Prosciutto crudo, fritto misto, parmigiano shavings, sushi.",
     producerInfo:
       "Cantina Colli del Soligo is a respected Treviso cooperative producing Prosecco since 1953.",
-    image: SPARKLING_IMG,
+    image: B("28"),
     stock: stock(8),
     featured: false,
   },
@@ -215,7 +219,7 @@ export const wines: Wine[] = [
     pairing: "Smoked salmon, tuna tartare, charcuterie, light desserts.",
     producerInfo:
       "Soligo's millesimato rosé is produced from a single vintage with extended autoclave ageing.",
-    image: SPARKLING_IMG_2,
+    image: B("29"),
     stock: stock(9),
     featured: true,
   },
@@ -259,7 +263,7 @@ export const wines: Wine[] = [
     pairing: "Aperitivo, light pasta, calamari fritti.",
     producerInfo:
       "Produced by Cantina Colli del Soligo using the Charmat method.",
-    image: SPARKLING_IMG,
+    image: B("31"),
     stock: stock(11),
     featured: false,
   },
@@ -325,7 +329,7 @@ export const wines: Wine[] = [
     pairing: "Pizza margherita, tagliatelle al ragù, grilled lamb chops.",
     producerInfo:
       "Le Corti dei Podestà is part of Villa Cerna's portfolio, sourced from classic Chianti zones.",
-    image: RED_IMG_2,
+    image: B("37"),
     stock: stock(14),
     featured: false,
   },
@@ -347,7 +351,7 @@ export const wines: Wine[] = [
     pairing: "Pecorino, vegetable risotto, fritto misto, grilled fish.",
     producerInfo:
       "Le Corti dei Podestà's Vernaccia is hand-harvested in San Gimignano.",
-    image: WHITE_IMG,
+    image: B("38"),
     stock: stock(15),
     featured: false,
   },
@@ -369,7 +373,7 @@ export const wines: Wine[] = [
     pairing: "Bistecca alla Fiorentina, aged Pecorino, wild mushroom pappardelle.",
     producerInfo:
       "Villa Cerna is owned by the Cecchi family and farms premium Chianti Classico estates.",
-    image: RED_IMG,
+    image: B("39"),
     stock: stock(16),
     featured: true,
   },
@@ -391,7 +395,7 @@ export const wines: Wine[] = [
     pairing: "Roast beef, osso buco, aged hard cheeses, truffle dishes.",
     producerInfo:
       "Villa Cerna's flagship Riserva is sourced from the estate's oldest vineyard parcels.",
-    image: RED_IMG_2,
+    image: B("40"),
     stock: stock(17),
     featured: false,
   },
@@ -457,7 +461,7 @@ export const wines: Wine[] = [
     pairing: "Tuscan steak, wild boar, aged Pecorino, slow-braised oxtail.",
     producerInfo:
       "A boutique Montalcino estate producing traditionally styled Brunello.",
-    image: RED_IMG,
+    image: B("56"),
     stock: stock(20),
     featured: false,
   },
@@ -479,7 +483,7 @@ export const wines: Wine[] = [
     pairing: "Slow-cooked braises, game, aged Parmigiano, dark chocolate desserts.",
     producerInfo:
       "I Saltari is a boutique Valpolicella estate dedicated to traditional appassimento.",
-    image: RED_IMG_2,
+    image: B("21"),
     stock: stock(21),
     featured: true,
   },
@@ -501,7 +505,7 @@ export const wines: Wine[] = [
     pairing: "Pasta with lamb ragù, grilled lamb chops, polenta with mushrooms.",
     producerInfo:
       "I Saltari's Superiore uses traditional Valpolicella varieties on hillside parcels.",
-    image: RED_IMG,
+    image: B("22"),
     stock: stock(22),
     featured: false,
   },
@@ -523,7 +527,7 @@ export const wines: Wine[] = [
     pairing: "Beef brisket, braised short ribs, aged Asiago, dark chocolate tart.",
     producerInfo:
       "Family-run Murari produces Amarone using traditional appassimento methods.",
-    image: RED_IMG_2,
+    image: B("23"),
     stock: stock(23),
     featured: true,
   },
@@ -545,7 +549,7 @@ export const wines: Wine[] = [
     pairing: "Osso buco, pasta with sausage ragù, lamb stew, hard cheeses.",
     producerInfo:
       "Murari's Ripasso is a mainstay of their range, blending tradition and approachability.",
-    image: RED_IMG,
+    image: B("24"),
     stock: stock(24),
     featured: false,
   },
@@ -567,7 +571,7 @@ export const wines: Wine[] = [
     pairing: "Pizza, charcuterie, mushroom pasta, light grilled meats.",
     producerInfo:
       "Murari's everyday Valpolicella delivers the region's charm at a friendly price.",
-    image: RED_IMG_2,
+    image: B("25"),
     stock: stock(25),
     featured: false,
   },
@@ -589,7 +593,7 @@ export const wines: Wine[] = [
     pairing: "Carpaccio, prosciutto with melon, seafood risotto.",
     producerInfo:
       "Almorano is a Veneto label crafted in the traditional ramato style.",
-    image: ROSE_IMG,
+    image: B("26"),
     stock: stock(26),
     featured: false,
   },
@@ -611,7 +615,7 @@ export const wines: Wine[] = [
     pairing: "Antipasti, vegetable risotto, light fish, summer salads.",
     producerInfo:
       "Murari's entry-level Pinot Grigio is a Veneto classic.",
-    image: WHITE_IMG,
+    image: B("27"),
     stock: stock(27),
     featured: false,
   },
@@ -919,7 +923,7 @@ export const wines: Wine[] = [
     pairing: "Seafood, salads, fresh cheeses, light Asian dishes.",
     producerInfo:
       "Ventisquero's Classico Sauvignon Blanc is sourced from the cool Central Valley.",
-    image: WHITE_IMG,
+    image: B("03"),
     stock: stock(41),
     featured: false,
   },
@@ -941,7 +945,7 @@ export const wines: Wine[] = [
     pairing: "Sushi, oysters, ceviche, goat's cheese salad.",
     producerInfo:
       "Casablanca is one of Chile's premier cool-climate regions for aromatic whites.",
-    image: WHITE_IMG_2,
+    image: B("04"),
     stock: stock(42),
     featured: true,
   },
@@ -963,7 +967,7 @@ export const wines: Wine[] = [
     pairing: "Roast chicken, seafood pasta, soft cheeses, creamy chowders.",
     producerInfo:
       "Ventisquero's Reserve range delivers serious quality at accessible prices.",
-    image: WHITE_IMG,
+    image: B("05"),
     stock: stock(43),
     featured: false,
   },
@@ -1183,7 +1187,7 @@ export const wines: Wine[] = [
     pairing: "Goat's cheese, Thai green curry, seafood, asparagus.",
     producerInfo:
       "Stoneburn's vineyards lie on the river-stone soils of Marlborough's Wairau Valley.",
-    image: WHITE_IMG_2,
+    image: B("16"),
     stock: stock(53),
     featured: true,
   },
@@ -1205,7 +1209,7 @@ export const wines: Wine[] = [
     pairing: "Grilled lamb, BBQ ribs, pepper steak, hard cheeses.",
     producerInfo:
       "Tahbilk is Victoria's oldest family-owned winery, founded in 1860.",
-    image: RED_IMG,
+    image: B("17"),
     stock: stock(54),
     featured: false,
   },
@@ -1227,7 +1231,7 @@ export const wines: Wine[] = [
     pairing: "Argentine asado, grilled steak, empanadas, hard cheeses.",
     producerInfo:
       "Phebus crafts Mendoza Malbec in the elevated parcels around the Uco Valley.",
-    image: RED_IMG_2,
+    image: B("18"),
     stock: stock(55),
     featured: false,
   },
@@ -1249,7 +1253,7 @@ export const wines: Wine[] = [
     pairing: "Roast pork, chicken curry, soft cheeses, prawn dishes.",
     producerInfo:
       "Alvi's Drift is a family-owned Western Cape estate on the banks of the Breede River.",
-    image: WHITE_IMG,
+    image: B("19"),
     stock: stock(56),
     featured: false,
   },
@@ -1271,7 +1275,7 @@ export const wines: Wine[] = [
     pairing: "BBQ, lamb sosaties, dark chocolate, hard cheeses.",
     producerInfo:
       "Alvi's Drift produces a celebrated range of South African classics.",
-    image: RED_IMG,
+    image: B("20"),
     stock: stock(57),
     featured: false,
   },
@@ -1293,7 +1297,7 @@ export const wines: Wine[] = [
     pairing: "Lamb kleftiko, moussaka, grilled chops, hard sheep's cheese.",
     producerInfo:
       "Boubas Winery is rooted in the Peloponnese, championing indigenous Greek varieties.",
-    image: RED_IMG_2,
+    image: B("43"),
     stock: stock(58),
     featured: false,
   },
@@ -1315,7 +1319,7 @@ export const wines: Wine[] = [
     pairing: "Greek salad, grilled prawns, halloumi, summer meze.",
     producerInfo:
       "Boubas produces a fresh, modern style of Greek rosé from native varieties.",
-    image: ROSE_IMG,
+    image: B("44"),
     stock: stock(59),
     featured: false,
   },
@@ -1337,7 +1341,7 @@ export const wines: Wine[] = [
     pairing: "Sushi, grilled seafood, chicken souvlaki, fresh herb salads.",
     producerInfo:
       "Boubas's Moschofilero comes from elevated Peloponnese vineyards.",
-    image: WHITE_IMG_2,
+    image: B("45"),
     stock: stock(60),
     featured: false,
   },
@@ -1359,7 +1363,7 @@ export const wines: Wine[] = [
     pairing: "Sea bass, white tarama, lemon-marinated chicken, Cypriot meze.",
     producerInfo:
       "Boubas Klarakia line champions single-vineyard expressions of indigenous Greek grapes.",
-    image: WHITE_IMG,
+    image: B("46"),
     stock: stock(61),
     featured: true,
   },
@@ -1381,7 +1385,7 @@ export const wines: Wine[] = [
     pairing: "Grilled octopus, fish meze, calamari, feta dishes.",
     producerInfo:
       "Boubas crafts a Corinth expression of Greece's most famous white grape.",
-    image: WHITE_IMG_2,
+    image: B("47"),
     stock: stock(62),
     featured: false,
   },
@@ -1491,7 +1495,7 @@ export const wines: Wine[] = [
     pairing: "Cypriot meze, grilled halloumi, light fish, salads.",
     producerInfo:
       "Yiaskouris' Xynisteri is sourced from indigenous Cypriot vineyards.",
-    image: WHITE_IMG,
+    image: B("52"),
     stock: stock(67),
     featured: false,
   },
@@ -1513,7 +1517,7 @@ export const wines: Wine[] = [
     pairing: "Mild curries, spiced poultry, fresh fruit, Cypriot pastries.",
     producerInfo:
       "Yiaskouris' off-dry Xynisteri is a versatile food companion.",
-    image: WHITE_IMG_2,
+    image: B("54"),
     stock: stock(68),
     featured: false,
   },
@@ -1535,7 +1539,7 @@ export const wines: Wine[] = [
     pairing: "Grilled octopus, sea bream, calamari, halloumi meze.",
     producerInfo:
       "Yiaskouris produces a Cypriot expression of Greece's noble white grape.",
-    image: WHITE_IMG,
+    image: B("55"),
     stock: stock(69),
     featured: false,
   },
@@ -1557,7 +1561,7 @@ export const wines: Wine[] = [
     pairing: "Halloumi salad, grilled seafood, meze, light pasta.",
     producerInfo:
       "Yiaskouris' rosé showcases the lighter side of native Cypriot reds.",
-    image: ROSE_IMG,
+    image: B("53"),
     stock: stock(70),
     featured: false,
   },

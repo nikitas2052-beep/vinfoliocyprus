@@ -17,24 +17,29 @@ export default function AboutPage() {
       <header className="max-w-3xl">
         <p className="text-xs uppercase tracking-[0.3em] text-gold">About Vinfolio</p>
         <h1 className="heading-serif text-5xl md:text-6xl text-cream mt-2">
-          Wine Enthusiasts —<br />
-          <span className="italic text-gold">in spirit and in trade</span>
+          Strong partnerships<br />
+          <span className="italic text-gold">build stronger companies</span>
         </h1>
         <div className="gold-divider" />
         <p className="text-cream/85 text-lg leading-relaxed mt-4">
-          Vinfolio Ltd is a Cypriot importer and distributor of fine wine.
-          From our cellar in Kato Polemidia, Limassol, we supply restaurants,
-          retailers and private enthusiasts across the island with a hand-picked
-          portfolio of bottles from Cyprus and the great regions of the world.
+          Vinfolio is a Cypriot wine import company founded with the vision of
+          bringing carefully curated fine wines from renowned wineries worldwide
+          to Cyprus — wines with character, quality, and a compelling story to tell.
         </p>
+        <blockquote className="mt-8 border-l-2 border-gold pl-5">
+          <p className="font-serif italic text-cream/90 text-xl">
+            "Great wine works wonders and is itself one."
+          </p>
+          <footer className="text-sm text-muted mt-2">— Edward Steinberg</footer>
+        </blockquote>
       </header>
 
       <section className="grid lg:grid-cols-5 gap-10 mt-16 items-start">
         <Reveal>
           <div className="lg:col-span-2 relative aspect-[4/5] rounded-sm overflow-hidden border border-burgundy-700/50">
             <Image
-              src="https://images.unsplash.com/photo-1474722883778-792e7990302f?auto=format&fit=crop&w=1200&q=80"
-              alt="Wine cellar"
+              src="https://vinfolio.com.cy/wp-content/uploads/elementor/thumbs/About-Us-rd4uusj3pa0jrzs14muo5w9tnlwrlmhhs8zztt40ks.jpg"
+              alt="Vinfolio cellar"
               fill
               sizes="(max-width:1024px) 100vw, 40vw"
               className="object-cover"
@@ -48,20 +53,22 @@ export default function AboutPage() {
             <div className="gold-divider" />
             <p>
               Vinfolio was founded by{" "}
-              <span className="font-serif italic text-gold">Yiannakis Aristidou</span> —
-              a lifelong wine enthusiast who turned an obsession into a profession.
-              Years of travel through the cellars of Tuscany, the Loire and the
-              Andes shaped the portfolio you find here today.
+              <span className="font-serif italic text-gold">Yiannakis Aristidou</span>,
+              bringing over <span className="text-gold">25 years</span> of
+              professional experience in the wine and beverage sector to Cyprus.
             </p>
             <p>
-              The brief is simple: bring to Cyprus the bottles we love drinking
-              ourselves. Wines that express their place. Producers that respect
-              their land. Estates whose work we can stand behind, every bottle.
+              The company was built on principles of <em className="text-cream">trust,
+              collaboration, and respect</em> for clients and partners — values that
+              shape every relationship we form with growers and customers alike.
             </p>
             <p>
-              We believe in great wine at honest prices. From the everyday red on
-              the Sunday table to the cellar-worthy Brunello, every label in our
-              catalogue earns its place.
+              To us, wine is more than a commodity. It represents{" "}
+              <span className="font-serif italic text-gold">
+                culture, experience, and a way of life
+              </span>
+              . Each bottle in our portfolio reflects our philosophy of balancing
+              tradition, taste, and authenticity.
             </p>
             <div className="card-surface p-5">
               <p className="text-xs uppercase tracking-[0.2em] text-gold">Contact the founder</p>

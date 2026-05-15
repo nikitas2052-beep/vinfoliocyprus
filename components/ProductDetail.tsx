@@ -46,7 +46,7 @@ export default function ProductDetail({
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="relative aspect-[3/4] bg-gradient-to-b from-burgundy-900/30 to-ink rounded-sm overflow-hidden border border-burgundy-700/40"
+          className="relative aspect-[3/4] bg-gradient-to-b from-burgundy-900/40 via-ink to-ink rounded-sm overflow-hidden border border-burgundy-700/40"
         >
           <Image
             src={wine.image}
@@ -54,7 +54,7 @@ export default function ProductDetail({
             fill
             priority
             sizes="(max-width:1024px) 100vw, 50vw"
-            className="object-cover"
+            className="object-contain p-8"
           />
           <div className="absolute top-4 right-4 wine-seal !w-14 !h-14 !text-base bg-ink/70 backdrop-blur-sm">
             {wine.year ?? "V"}
