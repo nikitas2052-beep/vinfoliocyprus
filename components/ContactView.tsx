@@ -29,8 +29,8 @@ export default function ContactView() {
   return (
     <div className="container-wide py-12">
       <header className="max-w-2xl">
-        <p className="text-xs uppercase tracking-[0.3em] text-gold">Contact</p>
-        <h1 className="heading-serif text-5xl text-cream mt-2">Get in Touch</h1>
+        <p className="eyebrow">Contact</p>
+        <h1 className="heading-serif text-5xl mt-2">Get in Touch</h1>
         <div className="gold-divider" />
         <p className="text-muted mt-3">
           Trade inquiries, retail orders, private events — we're happy to help.
@@ -39,7 +39,7 @@ export default function ContactView() {
 
       <div className="grid lg:grid-cols-3 gap-8 mt-10">
         <form onSubmit={onSubmit} className="lg:col-span-2 card-surface p-6 space-y-4">
-          <h2 className="font-serif text-2xl text-cream">Send us a message</h2>
+          <h2 className="font-serif text-2xl text-burgundy-700">Send us a message</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             <Field
               label="Name"
@@ -62,7 +62,7 @@ export default function ContactView() {
             onChange={(v) => setForm({ ...form, phone: v })}
           />
           <div>
-            <label className="text-xs uppercase tracking-[0.2em] text-gold">
+            <label className="eyebrow">
               Message
             </label>
             <textarea
@@ -86,32 +86,32 @@ export default function ContactView() {
 
         <aside className="space-y-6">
           <div className="card-surface p-6">
-            <h2 className="font-serif text-2xl text-cream">Vinfolio Ltd</h2>
-            <ul className="mt-4 space-y-3 text-cream/85">
+            <h2 className="font-serif text-2xl text-burgundy-700">Vinfolio Ltd</h2>
+            <ul className="mt-4 space-y-3 text-cream/90">
               <li className="flex gap-3">
-                <MapPin className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-burgundy flex-shrink-0 mt-0.5" />
                 <span>Kato Polemidia, Limassol, Cyprus</span>
               </li>
               <li className="flex gap-3">
-                <Phone className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
-                <a href="tel:+35799571267" className="hover:text-gold">+357 99 571267</a>
+                <Phone className="w-5 h-5 text-burgundy flex-shrink-0 mt-0.5" />
+                <a href="tel:+35799571267" className="hover:text-burgundy">+357 99 571267</a>
               </li>
               <li className="flex gap-3">
-                <Mail className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                <Mail className="w-5 h-5 text-burgundy flex-shrink-0 mt-0.5" />
                 <a
                   href="mailto:vinfoliowines@gmail.com"
-                  className="hover:text-gold break-all"
+                  className="hover:text-burgundy break-all"
                 >
                   vinfoliowines@gmail.com
                 </a>
               </li>
               <li className="flex gap-3">
-                <Instagram className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                <Instagram className="w-5 h-5 text-burgundy flex-shrink-0 mt-0.5" />
                 <a
                   href="https://www.instagram.com/vinfolio_wines"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-gold"
+                  className="hover:text-burgundy"
                 >
                   @vinfolio_wines
                 </a>
@@ -120,11 +120,11 @@ export default function ContactView() {
           </div>
 
           <div className="card-surface p-6">
-            <h3 className="font-serif text-xl text-cream flex items-center gap-2">
+            <h3 className="font-serif text-xl text-burgundy-700 flex items-center gap-2">
               <Clock className="w-4 h-4 text-gold" />
               Business Hours
             </h3>
-            <dl className="mt-3 text-sm space-y-1 text-cream/85">
+            <dl className="mt-3 text-sm space-y-1 text-cream/90">
               <Hours day="Mon – Fri" hours="09:00 – 18:00" />
               <Hours day="Saturday" hours="09:00 – 14:00" />
               <Hours day="Sunday" hours="Closed" />
@@ -137,7 +137,7 @@ export default function ContactView() {
               src="https://www.google.com/maps?q=Kato+Polemidia%2C+Limassol%2C+Cyprus&output=embed"
               width="100%"
               height="100%"
-              style={{ border: 0, filter: "grayscale(0.4) brightness(0.8)" }}
+              style={{ border: 0, filter: "saturate(0.85) hue-rotate(-10deg)" }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen
@@ -164,7 +164,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="text-xs uppercase tracking-[0.2em] text-gold">
+      <label className="eyebrow">
         {label}
       </label>
       <input

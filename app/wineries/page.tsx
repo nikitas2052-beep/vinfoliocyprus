@@ -15,8 +15,8 @@ export default function WineriesPage() {
   return (
     <div className="container-wide py-12">
       <header className="text-center max-w-2xl mx-auto mb-12">
-        <p className="text-xs uppercase tracking-[0.3em] text-gold">Producers</p>
-        <h1 className="heading-serif text-5xl text-cream mt-2">Our Wineries</h1>
+        <p className="eyebrow">Producers</p>
+        <h1 className="heading-serif text-5xl mt-2">Our Wineries</h1>
         <div className="gold-divider mx-auto" />
         <p className="text-muted mt-4">
           From limestone Chablis cellars to sun-drenched Apalta amphitheaters,
@@ -29,22 +29,20 @@ export default function WineriesPage() {
           const count = wines.filter((wine) => wine.winery === w.name).length;
           return (
             <Reveal key={w.slug} delay={i * 0.04}>
-              <article className="card-surface p-6 h-full flex flex-col">
+              <article className="card-surface p-6 h-full flex flex-col group hover:-translate-y-1 hover:shadow-wine-soft hover:border-gold/60 transition-all">
                 <div className="flex items-start justify-between">
-                  <div className="wine-seal !w-12 !h-12 text-lg">
+                  <div className="wine-seal !w-12 !h-12 text-lg group-hover:rotate-12 transition-transform">
                     {w.name.charAt(0)}
                   </div>
                   <span className="text-2xl" title={w.country}>
                     {COUNTRY_FLAGS[w.country]}
                   </span>
                 </div>
-                <h2 className="font-serif text-2xl text-cream mt-4">
+                <h2 className="font-serif text-2xl text-burgundy-700 mt-4">
                   {w.name}
                 </h2>
-                <p className="text-xs uppercase tracking-[0.2em] text-gold mt-1">
-                  {w.country}
-                </p>
-                <p className="text-cream/75 mt-3 text-sm flex-1">
+                <p className="eyebrow !text-[10px] mt-1">{w.country}</p>
+                <p className="text-cream/85 mt-3 text-sm flex-1">
                   {w.description}
                 </p>
                 <div className="mt-5 flex items-center justify-between">

@@ -20,8 +20,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="mt-24 bg-gradient-to-b from-ink to-burgundy-900/40 border-t border-burgundy-700/40">
-      <div className="container-wide py-16 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="mt-24 relative overflow-hidden bg-gradient-to-b from-ink to-[#EDDFC3] border-t border-line">
+      <div className="absolute inset-0 pointer-events-none opacity-[0.06] bg-[radial-gradient(circle_at_20%_-10%,#722F37_0%,transparent_50%),radial-gradient(circle_at_90%_110%,#B8860B_0%,transparent_50%)]" />
+      <div className="relative container-wide py-16 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <Image
             src="https://vinfolio.com.cy/wp-content/uploads/2020/03/Logo-Transparent-1.png"
@@ -30,7 +31,7 @@ export default function Footer() {
             height={56}
             className="h-12 w-auto object-contain brightness-110"
           />
-          <p className="font-serif italic text-gold mt-3">
+          <p className="font-serif italic text-gold-dark mt-3">
             Strong partnerships build stronger companies
           </p>
           <p className="text-muted text-sm mt-4 max-w-xs">
@@ -43,21 +44,21 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="p-2.5 rounded-sm border border-gold/30 text-gold hover:bg-gold/10 transition-colors"
+              className="p-2.5 rounded-sm border border-burgundy/30 text-burgundy hover:bg-burgundy hover:text-[#F8F2E7] transition-all hover:-translate-y-0.5"
             >
               <Instagram className="w-4 h-4" />
             </a>
             <a
               href="mailto:vinfoliowines@gmail.com"
               aria-label="Email"
-              className="p-2.5 rounded-sm border border-gold/30 text-gold hover:bg-gold/10 transition-colors"
+              className="p-2.5 rounded-sm border border-burgundy/30 text-burgundy hover:bg-burgundy hover:text-[#F8F2E7] transition-all hover:-translate-y-0.5"
             >
               <Mail className="w-4 h-4" />
             </a>
             <a
               href="tel:+35799571267"
               aria-label="Phone"
-              className="p-2.5 rounded-sm border border-gold/30 text-gold hover:bg-gold/10 transition-colors"
+              className="p-2.5 rounded-sm border border-burgundy/30 text-burgundy hover:bg-burgundy hover:text-[#F8F2E7] transition-all hover:-translate-y-0.5"
             >
               <Phone className="w-4 h-4" />
             </a>
@@ -65,45 +66,45 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm uppercase tracking-[0.2em] text-gold mb-4">
+          <h4 className="text-sm uppercase tracking-[0.2em] text-burgundy font-semibold mb-4">
             Shop
           </h4>
-          <ul className="space-y-2 text-cream/80">
-            <li><Link href="/products" className="hover:text-gold transition-colors">All Wines</Link></li>
-            <li><Link href="/products?type=Red" className="hover:text-gold transition-colors">Red Wines</Link></li>
-            <li><Link href="/products?type=White" className="hover:text-gold transition-colors">White Wines</Link></li>
-            <li><Link href="/products?type=Ros%C3%A9" className="hover:text-gold transition-colors">Rosé</Link></li>
-            <li><Link href="/products?type=Sparkling" className="hover:text-gold transition-colors">Sparkling</Link></li>
-            <li><Link href="/wineries" className="hover:text-gold transition-colors">Wineries</Link></li>
-            <li><Link href="/wholesale" className="hover:text-gold transition-colors">Wholesale</Link></li>
+          <ul className="space-y-2 text-cream/85">
+            <li><Link href="/products" className="hover:text-burgundy transition-colors">All Wines</Link></li>
+            <li><Link href="/products?type=Red" className="hover:text-burgundy transition-colors">Red Wines</Link></li>
+            <li><Link href="/products?type=White" className="hover:text-burgundy transition-colors">White Wines</Link></li>
+            <li><Link href="/products?type=Ros%C3%A9" className="hover:text-burgundy transition-colors">Rosé</Link></li>
+            <li><Link href="/products?type=Sparkling" className="hover:text-burgundy transition-colors">Sparkling</Link></li>
+            <li><Link href="/wineries" className="hover:text-burgundy transition-colors">Wineries</Link></li>
+            <li><Link href="/wholesale" className="hover:text-burgundy transition-colors">Wholesale</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-sm uppercase tracking-[0.2em] text-gold mb-4">
+          <h4 className="text-sm uppercase tracking-[0.2em] text-burgundy font-semibold mb-4">
             Company
           </h4>
-          <ul className="space-y-2 text-cream/80">
-            <li><Link href="/about" className="hover:text-gold transition-colors">About</Link></li>
-            <li><Link href="/contact" className="hover:text-gold transition-colors">Contact</Link></li>
-            <li><Link href="/wholesale" className="hover:text-gold transition-colors">B2B Inquiry</Link></li>
+          <ul className="space-y-2 text-cream/85">
+            <li><Link href="/about" className="hover:text-burgundy transition-colors">About</Link></li>
+            <li><Link href="/contact" className="hover:text-burgundy transition-colors">Contact</Link></li>
+            <li><Link href="/wholesale" className="hover:text-burgundy transition-colors">B2B Inquiry</Link></li>
             <li><span className="text-cream/50">Terms (coming soon)</span></li>
             <li><span className="text-cream/50">Privacy (coming soon)</span></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-sm uppercase tracking-[0.2em] text-gold mb-4">
+          <h4 className="text-sm uppercase tracking-[0.2em] text-burgundy font-semibold mb-4">
             Contact
           </h4>
           <ul className="space-y-3 text-cream/80 text-sm">
-            <li className="flex gap-2"><MapPin className="w-4 h-4 mt-0.5 text-gold/70" /><span>Kato Polemidia, Limassol, Cyprus</span></li>
-            <li className="flex gap-2"><Phone className="w-4 h-4 mt-0.5 text-gold/70" /><a href="tel:+35799571267" className="hover:text-gold">+357 99 571267</a></li>
-            <li className="flex gap-2"><Mail className="w-4 h-4 mt-0.5 text-gold/70" /><a href="mailto:vinfoliowines@gmail.com" className="hover:text-gold break-all">vinfoliowines@gmail.com</a></li>
+            <li className="flex gap-2"><MapPin className="w-4 h-4 mt-0.5 text-gold-dark" /><span>Kato Polemidia, Limassol, Cyprus</span></li>
+            <li className="flex gap-2"><Phone className="w-4 h-4 mt-0.5 text-gold-dark" /><a href="tel:+35799571267" className="hover:text-gold">+357 99 571267</a></li>
+            <li className="flex gap-2"><Mail className="w-4 h-4 mt-0.5 text-gold-dark" /><a href="mailto:vinfoliowines@gmail.com" className="hover:text-gold break-all">vinfoliowines@gmail.com</a></li>
           </ul>
 
           <form onSubmit={onSubscribe} className="mt-6">
-            <label className="text-xs uppercase tracking-[0.2em] text-gold">
+            <label className="text-xs uppercase tracking-[0.2em] text-burgundy font-semibold">
               Newsletter
             </label>
             <div className="mt-2 flex gap-2">
@@ -123,10 +124,10 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-burgundy-700/40 py-6">
+      <div className="relative border-t border-line py-6">
         <div className="container-wide flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-muted">
           <p>© {new Date().getFullYear()} Vinfolio Ltd · All rights reserved.</p>
-          <p className="font-serif italic text-gold/80">
+          <p className="font-serif italic text-burgundy/70">
             Drink responsibly. 18+ only.
           </p>
         </div>

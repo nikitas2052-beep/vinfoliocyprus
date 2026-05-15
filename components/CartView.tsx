@@ -42,7 +42,7 @@ export default function CartView() {
           <div className="flex justify-center">
             <div className="wine-seal !w-20 !h-20 text-3xl">V</div>
           </div>
-          <h1 className="heading-serif text-4xl text-cream mt-6">Your cart is empty</h1>
+          <h1 className="heading-serif text-4xl mt-6">Your cart is empty</h1>
           <p className="text-muted mt-3">
             Discover wines from Cyprus, Greece, Italy, France, Chile and more.
           </p>
@@ -56,7 +56,7 @@ export default function CartView() {
 
   return (
     <div className="container-wide py-12">
-      <h1 className="heading-serif text-4xl md:text-5xl text-cream">Your Cart</h1>
+      <h1 className="heading-serif text-4xl md:text-5xl">Your Cart</h1>
       <div className="gold-divider" />
 
       <div className="grid lg:grid-cols-3 gap-8 mt-8">
@@ -79,12 +79,12 @@ export default function CartView() {
                 />
               </Link>
               <div className="flex-1 min-w-0">
-                <p className="text-xs uppercase tracking-wider text-gold/80">
+                <p className="eyebrow !text-[10px]">
                   {wine.winery}
                 </p>
                 <Link
                   href={`/products/${wine.id}`}
-                  className="font-serif text-xl text-cream hover:text-gold transition-colors block"
+                  className="font-serif text-xl text-burgundy-700 hover:text-burgundy transition-colors block"
                 >
                   {wine.name}
                 </Link>
@@ -93,11 +93,11 @@ export default function CartView() {
                   {wine.sizeMl >= 1000 ? `${wine.sizeMl / 1000} L` : `${wine.sizeMl} ml`}
                 </p>
                 <div className="mt-4 flex items-center gap-4 flex-wrap">
-                  <div className="inline-flex items-center border border-burgundy-700/50 rounded-sm">
+                  <div className="inline-flex items-center border border-line rounded-sm bg-ink/50">
                     <button
                       onClick={() => updateQuantity(wine.id, item.quantity - 1)}
                       aria-label="Decrease"
-                      className="p-2 hover:bg-burgundy/20"
+                      className="p-2 hover:bg-burgundy/10 text-burgundy"
                     >
                       <Minus className="w-3.5 h-3.5" />
                     </button>
@@ -105,7 +105,7 @@ export default function CartView() {
                     <button
                       onClick={() => updateQuantity(wine.id, item.quantity + 1)}
                       aria-label="Increase"
-                      className="p-2 hover:bg-burgundy/20"
+                      className="p-2 hover:bg-burgundy/10 text-burgundy"
                     >
                       <Plus className="w-3.5 h-3.5" />
                     </button>
@@ -121,7 +121,7 @@ export default function CartView() {
                   </button>
                 </div>
               </div>
-              <p className="font-serif text-xl text-gold whitespace-nowrap">
+              <p className="font-serif text-xl text-burgundy whitespace-nowrap">
                 {formatPrice(wine.price * item.quantity)}
               </p>
             </div>
@@ -138,8 +138,8 @@ export default function CartView() {
           </button>
         </div>
 
-        <aside className="card-surface p-6 h-fit lg:sticky lg:top-24">
-          <h2 className="font-serif text-2xl text-cream">Order Summary</h2>
+        <aside className="card-surface p-6 h-fit lg:sticky lg:top-24 wash-cream">
+          <h2 className="font-serif text-2xl text-burgundy-700">Order Summary</h2>
           <div className="gold-divider" />
           <dl className="space-y-3 mt-4 text-sm">
             <Row label="Subtotal" value={formatPrice(subtotal)} />
@@ -149,9 +149,9 @@ export default function CartView() {
               value={shipping === 0 ? "Free" : formatPrice(shipping)}
               hint={subtotal < 60 ? `Free over ${formatPrice(60)}` : undefined}
             />
-            <div className="border-t border-burgundy-700/50 pt-3 flex items-baseline justify-between">
-              <dt className="font-serif text-lg text-cream">Total</dt>
-              <dd className="font-serif text-2xl text-gold">{formatPrice(total)}</dd>
+            <div className="border-t border-line pt-3 flex items-baseline justify-between">
+              <dt className="font-serif text-lg text-burgundy-700">Total</dt>
+              <dd className="font-serif text-2xl text-burgundy">{formatPrice(total)}</dd>
             </div>
           </dl>
           <button
@@ -162,7 +162,7 @@ export default function CartView() {
           </button>
           <Link
             href="/products"
-            className="block text-center text-sm text-muted hover:text-gold mt-3"
+            className="block text-center text-sm text-muted hover:text-burgundy mt-3"
           >
             ← Continue shopping
           </Link>
@@ -191,7 +191,7 @@ function Row({
         {label}
         {hint && <span className="block text-xs text-muted/70">{hint}</span>}
       </dt>
-      <dd className="text-cream">{value}</dd>
+      <dd className="text-burgundy-700 font-medium">{value}</dd>
     </div>
   );
 }

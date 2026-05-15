@@ -71,8 +71,8 @@ export default function ProductFilters() {
               className={cn(
                 "px-3 py-1.5 text-xs uppercase tracking-wider rounded-sm border transition-colors",
                 selectedType === t
-                  ? "bg-gold text-ink border-gold"
-                  : "border-burgundy-700/50 text-cream/80 hover:border-gold/60",
+                  ? "bg-gradient-gold text-burgundy-800 border-gold shadow-wine-soft"
+                  : "border-line text-cream/80 hover:border-burgundy/40 hover:bg-burgundy/5",
               )}
             >
               {t}
@@ -139,8 +139,8 @@ export default function ProductFilters() {
                 className={cn(
                   "px-3 py-1.5 text-xs rounded-sm border transition-colors",
                   active
-                    ? "bg-gold text-ink border-gold"
-                    : "border-burgundy-700/50 text-cream/80 hover:border-gold/60",
+                    ? "bg-gradient-gold text-burgundy-800 border-gold shadow-wine-soft"
+                    : "border-line text-cream/80 hover:border-burgundy/40 hover:bg-burgundy/5",
                 )}
               >
                 {label}
@@ -167,7 +167,7 @@ export default function ProductFilters() {
       </FilterGroup>
 
       {activeCount > 0 && (
-        <button onClick={clearAll} className="text-sm text-gold hover:underline">
+        <button onClick={clearAll} className="text-sm text-burgundy hover:underline">
           Clear filters ({activeCount})
         </button>
       )}
@@ -178,30 +178,33 @@ export default function ProductFilters() {
     <>
       <button
         onClick={() => setMobileOpen(true)}
-        className="lg:hidden flex items-center gap-2 px-4 py-2 border border-burgundy-700/50 rounded-sm text-cream"
+        className="lg:hidden flex items-center gap-2 px-4 py-2 border border-line bg-surface rounded-sm text-burgundy"
       >
         <Filter className="w-4 h-4" /> Filters
         {activeCount > 0 && (
-          <span className="ml-1 text-xs bg-gold text-ink px-1.5 py-0.5 rounded">
+          <span className="ml-1 text-xs bg-burgundy text-[#F8F2E7] px-1.5 py-0.5 rounded">
             {activeCount}
           </span>
         )}
       </button>
 
       <aside className="hidden lg:block sticky top-24 self-start w-64 flex-shrink-0">
-        <h3 className="font-serif text-xl text-cream mb-4">Filters</h3>
+        <h3 className="font-serif text-xl text-burgundy-700 mb-4">Filters</h3>
         {filterBody}
       </aside>
 
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 bg-ink/80" onClick={() => setMobileOpen(false)}>
+        <div
+          className="lg:hidden fixed inset-0 z-50 bg-burgundy-900/40 backdrop-blur-sm"
+          onClick={() => setMobileOpen(false)}
+        >
           <div
-            className="absolute inset-x-0 bottom-0 max-h-[85vh] bg-surface border-t border-gold/30 rounded-t-lg p-5 overflow-y-auto"
+            className="absolute inset-x-0 bottom-0 max-h-[85vh] bg-surface border-t border-line rounded-t-lg p-5 overflow-y-auto shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-serif text-xl text-cream">Filters</h3>
-              <button onClick={() => setMobileOpen(false)} aria-label="Close">
+              <h3 className="font-serif text-xl text-burgundy-700">Filters</h3>
+              <button onClick={() => setMobileOpen(false)} aria-label="Close" className="text-burgundy">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -228,7 +231,7 @@ function FilterGroup({
 }) {
   return (
     <div>
-      <p className="text-xs uppercase tracking-[0.2em] text-gold mb-2">{label}</p>
+      <p className="eyebrow mb-2">{label}</p>
       {children}
     </div>
   );

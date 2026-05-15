@@ -46,7 +46,7 @@ export default function ProductDetail({
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="relative aspect-[3/4] bg-gradient-to-b from-burgundy-900/40 via-ink to-ink rounded-sm overflow-hidden border border-burgundy-700/40"
+          className="relative aspect-[3/4] bottle-bg rounded-sm overflow-hidden border border-line shadow-card-soft"
         >
           <Image
             src={wine.image}
@@ -56,16 +56,14 @@ export default function ProductDetail({
             sizes="(max-width:1024px) 100vw, 50vw"
             className="object-contain p-8"
           />
-          <div className="absolute top-4 right-4 wine-seal !w-14 !h-14 !text-base bg-ink/70 backdrop-blur-sm">
+          <div className="absolute top-4 right-4 wine-seal !w-14 !h-14 !text-base">
             {wine.year ?? "V"}
           </div>
         </motion.div>
 
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-gold">
-            {wine.winery}
-          </p>
-          <h1 className="heading-serif text-4xl md:text-5xl text-cream mt-2">
+          <p className="eyebrow">{wine.winery}</p>
+          <h1 className="heading-serif text-4xl md:text-5xl mt-2">
             {wine.name}
           </h1>
           <div className="gold-divider" />
@@ -84,7 +82,7 @@ export default function ProductDetail({
             )}
           </div>
 
-          <p className="text-cream/85 mt-5 text-lg leading-relaxed">
+          <p className="text-cream/90 mt-5 text-lg leading-relaxed">
             {wine.shortDescription}
           </p>
 
@@ -98,9 +96,9 @@ export default function ProductDetail({
             />
           </dl>
 
-          <div className="mt-8 card-surface p-5">
+          <div className="mt-8 card-surface p-5 wash-cream">
             <div className="flex items-baseline gap-3">
-              <p className="font-serif text-4xl text-gold">
+              <p className="font-serif text-4xl text-burgundy">
                 {formatPrice(wine.price)}
               </p>
               <p className="text-xs text-muted uppercase tracking-wider">
@@ -109,19 +107,19 @@ export default function ProductDetail({
             </div>
 
             <div className="mt-5 flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center border border-burgundy-700/50 rounded-sm">
+              <div className="inline-flex items-center border border-line rounded-sm bg-surface">
                 <button
                   onClick={() => setQty((q) => Math.max(1, q - 1))}
                   aria-label="Decrease"
-                  className="p-2.5 hover:bg-burgundy/20"
+                  className="p-2.5 hover:bg-burgundy/10 text-burgundy"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
-                <span className="w-12 text-center font-medium">{qty}</span>
+                <span className="w-12 text-center font-medium text-burgundy-700">{qty}</span>
                 <button
                   onClick={() => setQty((q) => Math.min(wine.stock, q + 1))}
                   aria-label="Increase"
-                  className="p-2.5 hover:bg-burgundy/20"
+                  className="p-2.5 hover:bg-burgundy/10 text-burgundy"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -134,7 +132,7 @@ export default function ProductDetail({
           </div>
 
           <div className="mt-8">
-            <div className="flex gap-1 border-b border-burgundy-700/40">
+            <div className="flex gap-1 border-b border-line">
               {(
                 [
                   ["description", "Description"],
@@ -148,25 +146,25 @@ export default function ProductDetail({
                   className={cn(
                     "px-4 py-3 text-sm uppercase tracking-wider transition-colors relative",
                     tab === key
-                      ? "text-gold"
-                      : "text-cream/60 hover:text-cream",
+                      ? "text-burgundy"
+                      : "text-muted hover:text-burgundy-700",
                   )}
                 >
                   {label}
                   {tab === key && (
                     <motion.span
                       layoutId="tab-underline"
-                      className="absolute bottom-0 inset-x-0 h-px bg-gold"
+                      className="absolute bottom-0 inset-x-0 h-0.5 bg-gradient-gold"
                     />
                   )}
                 </button>
               ))}
             </div>
-            <div className="py-5 text-cream/80 leading-relaxed whitespace-pre-line min-h-[140px]">
+            <div className="py-5 text-cream/90 leading-relaxed whitespace-pre-line min-h-[140px]">
               {tab === "description" && wine.description}
               {tab === "pairing" && (
                 <>
-                  <p className="text-gold font-serif italic mb-2">
+                  <p className="text-gold-dark font-serif italic mb-2">
                     Pairs beautifully with
                   </p>
                   {wine.pairing}
@@ -180,7 +178,7 @@ export default function ProductDetail({
 
       {related.length > 0 && (
         <section className="mt-20">
-          <h2 className="heading-serif text-3xl text-cream">You may also like</h2>
+          <h2 className="heading-serif text-3xl">You may also like</h2>
           <div className="gold-divider" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
             {related.map((w, i) => (
@@ -195,11 +193,11 @@ export default function ProductDetail({
 
 function Spec({ label, value }: { label: string; value: string }) {
   return (
-    <div>
-      <dt className="text-[10px] uppercase tracking-[0.2em] text-gold/70">
+    <div className="rounded-sm border border-line bg-surface/60 backdrop-blur-sm p-3">
+      <dt className="text-[10px] uppercase tracking-[0.2em] text-gold-dark">
         {label}
       </dt>
-      <dd className="font-serif text-lg text-cream mt-1">{value}</dd>
+      <dd className="font-serif text-lg text-burgundy-700 mt-1">{value}</dd>
     </div>
   );
 }

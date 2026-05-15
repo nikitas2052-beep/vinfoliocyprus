@@ -56,8 +56,8 @@ export default function ProductsView() {
   return (
     <div className="container-wide py-10">
       <div className="mb-8">
-        <p className="text-xs uppercase tracking-[0.3em] text-gold">Cellar</p>
-        <h1 className="heading-serif text-4xl md:text-5xl text-cream mt-2">
+        <p className="eyebrow">Cellar</p>
+        <h1 className="heading-serif text-4xl md:text-5xl mt-2">
           The Collection
         </h1>
         <div className="gold-divider" />
@@ -94,13 +94,13 @@ export default function ProductsView() {
           </div>
 
           <p className="text-sm text-muted mb-4">
-            Showing <span className="text-cream">{filtered.length}</span> of{" "}
-            {wines.length} wines
+            Showing <span className="text-burgundy font-medium">{filtered.length}</span>{" "}
+            of {wines.length} wines
           </p>
 
           {filtered.length === 0 ? (
             <div className="card-surface p-10 text-center">
-              <p className="font-serif text-2xl text-cream">No wines match.</p>
+              <p className="font-serif text-2xl text-burgundy-700">No wines match.</p>
               <p className="text-muted mt-2">
                 Try clearing some filters or broadening your search.
               </p>

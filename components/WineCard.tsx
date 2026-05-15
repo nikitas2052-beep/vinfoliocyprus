@@ -47,18 +47,18 @@ export default function WineCard({ wine, index = 0 }: { wine: Wine; index?: numb
       <Link
         href={`/products/${wine.id}`}
         className="block card-surface overflow-hidden transition-all duration-300
-                   hover:-translate-y-1 hover:border-gold/50
-                   hover:shadow-[0_20px_40px_-20px_rgba(212,175,55,0.4)]"
+                   hover:-translate-y-2 hover:border-gold/60
+                   hover:shadow-[0_24px_50px_-20px_rgba(114,47,55,0.35)]"
       >
-        <div className="relative aspect-[3/4] bg-gradient-to-b from-burgundy-900/50 via-ink to-ink overflow-hidden">
+        <div className="relative aspect-[3/4] bottle-bg overflow-hidden">
           <Image
             src={wine.image}
             alt={wine.name}
             fill
             sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 25vw"
-            className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+            className="object-contain p-4 group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-500"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/60 via-transparent to-transparent" />
           <span className={cn("absolute top-3 left-3", typeBadgeClass(wine.type))}>
             {wine.type}
           </span>
@@ -68,24 +68,25 @@ export default function WineCard({ wine, index = 0 }: { wine: Wine; index?: numb
         </div>
 
         <div className="p-4 space-y-1.5">
-          <p className="text-xs uppercase tracking-[0.18em] text-gold/80">
+          <p className="eyebrow !text-[10px]">
             {wine.winery}
           </p>
-          <h3 className="font-serif text-lg leading-tight text-cream line-clamp-2 min-h-[3.25rem]">
+          <h3 className="font-serif text-lg leading-tight text-burgundy-700 line-clamp-2 min-h-[3.25rem]">
             {wine.name}
           </h3>
           <p className="text-xs text-muted">
             {wine.region} · {wine.sizeMl >= 1000 ? `${wine.sizeMl / 1000} L` : `${wine.sizeMl} ml`}
           </p>
           <div className="flex items-end justify-between pt-2">
-            <p className="font-serif text-xl text-gold">
+            <p className="font-serif text-xl text-burgundy">
               {formatPrice(wine.price)}
             </p>
             <button
               onClick={onAdd}
               className="opacity-0 group-hover:opacity-100 transition-all
-                         inline-flex items-center gap-1.5 text-xs uppercase tracking-wider
-                         px-3 py-2 bg-burgundy hover:bg-burgundy-400 text-cream rounded-sm"
+                         inline-flex items-center gap-1.5 text-[11px] uppercase tracking-wider
+                         px-3 py-2 bg-burgundy hover:bg-burgundy-400 text-[#F8F2E7] rounded-sm
+                         shadow-wine-soft"
             >
               <ShoppingBag className="w-3.5 h-3.5" />
               Add

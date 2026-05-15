@@ -17,7 +17,7 @@ export default function AgeVerificationModal() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] bg-ink/95 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] bg-burgundy-900/60 backdrop-blur-md flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
           aria-labelledby="age-title"
@@ -27,22 +27,24 @@ export default function AgeVerificationModal() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="card-surface max-w-md w-full p-8 text-center"
+            className="card-surface max-w-md w-full p-8 text-center wash-cream"
           >
             <div className="flex justify-center mb-6">
               <div className="wine-seal !w-20 !h-20 text-3xl">V</div>
             </div>
             <h2
               id="age-title"
-              className="font-serif text-3xl text-cream tracking-wide"
+              className="font-serif text-3xl text-burgundy-700 tracking-wide"
             >
               Welcome to Vinfolio
             </h2>
-            <p className="font-serif italic text-gold mt-1">Wine Enthusiasts</p>
+            <p className="font-serif italic text-gold-dark mt-1">
+              Strong partnerships build stronger companies
+            </p>
 
             <div className="gold-divider mx-auto" />
 
-            <p className="text-cream/80 mt-4">
+            <p className="text-cream/85 mt-4">
               You must be of legal drinking age (18+) to enter this site.
             </p>
             <p className="text-muted text-sm mt-2">
