@@ -96,7 +96,7 @@ export default function ProductDetail({
             />
           </dl>
 
-          <div className="mt-8 card-surface p-5 wash-cream">
+          <div className="mt-8 card-surface p-5 bg-chalk">
             <div className="flex items-baseline gap-3">
               <p className="font-serif text-4xl text-burgundy">
                 {formatPrice(wine.price)}
@@ -111,15 +111,15 @@ export default function ProductDetail({
                 <button
                   onClick={() => setQty((q) => Math.max(1, q - 1))}
                   aria-label="Decrease"
-                  className="p-2.5 hover:bg-burgundy/10 text-burgundy"
+                  className="p-2.5 hover:bg-chalk text-burgundy"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
-                <span className="w-12 text-center font-medium text-burgundy-700">{qty}</span>
+                <span className="w-12 text-center font-medium text-ink">{qty}</span>
                 <button
                   onClick={() => setQty((q) => Math.min(wine.stock, q + 1))}
                   aria-label="Increase"
-                  className="p-2.5 hover:bg-burgundy/10 text-burgundy"
+                  className="p-2.5 hover:bg-chalk text-burgundy"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -147,14 +147,14 @@ export default function ProductDetail({
                     "px-4 py-3 text-sm uppercase tracking-wider transition-colors relative",
                     tab === key
                       ? "text-burgundy"
-                      : "text-muted hover:text-burgundy-700",
+                      : "text-muted hover:text-ink",
                   )}
                 >
                   {label}
                   {tab === key && (
                     <motion.span
                       layoutId="tab-underline"
-                      className="absolute bottom-0 inset-x-0 h-0.5 bg-gradient-gold"
+                      className="absolute bottom-0 inset-x-0 h-0.5 bg-gradient-bronze"
                     />
                   )}
                 </button>
@@ -164,7 +164,7 @@ export default function ProductDetail({
               {tab === "description" && wine.description}
               {tab === "pairing" && (
                 <>
-                  <p className="text-gold-dark font-serif italic mb-2">
+                  <p className="text-bronze font-serif italic mb-2">
                     Pairs beautifully with
                   </p>
                   {wine.pairing}
@@ -194,10 +194,10 @@ export default function ProductDetail({
 function Spec({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-sm border border-line bg-surface/60 backdrop-blur-sm p-3">
-      <dt className="text-[10px] uppercase tracking-[0.2em] text-gold-dark">
+      <dt className="text-[10px] uppercase tracking-[0.2em] text-bronze">
         {label}
       </dt>
-      <dd className="font-serif text-lg text-burgundy-700 mt-1">{value}</dd>
+      <dd className="font-serif text-lg text-ink mt-1">{value}</dd>
     </div>
   );
 }

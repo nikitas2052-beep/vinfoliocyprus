@@ -52,15 +52,15 @@ export default function CartDrawer() {
             role="dialog"
             aria-label="Shopping cart"
           >
-            <header className="flex items-center justify-between p-5 border-b border-line bg-gradient-cream">
-              <h2 className="font-serif text-2xl text-burgundy-700 flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-gold-dark" />
+            <header className="flex items-center justify-between p-5 border-b border-line bg-chalk">
+              <h2 className="font-serif text-2xl text-ink flex items-center gap-2">
+                <ShoppingBag className="w-5 h-5 text-bronze" />
                 Your Cart
               </h2>
               <button
                 onClick={closeCart}
                 aria-label="Close cart"
-                className="p-2 hover:bg-burgundy/10 rounded-sm transition-colors text-burgundy"
+                className="p-2 hover:bg-chalk rounded-sm transition-colors text-burgundy"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -109,7 +109,7 @@ export default function CartDrawer() {
                         <Link
                           href={`/products/${wine.id}`}
                           onClick={closeCart}
-                          className="font-serif text-burgundy-700 hover:text-burgundy transition-colors block truncate"
+                          className="font-serif text-ink hover:text-burgundy transition-colors block truncate"
                         >
                           {wine.name}
                         </Link>
@@ -125,7 +125,7 @@ export default function CartDrawer() {
                                 updateQuantity(item.wineId, item.quantity - 1)
                               }
                               aria-label="Decrease quantity"
-                              className="p-1.5 hover:bg-burgundy/10"
+                              className="p-1.5 hover:bg-chalk"
                             >
                               <Minus className="w-3 h-3" />
                             </button>
@@ -135,7 +135,7 @@ export default function CartDrawer() {
                                 updateQuantity(item.wineId, item.quantity + 1)
                               }
                               aria-label="Increase quantity"
-                              className="p-1.5 hover:bg-burgundy/10"
+                              className="p-1.5 hover:bg-chalk"
                             >
                               <Plus className="w-3 h-3" />
                             </button>
@@ -162,10 +162,10 @@ export default function CartDrawer() {
             </div>
 
             {hydrated && lineItems.length > 0 && (
-              <footer className="border-t border-line p-5 space-y-3 bg-gradient-cream">
+              <footer className="border-t border-line p-5 space-y-3 bg-chalk">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted">Subtotal (excl. VAT)</span>
-                  <span className="text-burgundy-700 font-medium">{formatPrice(subtotal)}</span>
+                  <span className="text-ink font-medium">{formatPrice(subtotal)}</span>
                 </div>
                 <p className="text-xs text-muted">
                   VAT and shipping calculated at checkout.

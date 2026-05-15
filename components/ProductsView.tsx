@@ -100,7 +100,7 @@ export default function ProductsView() {
 
           {filtered.length === 0 ? (
             <div className="card-surface p-10 text-center">
-              <p className="font-serif text-2xl text-burgundy-700">No wines match.</p>
+              <p className="font-serif text-2xl text-ink">No wines match.</p>
               <p className="text-muted mt-2">
                 Try clearing some filters or broadening your search.
               </p>

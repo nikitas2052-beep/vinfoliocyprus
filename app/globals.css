@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #F8F2E7;
-  --foreground: #2A1014;
+  --background: #FFFFFF;
+  --foreground: #000000;
 }
 
 html {
@@ -14,140 +14,164 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-alata), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
 ::selection {
-  background-color: #722F37;
-  color: #F8F2E7;
+  background-color: #C31432;
+  color: #FFFFFF;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
-::-webkit-scrollbar-track {
-  background: #F2E8D4;
-}
+::-webkit-scrollbar-track { background: #F9F8F4; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #722F37, #45161C);
-  border-radius: 8px;
+  background: #242E35;
+  border-radius: 0;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #8B1A1A;
-}
+::-webkit-scrollbar-thumb:hover { background: #C31432; }
 
 @layer components {
   .container-wide {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12;
+  }
+  .container-narrow {
+    @apply max-w-3xl mx-auto px-5 sm:px-8;
   }
   .heading-serif {
-    @apply font-serif tracking-tight text-burgundy-700;
+    @apply font-serif text-ink leading-[1.05];
   }
-  .gold-divider {
-    @apply h-px w-16 bg-gradient-to-r from-gold to-gold/0 my-4;
+  .display {
+    @apply font-serif text-ink leading-[1.02] tracking-[-0.02em]
+           text-[clamp(3rem,7.5vw,6rem)];
   }
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3
-           bg-burgundy hover:bg-burgundy-400 text-[#F8F2E7]
-           transition-all duration-200 font-medium
-           shadow-wine-soft hover:shadow-wine-glow hover:-translate-y-0.5;
+  .h-hero {
+    @apply font-serif text-ink leading-[1.05] tracking-[-0.015em]
+           text-[clamp(2.25rem,4.8vw,3.75rem)];
   }
-  .btn-gold {
-    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3
-           bg-gradient-gold text-burgundy-800 font-semibold
-           transition-all duration-200
-           shadow-wine-soft hover:brightness-110 hover:-translate-y-0.5
-           hover:shadow-[0_10px_40px_-10px_rgba(184,134,11,0.6)];
+  .eyebrow {
+    @apply text-[11px] uppercase tracking-[0.28em] font-sans text-muted;
   }
-  .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3
-           border border-burgundy/40 text-burgundy hover:bg-burgundy/5
-           hover:border-burgundy/70
-           transition-colors duration-200 font-medium;
-  }
-  .badge {
-    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm
-           text-[10px] uppercase tracking-[0.18em] font-semibold;
-  }
-  .badge-red {
-    @apply badge bg-burgundy/15 text-burgundy-600 border border-burgundy/25;
-  }
-  .badge-white {
-    @apply badge bg-amber-100 text-amber-800 border border-amber-300/50;
-  }
-  .badge-rose {
-    @apply badge bg-pink-100 text-pink-700 border border-pink-200;
-  }
-  .badge-sparkling {
-    @apply badge bg-yellow-50 text-yellow-800 border border-yellow-300/60;
+  .rule {
+    @apply h-px w-12 bg-ink/80 my-5;
   }
 
-  .card-surface {
-    @apply bg-surface border border-line rounded-sm shadow-card-soft;
+  /* Buttons — square, editorial */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5
+           bg-ink text-paper font-sans tracking-[0.06em] text-sm uppercase
+           border border-ink hover:bg-paper hover:text-ink
+           transition-colors duration-300 rounded-none;
+  }
+  .btn-chalk {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5
+           bg-chalk text-[#545D5C] font-sans tracking-[0.06em] text-sm uppercase
+           border border-line hover:bg-ink hover:text-paper hover:border-ink
+           transition-colors duration-300 rounded-none;
+  }
+  .btn-pill {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-2.5
+           bg-transparent text-paper border border-paper/80
+           hover:bg-paper hover:text-ink
+           transition-colors duration-300 text-sm tracking-[0.06em]
+           rounded-pill;
+  }
+  .btn-wine {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5
+           bg-wine text-paper font-sans tracking-[0.06em] text-sm uppercase
+           border border-wine hover:bg-wine-500
+           transition-colors duration-300 rounded-none;
+  }
+  .btn-bronze {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5
+           bg-bronze text-paper font-sans tracking-[0.06em] text-sm uppercase
+           border border-bronze hover:bg-bronze-500
+           transition-colors duration-300 rounded-none;
+  }
+  .btn-link {
+    @apply inline-flex items-center gap-2 text-ink font-sans
+           text-sm tracking-[0.08em] uppercase
+           border-b border-ink/40 hover:border-bronze hover:text-bronze
+           transition-colors pb-0.5;
+  }
+
+  .card-paper, .card-surface {
+    @apply bg-paper border border-line transition-all duration-300;
+  }
+  /* legacy aliases ↓ */
+  .btn-gold { @apply btn-bronze; }
+  .btn-ghost { @apply btn-chalk; }
+  .link-gold { @apply link-bronze; }
+  .gold-divider { @apply rule; }
+  .wine-seal {
+    border: 1px solid #B98D58;
+    border-radius: 50%;
+    width: 56px; height: 56px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--font-cormorant), serif;
+    font-style: italic;
+    color: #B98D58;
+    background: #F9F8F4;
+    letter-spacing: 0.04em;
   }
   .input-field {
-    @apply w-full bg-surface border border-line rounded-sm
-           px-4 py-2.5 text-cream placeholder:text-muted/70
-           focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20
+    @apply w-full bg-paper border border-line rounded-none
+           px-4 py-3 text-ink placeholder:text-muted/70
+           focus:outline-none focus:border-ink focus:ring-0
            transition-colors;
   }
-  .link-gold {
-    @apply text-gold-dark hover:text-burgundy underline-offset-4 hover:underline transition-colors;
+  .link-bronze {
+    @apply text-bronze hover:text-ink transition-colors;
   }
   .shimmer {
     background: linear-gradient(
       90deg,
-      rgba(245,239,227,1) 0%,
-      rgba(232,222,202,1) 50%,
-      rgba(245,239,227,1) 100%
+      rgba(249,248,244,1) 0%,
+      rgba(229,226,220,1) 50%,
+      rgba(249,248,244,1) 100%
     );
     background-size: 1000px 100%;
     animation: shimmer 2s linear infinite;
   }
-  .eyebrow {
-    @apply text-[11px] uppercase tracking-[0.32em] text-gold-dark font-medium;
+  .bottle-bg {
+    background:
+      radial-gradient(ellipse at 50% 30%, #FFFFFF 0%, #F9F8F4 60%, #F1EFE7 100%);
+  }
+  .type-badge {
+    @apply inline-flex items-center px-2 py-0.5 text-[10px] uppercase
+           tracking-[0.18em] font-sans border;
   }
 }
 
-/* Section divider — a soft burgundy wash */
-.wash-burgundy {
-  background:
-    radial-gradient(ellipse at top, rgba(114,47,55,0.06), transparent 60%),
-    linear-gradient(180deg, #F8F2E7 0%, #F2E5CF 100%);
+/* Editorial section dividers */
+.section-rule {
+  background: linear-gradient(90deg, transparent, #E5E2DC 20%, #E5E2DC 80%, transparent);
+  height: 1px;
 }
-.wash-cream {
-  background: linear-gradient(180deg, #FFFCF5 0%, #F8F2E7 100%);
+.section-chalk {
+  background: #F9F8F4;
 }
-
-.wine-seal {
-  border: 1.5px solid #B8860B;
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-playfair), serif;
-  font-style: italic;
-  color: #722F37;
-  letter-spacing: 0.05em;
-  background: rgba(255, 252, 245, 0.7);
-  backdrop-filter: blur(4px);
+.section-ink {
+  background: #242E35;
+  color: #FFFFFF;
 }
 
 /* Marquee */
 .marquee-track {
-  animation: marquee-x 40s linear infinite;
+  animation: marquee-x 45s linear infinite;
 }
-.marquee-track:hover {
-  animation-play-state: paused;
-}
+.marquee-track:hover { animation-play-state: paused; }
 
-/* Bottle-photo card background — soft gradient that flatters product PNGs */
-.bottle-bg {
-  background:
-    radial-gradient(ellipse at 50% 30%, rgba(255,252,245,1) 0%, rgba(248,242,231,1) 60%, rgba(229,217,197,1) 100%);
-}
+/* Hero ken-burns image */
+.kb-image { animation: ken-burns 14s ease-in-out infinite alternate; }

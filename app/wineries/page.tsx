@@ -29,7 +29,7 @@ export default function WineriesPage() {
           const count = wines.filter((wine) => wine.winery === w.name).length;
           return (
             <Reveal key={w.slug} delay={i * 0.04}>
-              <article className="card-surface p-6 h-full flex flex-col group hover:-translate-y-1 hover:shadow-wine-soft hover:border-gold/60 transition-all">
+              <article className="card-surface p-6 h-full flex flex-col group hover:-translate-y-1 hover:shadow-wine-soft hover:border-line transition-all">
                 <div className="flex items-start justify-between">
                   <div className="wine-seal !w-12 !h-12 text-lg group-hover:rotate-12 transition-transform">
                     {w.name.charAt(0)}
@@ -38,7 +38,7 @@ export default function WineriesPage() {
                     {COUNTRY_FLAGS[w.country]}
                   </span>
                 </div>
-                <h2 className="font-serif text-2xl text-burgundy-700 mt-4">
+                <h2 className="font-serif text-2xl text-ink mt-4">
                   {w.name}
                 </h2>
                 <p className="eyebrow !text-[10px] mt-1">{w.country}</p>

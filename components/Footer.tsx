@@ -20,114 +20,125 @@ export default function Footer() {
   };
 
   return (
-    <footer className="mt-24 relative overflow-hidden bg-gradient-to-b from-ink to-[#EDDFC3] border-t border-line">
-      <div className="absolute inset-0 pointer-events-none opacity-[0.06] bg-[radial-gradient(circle_at_20%_-10%,#722F37_0%,transparent_50%),radial-gradient(circle_at_90%_110%,#B8860B_0%,transparent_50%)]" />
-      <div className="relative container-wide py-16 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-        <div>
+    <footer className="section-ink mt-24">
+      <div className="container-wide pt-20 pb-12 grid gap-12 lg:grid-cols-12">
+        {/* Brand block */}
+        <div className="lg:col-span-4">
           <Image
             src="https://vinfolio.com.cy/wp-content/uploads/2020/03/Logo-Transparent-1.png"
             alt="Vinfolio"
-            width={200}
-            height={56}
-            className="h-12 w-auto object-contain brightness-110"
+            width={220}
+            height={64}
+            className="h-14 w-auto object-contain brightness-0 invert"
           />
-          <p className="font-serif italic text-gold-dark mt-3">
-            Strong partnerships build stronger companies
+          <p className="font-serif italic text-bronze mt-5 text-lg">
+            Strong partnerships build stronger companies.
           </p>
-          <p className="text-muted text-sm mt-4 max-w-xs">
-            Importer & distributor of fine wines in Cyprus. Curating the great
-            regions of the world for the Cypriot table.
+          <p className="text-paper/70 text-sm mt-5 max-w-sm">
+            Vinfolio Ltd is a Cypriot fine-wine importer & distributor based in
+            Kato Polemidia, Limassol — curating wines with character from the
+            great regions of the world.
           </p>
-          <div className="flex gap-3 mt-5">
+          <div className="flex gap-3 mt-7">
             <a
               href="https://www.instagram.com/vinfolio_wines"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="p-2.5 rounded-sm border border-burgundy/30 text-burgundy hover:bg-burgundy hover:text-[#F8F2E7] transition-all hover:-translate-y-0.5"
+              className="p-2.5 border border-paper/25 text-paper hover:bg-paper hover:text-ink transition-colors"
             >
-              <Instagram className="w-4 h-4" />
+              <Instagram className="w-4 h-4" strokeWidth={1.5} />
             </a>
             <a
               href="mailto:vinfoliowines@gmail.com"
               aria-label="Email"
-              className="p-2.5 rounded-sm border border-burgundy/30 text-burgundy hover:bg-burgundy hover:text-[#F8F2E7] transition-all hover:-translate-y-0.5"
+              className="p-2.5 border border-paper/25 text-paper hover:bg-paper hover:text-ink transition-colors"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="w-4 h-4" strokeWidth={1.5} />
             </a>
             <a
               href="tel:+35799571267"
               aria-label="Phone"
-              className="p-2.5 rounded-sm border border-burgundy/30 text-burgundy hover:bg-burgundy hover:text-[#F8F2E7] transition-all hover:-translate-y-0.5"
+              className="p-2.5 border border-paper/25 text-paper hover:bg-paper hover:text-ink transition-colors"
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-4 h-4" strokeWidth={1.5} />
             </a>
           </div>
         </div>
 
-        <div>
-          <h4 className="text-sm uppercase tracking-[0.2em] text-burgundy font-semibold mb-4">
-            Shop
-          </h4>
-          <ul className="space-y-2 text-cream/85">
-            <li><Link href="/products" className="hover:text-burgundy transition-colors">All Wines</Link></li>
-            <li><Link href="/products?type=Red" className="hover:text-burgundy transition-colors">Red Wines</Link></li>
-            <li><Link href="/products?type=White" className="hover:text-burgundy transition-colors">White Wines</Link></li>
-            <li><Link href="/products?type=Ros%C3%A9" className="hover:text-burgundy transition-colors">Rosé</Link></li>
-            <li><Link href="/products?type=Sparkling" className="hover:text-burgundy transition-colors">Sparkling</Link></li>
-            <li><Link href="/wineries" className="hover:text-burgundy transition-colors">Wineries</Link></li>
-            <li><Link href="/wholesale" className="hover:text-burgundy transition-colors">Wholesale</Link></li>
+        {/* Shop links */}
+        <div className="lg:col-span-2">
+          <h4 className="text-[11px] uppercase tracking-[0.28em] text-bronze mb-5">Shop</h4>
+          <ul className="space-y-3 text-paper/80 text-sm font-sans">
+            <li><Link href="/products" className="hover:text-paper transition-colors">All Wines</Link></li>
+            <li><Link href="/products?type=Red" className="hover:text-paper transition-colors">Red</Link></li>
+            <li><Link href="/products?type=White" className="hover:text-paper transition-colors">White</Link></li>
+            <li><Link href="/products?type=Ros%C3%A9" className="hover:text-paper transition-colors">Rosé</Link></li>
+            <li><Link href="/products?type=Sparkling" className="hover:text-paper transition-colors">Sparkling</Link></li>
+            <li><Link href="/wineries" className="hover:text-paper transition-colors">Wineries</Link></li>
           </ul>
         </div>
 
-        <div>
-          <h4 className="text-sm uppercase tracking-[0.2em] text-burgundy font-semibold mb-4">
-            Company
-          </h4>
-          <ul className="space-y-2 text-cream/85">
-            <li><Link href="/about" className="hover:text-burgundy transition-colors">About</Link></li>
-            <li><Link href="/contact" className="hover:text-burgundy transition-colors">Contact</Link></li>
-            <li><Link href="/wholesale" className="hover:text-burgundy transition-colors">B2B Inquiry</Link></li>
-            <li><span className="text-cream/50">Terms (coming soon)</span></li>
-            <li><span className="text-cream/50">Privacy (coming soon)</span></li>
+        {/* Company links */}
+        <div className="lg:col-span-2">
+          <h4 className="text-[11px] uppercase tracking-[0.28em] text-bronze mb-5">Company</h4>
+          <ul className="space-y-3 text-paper/80 text-sm font-sans">
+            <li><Link href="/about" className="hover:text-paper transition-colors">Our Story</Link></li>
+            <li><Link href="/contact" className="hover:text-paper transition-colors">Contact</Link></li>
+            <li><Link href="/wholesale" className="hover:text-paper transition-colors">Trade</Link></li>
+            <li><span className="text-paper/40">Terms</span></li>
+            <li><span className="text-paper/40">Privacy</span></li>
           </ul>
         </div>
 
-        <div>
-          <h4 className="text-sm uppercase tracking-[0.2em] text-burgundy font-semibold mb-4">
-            Contact
-          </h4>
-          <ul className="space-y-3 text-cream/80 text-sm">
-            <li className="flex gap-2"><MapPin className="w-4 h-4 mt-0.5 text-gold-dark" /><span>Kato Polemidia, Limassol, Cyprus</span></li>
-            <li className="flex gap-2"><Phone className="w-4 h-4 mt-0.5 text-gold-dark" /><a href="tel:+35799571267" className="hover:text-gold">+357 99 571267</a></li>
-            <li className="flex gap-2"><Mail className="w-4 h-4 mt-0.5 text-gold-dark" /><a href="mailto:vinfoliowines@gmail.com" className="hover:text-gold break-all">vinfoliowines@gmail.com</a></li>
+        {/* Visit + newsletter */}
+        <div className="lg:col-span-4">
+          <h4 className="text-[11px] uppercase tracking-[0.28em] text-bronze mb-5">Visit</h4>
+          <ul className="space-y-3 text-paper/80 text-sm">
+            <li className="flex gap-2.5">
+              <MapPin className="w-4 h-4 mt-0.5 text-bronze flex-shrink-0" strokeWidth={1.5} />
+              <span>Kato Polemidia, Limassol, Cyprus</span>
+            </li>
+            <li className="flex gap-2.5">
+              <Phone className="w-4 h-4 mt-0.5 text-bronze flex-shrink-0" strokeWidth={1.5} />
+              <a href="tel:+35799571267" className="hover:text-paper">+357 99 571267</a>
+            </li>
+            <li className="flex gap-2.5">
+              <Mail className="w-4 h-4 mt-0.5 text-bronze flex-shrink-0" strokeWidth={1.5} />
+              <a href="mailto:vinfoliowines@gmail.com" className="hover:text-paper break-all">
+                vinfoliowines@gmail.com
+              </a>
+            </li>
           </ul>
 
-          <form onSubmit={onSubscribe} className="mt-6">
-            <label className="text-xs uppercase tracking-[0.2em] text-burgundy font-semibold">
-              Newsletter
+          <form onSubmit={onSubscribe} className="mt-7">
+            <label className="text-[11px] uppercase tracking-[0.28em] text-bronze">
+              Stay in the cellar
             </label>
-            <div className="mt-2 flex gap-2">
+            <div className="mt-2 flex">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
-                className="input-field flex-1"
+                className="flex-1 bg-transparent border-b border-paper/40 px-0 py-2.5 text-paper placeholder:text-paper/40 focus:outline-none focus:border-bronze transition-colors"
                 required
               />
-              <button type="submit" className="btn-gold !px-4 !py-2.5">
-                Join
+              <button
+                type="submit"
+                className="px-5 text-paper hover:text-bronze transition-colors text-[12px] uppercase tracking-[0.18em] border-b border-paper/40"
+              >
+                Join →
               </button>
             </div>
           </form>
         </div>
       </div>
 
-      <div className="relative border-t border-line py-6">
-        <div className="container-wide flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-muted">
+      <div className="border-t border-paper/15">
+        <div className="container-wide py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs font-sans text-paper/60">
           <p>© {new Date().getFullYear()} Vinfolio Ltd · All rights reserved.</p>
-          <p className="font-serif italic text-burgundy/70">
+          <p className="italic font-serif text-paper/80">
             Drink responsibly. 18+ only.
           </p>
         </div>

@@ -71,8 +71,8 @@ export default function ProductFilters() {
               className={cn(
                 "px-3 py-1.5 text-xs uppercase tracking-wider rounded-sm border transition-colors",
                 selectedType === t
-                  ? "bg-gradient-gold text-burgundy-800 border-gold shadow-wine-soft"
-                  : "border-line text-cream/80 hover:border-burgundy/40 hover:bg-burgundy/5",
+                  ? "bg-gradient-bronze text-burgundy-800 border-gold shadow-wine-soft"
+                  : "border-line text-cream/80 hover:border-line hover:bg-burgundy/5",
               )}
             >
               {t}
@@ -139,8 +139,8 @@ export default function ProductFilters() {
                 className={cn(
                   "px-3 py-1.5 text-xs rounded-sm border transition-colors",
                   active
-                    ? "bg-gradient-gold text-burgundy-800 border-gold shadow-wine-soft"
-                    : "border-line text-cream/80 hover:border-burgundy/40 hover:bg-burgundy/5",
+                    ? "bg-gradient-bronze text-burgundy-800 border-gold shadow-wine-soft"
+                    : "border-line text-cream/80 hover:border-line hover:bg-burgundy/5",
                 )}
               >
                 {label}
@@ -189,7 +189,7 @@ export default function ProductFilters() {
       </button>
 
       <aside className="hidden lg:block sticky top-24 self-start w-64 flex-shrink-0">
-        <h3 className="font-serif text-xl text-burgundy-700 mb-4">Filters</h3>
+        <h3 className="font-serif text-xl text-ink mb-4">Filters</h3>
         {filterBody}
       </aside>
 
@@ -203,7 +203,7 @@ export default function ProductFilters() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-serif text-xl text-burgundy-700">Filters</h3>
+              <h3 className="font-serif text-xl text-ink">Filters</h3>
               <button onClick={() => setMobileOpen(false)} aria-label="Close" className="text-burgundy">
                 <X className="w-5 h-5" />
               </button>

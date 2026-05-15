@@ -9,39 +9,81 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ─── Brand ─────────────────────────────────────────────────
+        // ─── Brand (new Vinfolio palette) ────────────────────────
+        // Primary: dark blue-graphite (#242E35)
+        ink: {
+          DEFAULT: "#242E35",
+          50: "#F4F5F6",
+          100: "#E5E7E9",
+          200: "#C2C7CB",
+          300: "#9DA4AB",
+          400: "#5D6973",
+          500: "#3A464F",
+          600: "#242E35",
+          700: "#1B2329",
+          800: "#13191E",
+          900: "#0B1014",
+        },
+        // Secondary: deep wine red (#C31432)
+        wine: {
+          DEFAULT: "#C31432",
+          50: "#FCE7EB",
+          100: "#F8C9D2",
+          200: "#EE8A99",
+          300: "#E04D62",
+          400: "#C31432",
+          500: "#9F1029",
+          600: "#7B0C20",
+          700: "#570817",
+          800: "#33050E",
+        },
+        // Accent: warm bronze / brushed gold (#B98D58)
+        bronze: {
+          DEFAULT: "#B98D58",
+          50: "#FBF5ED",
+          100: "#F4E6D2",
+          200: "#E6CBA1",
+          300: "#D7B070",
+          400: "#B98D58",
+          500: "#977045",
+          600: "#735434",
+          700: "#4F3923",
+        },
+        // Neutral surfaces
+        paper: "#FFFFFF",
+        chalk: "#F9F8F4",
+        muted: "#545D5C",
+        line: "#E5E2DC",
+        // Legacy aliases (kept so any leftover classes still resolve)
+        cream: "#000000",
+        surface: "#FFFFFF",
         burgundy: {
-          DEFAULT: "#722F37",
-          50: "#FBF1F2",
-          100: "#F5DDE0",
-          200: "#E5B1B6",
-          300: "#C97D85",
-          400: "#9E4651",
-          500: "#722F37",
-          600: "#5C262C",
-          700: "#451C21",
-          800: "#2E1316",
-          900: "#170A0B",
+          DEFAULT: "#C31432",
+          50: "#FCE7EB",
+          100: "#F8C9D2",
+          200: "#EE8A99",
+          300: "#E04D62",
+          400: "#C31432",
+          500: "#9F1029",
+          600: "#7B0C20",
+          700: "#570817",
+          800: "#33050E",
+          900: "#1A030A",
         },
         gold: {
-          DEFAULT: "#B8860B",
-          light: "#E6C75E",
-          dark: "#8E6708",
+          DEFAULT: "#B98D58",
+          light: "#D7B070",
+          dark: "#977045",
         },
-        seal: "#8B1A1A",
-
-        // ─── Semantic surfaces (now LIGHT theme) ──────────────────
-        // These names are kept stable across the codebase so a future
-        // theme swap is a single config edit.
-        ink: "#F8F2E7",      // page background (warm cream)
-        surface: "#FFFFFF",  // cards / dropdowns / drawer
-        cream: "#2A1014",    // primary text — deep wine ink
-        muted: "#7A6B5C",    // secondary text — warm brown
-        line: "#E5D9C5",     // borders on cream
+        seal: "#C31432",
       },
       fontFamily: {
-        serif: ["var(--font-playfair)", "Georgia", "serif"],
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        serif: ["var(--font-cormorant)", "Cormorant Infant", "Georgia", "serif"],
+        sans: ["var(--font-alata)", "Alata", "system-ui", "sans-serif"],
+      },
+      fontSize: {
+        display: ["clamp(3rem, 8vw, 6.25rem)", { lineHeight: "1.02", letterSpacing: "-0.02em" }],
+        hero: ["clamp(2.25rem, 5vw, 3.75rem)", { lineHeight: "1.05", letterSpacing: "-0.015em" }],
       },
       keyframes: {
         "fade-up": {
@@ -52,33 +94,34 @@ const config: Config = {
           "0%": { backgroundPosition: "-1000px 0" },
           "100%": { backgroundPosition: "1000px 0" },
         },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-8px)" },
-        },
         "marquee-x": {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        "ken-burns": {
+          "0%": { transform: "scale(1) translate(0,0)" },
+          "100%": { transform: "scale(1.06) translate(-1%, -1%)" },
+        },
       },
       animation: {
-        "fade-up": "fade-up 0.6s ease-out",
+        "fade-up": "fade-up 0.8s cubic-bezier(0.22,1,0.36,1)",
         shimmer: "shimmer 2s linear infinite",
-        float: "float 4s ease-in-out infinite",
-        marquee: "marquee-x 40s linear infinite",
+        marquee: "marquee-x 45s linear infinite",
+        "ken-burns": "ken-burns 14s ease-in-out infinite alternate",
       },
       backgroundImage: {
-        "gradient-burgundy":
-          "linear-gradient(135deg, #722F37 0%, #45161C 100%)",
-        "gradient-gold":
-          "linear-gradient(135deg, #E6C75E 0%, #B8860B 100%)",
-        "gradient-cream":
-          "linear-gradient(180deg, #FBF6EC 0%, #F2E8D4 100%)",
+        "gradient-bronze": "linear-gradient(135deg, #D7B070 0%, #977045 100%)",
+        "gradient-ink": "linear-gradient(135deg, #242E35 0%, #13191E 100%)",
       },
       boxShadow: {
-        "wine-soft": "0 10px 40px -15px rgba(114,47,55,0.25)",
-        "wine-glow": "0 0 30px -5px rgba(212,175,55,0.4)",
-        "card-soft": "0 4px 24px -8px rgba(74,20,26,0.12)",
+        soft: "0 6px 24px -10px rgba(36,46,53,0.18)",
+        card: "0 4px 30px -12px rgba(36,46,53,0.12)",
+        hover: "0 18px 50px -20px rgba(36,46,53,0.30)",
+      },
+      borderRadius: {
+        sm: "4px",
+        DEFAULT: "4px",
+        pill: "13px",
       },
     },
   },

@@ -39,7 +39,7 @@ export default function ContactView() {
 
       <div className="grid lg:grid-cols-3 gap-8 mt-10">
         <form onSubmit={onSubmit} className="lg:col-span-2 card-surface p-6 space-y-4">
-          <h2 className="font-serif text-2xl text-burgundy-700">Send us a message</h2>
+          <h2 className="font-serif text-2xl text-ink">Send us a message</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             <Field
               label="Name"
@@ -86,7 +86,7 @@ export default function ContactView() {
 
         <aside className="space-y-6">
           <div className="card-surface p-6">
-            <h2 className="font-serif text-2xl text-burgundy-700">Vinfolio Ltd</h2>
+            <h2 className="font-serif text-2xl text-ink">Vinfolio Ltd</h2>
             <ul className="mt-4 space-y-3 text-cream/90">
               <li className="flex gap-3">
                 <MapPin className="w-5 h-5 text-burgundy flex-shrink-0 mt-0.5" />
@@ -120,7 +120,7 @@ export default function ContactView() {
           </div>
 
           <div className="card-surface p-6">
-            <h3 className="font-serif text-xl text-burgundy-700 flex items-center gap-2">
+            <h3 className="font-serif text-xl text-ink flex items-center gap-2">
               <Clock className="w-4 h-4 text-gold" />
               Business Hours
             </h3>

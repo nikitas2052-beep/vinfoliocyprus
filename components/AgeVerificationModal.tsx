@@ -27,18 +27,18 @@ export default function AgeVerificationModal() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="card-surface max-w-md w-full p-8 text-center wash-cream"
+            className="card-surface max-w-md w-full p-8 text-center bg-chalk"
           >
             <div className="flex justify-center mb-6">
               <div className="wine-seal !w-20 !h-20 text-3xl">V</div>
             </div>
             <h2
               id="age-title"
-              className="font-serif text-3xl text-burgundy-700 tracking-wide"
+              className="font-serif text-3xl text-ink tracking-wide"
             >
               Welcome to Vinfolio
             </h2>
-            <p className="font-serif italic text-gold-dark mt-1">
+            <p className="font-serif italic text-bronze mt-1">
               Strong partnerships build stronger companies
             </p>
 

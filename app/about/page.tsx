@@ -18,7 +18,7 @@ export default function AboutPage() {
         <p className="eyebrow">About Vinfolio</p>
         <h1 className="heading-serif text-5xl md:text-6xl mt-2">
           Strong partnerships<br />
-          <span className="italic text-gold-dark-dark">build stronger companies</span>
+          <span className="italic text-bronze-dark">build stronger companies</span>
         </h1>
         <div className="gold-divider" />
         <p className="text-cream/90 text-lg leading-relaxed mt-4">
@@ -26,8 +26,8 @@ export default function AboutPage() {
           bringing carefully curated fine wines from renowned wineries worldwide
           to Cyprus — wines with character, quality, and a compelling story to tell.
         </p>
-        <blockquote className="mt-8 border-l-2 border-gold pl-5 wash-cream py-4 rounded-sm">
-          <p className="font-serif italic text-burgundy-700 text-xl">
+        <blockquote className="mt-8 border-l-2 border-gold pl-5 bg-chalk py-4 rounded-sm">
+          <p className="font-serif italic text-ink text-xl">
             "Great wine works wonders and is itself one."
           </p>
           <footer className="text-sm text-muted mt-2">— Edward Steinberg</footer>
@@ -53,8 +53,8 @@ export default function AboutPage() {
             <div className="gold-divider" />
             <p>
               Vinfolio was founded by{" "}
-              <span className="font-serif italic text-gold-dark">Yiannakis Aristidou</span>,
-              bringing over <span className="text-gold-dark">25 years</span> of
+              <span className="font-serif italic text-bronze">Yiannakis Aristidou</span>,
+              bringing over <span className="text-bronze">25 years</span> of
               professional experience in the wine and beverage sector to Cyprus.
             </p>
             <p>
@@ -64,14 +64,14 @@ export default function AboutPage() {
             </p>
             <p>
               To us, wine is more than a commodity. It represents{" "}
-              <span className="font-serif italic text-gold-dark">
+              <span className="font-serif italic text-bronze">
                 culture, experience, and a way of life
               </span>
               . Each bottle in our portfolio reflects our philosophy of balancing
               tradition, taste, and authenticity.
             </p>
             <div className="card-surface p-5">
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-dark">Contact the founder</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-bronze">Contact the founder</p>
               <p className="mt-2">
                 <a href="tel:+35799571267" className="link-gold">+357 99 571267</a> ·{" "}
                 <a href="mailto:vinfoliowines@gmail.com" className="link-gold">
@@ -125,7 +125,7 @@ export default function AboutPage() {
             <Reveal key={w.slug} delay={i * 0.03}>
               <div className="card-surface p-4 text-center">
                 <p className="text-xl">{COUNTRY_FLAGS[w.country]}</p>
-                <p className="font-serif text-sm text-burgundy-700 mt-1">{w.name}</p>
+                <p className="font-serif text-sm text-ink mt-1">{w.name}</p>
                 <p className="text-[10px] uppercase tracking-wider text-muted mt-0.5">
                   {w.country}
                 </p>

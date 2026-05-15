@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Cormorant_Infant, Alata } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -7,14 +7,17 @@ import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import AgeVerificationModal from "@/components/AgeVerificationModal";
 
-const inter = Inter({
+const cormorant = Cormorant_Infant({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-cormorant",
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
-const playfair = Playfair_Display({
+const alata = Alata({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-alata",
+  weight: ["400"],
   display: "swap",
 });
 
@@ -38,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vinfolio · Fine Wine Importer · Cyprus",
     description:
-      "Strong partnerships build stronger companies. Curated wines from Cyprus and the great regions of the world. Importer & distributor — Limassol, Cyprus.",
+      "Strong partnerships build stronger companies. Curated wines from Cyprus and the great regions of the world.",
     url: "https://www.vinfolio.com.cy",
     siteName: "Vinfolio",
     locale: "en_CY",
@@ -63,21 +66,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="min-h-screen flex flex-col bg-ink text-cream">
+    <html lang="en" className={`${cormorant.variable} ${alata.variable}`}>
+      <body className="min-h-screen flex flex-col bg-paper text-ink">
         <AgeVerificationModal />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
         <CartDrawer />
         <Toaster
-          theme="dark"
+          theme="light"
           position="bottom-right"
           toastOptions={{
             style: {
-              background: "#1A1416",
-              border: "1px solid rgba(212,175,55,0.3)",
-              color: "#F5F0E8",
+              background: "#FFFFFF",
+              border: "1px solid #E5E2DC",
+              color: "#242E35",
+              fontFamily: "var(--font-alata)",
+              borderRadius: 0,
             },
           }}
         />

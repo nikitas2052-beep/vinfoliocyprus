@@ -84,7 +84,7 @@ export default function CartView() {
                 </p>
                 <Link
                   href={`/products/${wine.id}`}
-                  className="font-serif text-xl text-burgundy-700 hover:text-burgundy transition-colors block"
+                  className="font-serif text-xl text-ink hover:text-burgundy transition-colors block"
                 >
                   {wine.name}
                 </Link>
@@ -97,7 +97,7 @@ export default function CartView() {
                     <button
                       onClick={() => updateQuantity(wine.id, item.quantity - 1)}
                       aria-label="Decrease"
-                      className="p-2 hover:bg-burgundy/10 text-burgundy"
+                      className="p-2 hover:bg-chalk text-burgundy"
                     >
                       <Minus className="w-3.5 h-3.5" />
                     </button>
@@ -105,7 +105,7 @@ export default function CartView() {
                     <button
                       onClick={() => updateQuantity(wine.id, item.quantity + 1)}
                       aria-label="Increase"
-                      className="p-2 hover:bg-burgundy/10 text-burgundy"
+                      className="p-2 hover:bg-chalk text-burgundy"
                     >
                       <Plus className="w-3.5 h-3.5" />
                     </button>
@@ -138,8 +138,8 @@ export default function CartView() {
           </button>
         </div>
 
-        <aside className="card-surface p-6 h-fit lg:sticky lg:top-24 wash-cream">
-          <h2 className="font-serif text-2xl text-burgundy-700">Order Summary</h2>
+        <aside className="card-surface p-6 h-fit lg:sticky lg:top-24 bg-chalk">
+          <h2 className="font-serif text-2xl text-ink">Order Summary</h2>
           <div className="gold-divider" />
           <dl className="space-y-3 mt-4 text-sm">
             <Row label="Subtotal" value={formatPrice(subtotal)} />
@@ -150,7 +150,7 @@ export default function CartView() {
               hint={subtotal < 60 ? `Free over ${formatPrice(60)}` : undefined}
             />
             <div className="border-t border-line pt-3 flex items-baseline justify-between">
-              <dt className="font-serif text-lg text-burgundy-700">Total</dt>
+              <dt className="font-serif text-lg text-ink">Total</dt>
               <dd className="font-serif text-2xl text-burgundy">{formatPrice(total)}</dd>
             </div>
           </dl>
@@ -191,7 +191,7 @@ function Row({
         {label}
         {hint && <span className="block text-xs text-muted/70">{hint}</span>}
       </dt>
-      <dd className="text-burgundy-700 font-medium">{value}</dd>
+      <dd className="text-ink font-medium">{value}</dd>
     </div>
   );
 }

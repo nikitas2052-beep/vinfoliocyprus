@@ -3,27 +3,33 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ShoppingBag } from "lucide-react";
+import { Plus } from "lucide-react";
 import { toast } from "sonner";
 import type { Wine } from "@/lib/types";
 import { useCart } from "@/lib/store";
-import { COUNTRY_FLAGS, cn, formatPrice } from "@/lib/utils";
+import { cn, formatPrice } from "@/lib/utils";
 
-function typeBadgeClass(t: Wine["type"]) {
+function typeColor(t: Wine["type"]): string {
   switch (t) {
     case "Red":
-      return "badge-red";
+      return "border-wine-300 text-wine bg-wine-50";
     case "White":
-      return "badge-white";
+      return "border-bronze-200 text-bronze-600 bg-bronze-50";
     case "Rosé":
-      return "badge-rose";
+      return "border-pink-300 text-pink-700 bg-pink-50";
     case "Sparkling":
     case "Sparkling Rosé":
-      return "badge-sparkling";
+      return "border-amber-300 text-amber-700 bg-amber-50";
   }
 }
 
-export default function WineCard({ wine, index = 0 }: { wine: Wine; index?: number }) {
+export default function WineCard({
+  wine,
+  index = 0,
+}: {
+  wine: Wine;
+  index?: number;
+}) {
   const addItem = useCart((s) => s.addItem);
   const openCart = useCart((s) => s.openCart);
 
@@ -38,60 +44,58 @@ export default function WineCard({ wine, index = 0 }: { wine: Wine; index?: numb
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.4) }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.55, delay: Math.min(index * 0.05, 0.4), ease: [0.22, 1, 0.36, 1] }}
       className="group relative"
     >
-      <Link
-        href={`/products/${wine.id}`}
-        className="block card-surface overflow-hidden transition-all duration-300
-                   hover:-translate-y-2 hover:border-gold/60
-                   hover:shadow-[0_24px_50px_-20px_rgba(114,47,55,0.35)]"
-      >
+      <Link href={`/products/${wine.id}`} className="block">
+        {/* Bottle */}
         <div className="relative aspect-[3/4] bottle-bg overflow-hidden">
           <Image
             src={wine.image}
             alt={wine.name}
             fill
             sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 25vw"
-            className="object-contain p-4 group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-500"
+            className="object-contain p-6 transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface/60 via-transparent to-transparent" />
-          <span className={cn("absolute top-3 left-3", typeBadgeClass(wine.type))}>
+          <span
+            className={cn(
+              "absolute top-3 left-3 type-badge",
+              typeColor(wine.type),
+            )}
+          >
             {wine.type}
           </span>
-          <span className="absolute top-3 right-3 text-lg" title={wine.country}>
-            {COUNTRY_FLAGS[wine.country]}
-          </span>
+          <button
+            onClick={onAdd}
+            aria-label={`Add ${wine.name} to cart`}
+            className="absolute bottom-3 right-3 w-10 h-10 bg-ink text-paper
+                       flex items-center justify-center
+                       opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0
+                       transition-all duration-300
+                       hover:bg-wine"
+          >
+            <Plus className="w-4 h-4" strokeWidth={1.5} />
+          </button>
         </div>
 
-        <div className="p-4 space-y-1.5">
-          <p className="eyebrow !text-[10px]">
-            {wine.winery}
+        {/* Caption */}
+        <div className="pt-4 space-y-1">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-muted font-sans">
+            {wine.country} · {wine.region}
           </p>
-          <h3 className="font-serif text-lg leading-tight text-burgundy-700 line-clamp-2 min-h-[3.25rem]">
+          <h3 className="font-serif text-xl text-ink leading-tight line-clamp-2 min-h-[3.25rem] group-hover:text-bronze transition-colors">
             {wine.name}
           </h3>
-          <p className="text-xs text-muted">
-            {wine.region} · {wine.sizeMl >= 1000 ? `${wine.sizeMl / 1000} L` : `${wine.sizeMl} ml`}
+          <p className="text-sm text-muted font-sans">{wine.winery}</p>
+          <p className="font-serif text-lg text-ink pt-1">
+            {formatPrice(wine.price)}
+            <span className="text-[10px] text-muted ml-1.5 uppercase tracking-wider font-sans">
+              {wine.sizeMl >= 1000 ? `${wine.sizeMl / 1000}L` : `${wine.sizeMl}ml`}
+            </span>
           </p>
-          <div className="flex items-end justify-between pt-2">
-            <p className="font-serif text-xl text-burgundy">
-              {formatPrice(wine.price)}
-            </p>
-            <button
-              onClick={onAdd}
-              className="opacity-0 group-hover:opacity-100 transition-all
-                         inline-flex items-center gap-1.5 text-[11px] uppercase tracking-wider
-                         px-3 py-2 bg-burgundy hover:bg-burgundy-400 text-[#F8F2E7] rounded-sm
-                         shadow-wine-soft"
-            >
-              <ShoppingBag className="w-3.5 h-3.5" />
-              Add
-            </button>
-          </div>
         </div>
       </Link>
     </motion.div>
