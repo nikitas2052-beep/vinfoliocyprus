@@ -287,7 +287,8 @@ export default function HeroVideo() {
         className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-paper to-transparent pointer-events-none z-[1]"
       />
 
-      {/* Wordmark — centre on load, migrates to upper-left as you scroll */}
+      {/* Wordmark — centre on load, migrates to upper-left as you scroll.
+          Filtered to pure white so it stands cleanly on the video. */}
       <div
         ref={wordmarkRef}
         className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 will-change-transform"
@@ -298,7 +299,7 @@ export default function HeroVideo() {
           width={520}
           height={150}
           priority
-          className="h-20 md:h-28 w-auto drop-shadow-[0_6px_24px_rgba(0,0,0,0.18)]"
+          className="h-20 md:h-28 w-auto brightness-0 invert drop-shadow-[0_6px_24px_rgba(0,0,0,0.45)]"
         />
       </div>
 
@@ -332,8 +333,9 @@ export default function HeroVideo() {
         </div>
       </div>
 
-      {/* Partners panel — slides in from the right (or bottom on mobile)
-          covering the white half of the final video frame */}
+      {/* Partners panel — slides in from the right (desktop) or bottom
+          (mobile/tablet). Width tuned to 42% of viewport so the red V
+          splash from the video stays clearly visible on the left. */}
       <motion.aside
         ref={panelRef}
         style={{
@@ -344,7 +346,7 @@ export default function HeroVideo() {
               : "translateX(100%)",
         }}
         className="absolute z-20 will-change-transform
-                   lg:top-0 lg:right-0 lg:h-full lg:w-1/2
+                   lg:top-0 lg:right-0 lg:h-full lg:w-[42%]
                    inset-x-0 bottom-0 h-[72vh]
                    bg-paper border-l border-line
                    shadow-[-30px_0_60px_-40px_rgba(0,0,0,0.18)]"
