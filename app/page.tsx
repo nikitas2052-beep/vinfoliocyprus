@@ -1,5 +1,4 @@
 import HeroVideo from "@/components/HeroVideo";
-import AwardPartners from "@/components/AwardPartners";
 import BestSellers from "@/components/BestSellers";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
@@ -8,21 +7,24 @@ import GiftsSection from "@/components/GiftsSection";
 export default function HomePage() {
   return (
     <>
-      {/* CHANGE 1 — scroll-driven video hero (replaces editorial split) */}
+      {/*
+        Unified landing — the hero is one continuous narrative:
+          • Phase 1: bottle + Shop Now / Meet our partners
+          • Phase 2: wordmark migrates to the corner, CTAs fade
+          • Phase 3: partners panel slides in from the right
+                     (Winestyr-style logo grid) over the still-playing
+                     video — feels like ONE landing, not two pages.
+      */}
       <HeroVideo />
 
-      {/* CHANGE 5 — Award Partners is the FIRST content section after hero,
-          replacing the old "A partner not a middleman" + PartnersWall combo. */}
-      <AwardPartners />
-
-      {/* CHANGE 3 — formerly "Featured Bottles", now Best Sellers (6, smaller 3×2) */}
+      {/* CHANGE 3 — Best Sellers (6, compact 3×2) */}
       <BestSellers />
 
       <HowItWorks />
 
       <Testimonials />
 
-      {/* CHANGE 6 — Two Gifts sections backed by real gift-tagged products */}
+      {/* CHANGE 6 — Two Gifts sections backed by gift-tagged products */}
       <GiftsSection
         eyebrow="Don't know where to start?"
         title={
