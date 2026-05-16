@@ -8,16 +8,22 @@ import { motion, useScroll, useTransform } from "framer-motion";
 /**
  * HeroVideo — full-viewport editorial hero with autoplay video.
  *
- *  • Video plays from frame 1, loops muted (no scrubbing, no pin).
- *  • Page scrolls naturally — hero flows away like any other section.
- *  • Shop Now / Meet the Wineries CTAs overlay the video.
- *  • The big VINFOLIO wordmark slides from centre to the left edge as
- *    you scroll, "handing off" to the header logo. Done via framer
- *    scroll-linked transforms — no third-party scroll lib needed.
- *  • White vignette top/bottom blends the video edges into the white
- *    page background so the video feels embedded, not cropped.
- *  • prefers-reduced-motion: video does not autoplay; a still poster
- *    + the same CTAs render instead.
+ * Behaviour
+ * ---------
+ *   • Video autoplays muted on loop (no scroll-scrubbing of currentTime).
+ *   • The hero section is ~160vh tall; inside, the video lives in a
+ *     `position: sticky` container so it stays in view as you scroll
+ *     OUT of the hero and INTO the next section ("video continues with
+ *     the page" — per user spec).
+ *   • Two overlay layers cross-fade against the sticky video:
+ *       1. The big VINFOLIO wordmark + Shop Now CTA  (scroll 0 → 50%)
+ *       2. The "Award Partners — 17 wineries" intro  (scroll 50 → 95%)
+ *     The wordmark also slides centre → upper-left as it fades,
+ *     handing off to the header logo.
+ *   • Top + bottom of the video are masked with paper-to-transparent
+ *     gradients so the video edges blend seamlessly into the white page.
+ *   • prefers-reduced-motion: video is replaced with a still photo and
+ *     the overlay layers render statically.
  */
 export default function HeroVideo() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -25,7 +31,6 @@ export default function HeroVideo() {
   const [reduceMotion, setReduceMotion] = useState(false);
   const [videoOk, setVideoOk] = useState(true);
 
-  // Detect prefers-reduced-motion
   useEffect(() => {
     if (typeof window === "undefined") return;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -35,86 +40,96 @@ export default function HeroVideo() {
     return () => mq.removeEventListener?.("change", handler);
   }, []);
 
-  // Kick autoplay on mount (Safari can be picky)
+  // Safari-safe autoplay kick
   useEffect(() => {
     const v = videoRef.current;
     if (!v || reduceMotion) return;
-    const tryPlay = () => v.play().catch(() => {});
-    tryPlay();
-    v.addEventListener("loadeddata", tryPlay, { once: true });
+    const play = () => v.play().catch(() => {});
+    play();
+    v.addEventListener("loadeddata", play, { once: true });
   }, [reduceMotion]);
 
-  // Scroll-linked transforms: logo slides centre → top-left as user scrolls
-  // through the hero. Only computed in the browser; SSR shows the centre state.
+  // Track scroll through the entire hero section (160vh)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  // logo slides from 0 (centre) to roughly the upper-left corner
-  const logoX = useTransform(scrollYProgress, [0, 1], ["0%", "-38%"]);
-  const logoY = useTransform(scrollYProgress, [0, 1], ["0%", "-42%"]);
-  const logoScale = useTransform(scrollYProgress, [0, 1], [1, 0.32]);
-  const logoOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 0.4, 0]);
-  const ctaOpacity = useTransform(scrollYProgress, [0, 0.35, 0.6], [1, 0.6, 0]);
-  const ctaY = useTransform(scrollYProgress, [0, 1], [0, 40]);
+
+  // Wordmark: centre → upper-left, fades during first 50% of hero scroll
+  const wordmarkX = useTransform(scrollYProgress, [0, 0.5], ["0%", "-40%"]);
+  const wordmarkY = useTransform(scrollYProgress, [0, 0.5], ["0%", "-44%"]);
+  const wordmarkScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
+  const wordmarkOpacity = useTransform(scrollYProgress, [0, 0.4, 0.5], [1, 0.4, 0]);
+
+  // CTA: fades out during first 35%
+  const ctaOpacity = useTransform(scrollYProgress, [0, 0.25, 0.4], [1, 0.6, 0]);
+  const ctaY = useTransform(scrollYProgress, [0, 0.5], [0, 30]);
+
+  // Partners intro: fades IN during the second half — this is the
+  // "video connects to the next section" handoff. The video stays on
+  // screen while the partners headline materialises over it.
+  const partnersOpacity = useTransform(scrollYProgress, [0.45, 0.7, 0.95], [0, 1, 1]);
+  const partnersY = useTransform(scrollYProgress, [0.45, 0.7], [30, 0]);
+
+  // Scroll cue fades out as soon as user starts scrolling
+  const cueOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-screen min-h-[640px] overflow-hidden bg-paper -mt-20 md:-mt-24"
+      className="relative w-full h-[160vh] -mt-20 md:-mt-24 bg-paper"
       aria-label="Vinfolio hero"
     >
-      {videoOk && !reduceMotion ? (
-        <video
-          ref={videoRef}
-          src="/assets/hero-video.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          onError={() => setVideoOk(false)}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      ) : (
-        // Reduced-motion / video-error fallback: a still vineyard image
-        <Image
-          src="https://images.unsplash.com/photo-1506377585622-bedcbb027afc?auto=format&fit=crop&w=2400&q=80"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      )}
+      {/* Sticky stage — stays in view for the full 160vh of the hero,
+          so the video "continues with the page" into the partners area. */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {videoOk && !reduceMotion ? (
+          <video
+            ref={videoRef}
+            src="/assets/hero-video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            onError={() => setVideoOk(false)}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <Image
+            src="https://images.unsplash.com/photo-1506377585622-bedcbb027afc?auto=format&fit=crop&w=2400&q=80"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        )}
 
-      {/* Blend the video into the white page on top + bottom edges so it
-          doesn't look "cut". Sides stay clean. */}
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-paper to-transparent pointer-events-none"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-paper to-transparent pointer-events-none"
-      />
-      {/* Very gentle dark wash for legibility (per spec ~25%) */}
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-black/15 pointer-events-none"
-      />
+        {/* Edge blending so the video melts into the white page */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-paper to-transparent pointer-events-none"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-paper to-transparent pointer-events-none"
+        />
+        {/* Light wash for legibility (per spec ~25%) */}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-black/15 pointer-events-none"
+        />
 
-      {/* CONTENT — wordmark + CTA, both scroll-linked */}
-      <div className="relative h-full pt-20 md:pt-28 flex flex-col items-center justify-center text-center px-6">
-        {/* Wordmark — slides to corner as you scroll */}
+        {/* ── LAYER 1 — Wordmark (scroll 0 → 50%) ─────────────────────── */}
         <motion.div
           style={{
-            x: logoX,
-            y: logoY,
-            scale: logoScale,
-            opacity: logoOpacity,
+            x: wordmarkX,
+            y: wordmarkY,
+            scale: wordmarkScale,
+            opacity: wordmarkOpacity,
           }}
-          className="will-change-transform"
+          className="absolute inset-0 flex items-center justify-center will-change-transform pointer-events-none"
         >
           <Image
             src="https://vinfolio.com.cy/wp-content/uploads/2020/03/Logo-Transparent-1.png"
@@ -126,16 +141,16 @@ export default function HeroVideo() {
           />
         </motion.div>
 
-        {/* Tagline + CTA */}
+        {/* ── LAYER 2 — Tagline + CTA (scroll 0 → 40%) ────────────────── */}
         <motion.div
           style={{ opacity: ctaOpacity, y: ctaY }}
-          className="mt-10 will-change-transform"
+          className="absolute inset-x-0 bottom-[18%] flex flex-col items-center text-center px-6 will-change-transform"
         >
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4 }}
-            className="font-serif italic text-paper/95 text-xl md:text-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]"
+            className="font-serif italic text-paper text-xl md:text-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]"
           >
             Strong partnerships, poured by hand.
           </motion.p>
@@ -143,7 +158,7 @@ export default function HeroVideo() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.7 }}
-            className="mt-7 flex flex-col sm:flex-row gap-3 justify-center"
+            className="mt-6 flex flex-col sm:flex-row gap-3 justify-center pointer-events-auto"
           >
             <Link
               href="/products"
@@ -166,12 +181,30 @@ export default function HeroVideo() {
           </motion.div>
         </motion.div>
 
+        {/* ── LAYER 3 — Award Partners intro (scroll 45 → 95%) ────────── */}
+        <motion.div
+          style={{ opacity: partnersOpacity, y: partnersY }}
+          className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center text-center px-6 will-change-transform pointer-events-none"
+          aria-hidden
+        >
+          <p className="text-[11px] uppercase tracking-[0.32em] text-bronze font-sans">
+            Award Partners
+          </p>
+          <h2 className="font-serif text-paper text-[clamp(2.5rem,6vw,5rem)] leading-[1.05] mt-4 max-w-3xl drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">
+            19 Wineries.{" "}
+            <span className="italic text-bronze">One Seller.</span>
+          </h2>
+          <p className="mt-4 text-paper/85 text-base max-w-xl drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
+            A handpicked roster of family estates, historic houses and modern
+            icons — including Ventisquero,
+            <span className="italic"> New World Winery of the Year 2024</span>.
+          </p>
+        </motion.div>
+
         {/* Scroll cue */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.4, delay: 1.4 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-paper/70 text-[10px] uppercase tracking-[0.32em] font-sans flex flex-col items-center gap-2"
+          style={{ opacity: cueOpacity }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-paper/70 text-[10px] uppercase tracking-[0.32em] font-sans flex flex-col items-center gap-2 pointer-events-none"
         >
           <span>Scroll</span>
           <motion.span
