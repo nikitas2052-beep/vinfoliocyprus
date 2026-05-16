@@ -1,9 +1,19 @@
 import type { Winery } from "./types";
 
-// Google favicon CDN — returns a clean square icon for any domain.
-export const logoFor = (websiteOrDomain?: string) => {
-  if (!websiteOrDomain) return undefined;
-  let host = websiteOrDomain;
+/**
+ * Real partner logos served from the live vinfolio.com.cy CDN.
+ * (Discovered by parsing the Elementor per-page CSS for /our-partners/.)
+ */
+const LOGO_BASE = "https://vinfolio.com.cy/wp-content/uploads/2025/10";
+
+/**
+ * Fallback: Google's favicon endpoint — returns a clean square icon
+ * for any domain. Used when a winery has no `logo` set yet.
+ */
+export const logoFor = (winery: Winery): string | undefined => {
+  if (winery.logo) return winery.logo;
+  if (!winery.website) return undefined;
+  let host = winery.website;
   try {
     if (/^https?:\/\//.test(host)) host = new URL(host).hostname;
   } catch {}
@@ -19,6 +29,8 @@ export const wineries: Winery[] = [
     description:
       "Historic Rhone Valley estate producing classic Chateauneuf-du-Pape and Cotes du Rhone with deep terroir expression.",
     website: "https://www.chateau-gigognan.fr",
+    logo: `${LOGO_BASE}/logo-chateau-gigognan.jpeg-1024x488-1.jpg`,
+    logoBg: "#695656",
   },
   {
     slug: "domaine-de-la-motte",
@@ -27,6 +39,15 @@ export const wineries: Winery[] = [
     description:
       "Family-run Chablis producer crafting mineral, age-worthy Chardonnay from limestone-rich Burgundy soils.",
     website: "https://www.chablis-domaine-de-la-motte.fr",
+  },
+  {
+    slug: "domaine-michaut",
+    name: "Domaine Michaut Frères",
+    country: "France",
+    description:
+      "Chablis house producing classic, mineral-driven Burgundy whites from limestone-rich Kimmeridgian soils.",
+    logo: `${LOGO_BASE}/280.jpg`,
+    logoBg: "#F9F8F4",
   },
   {
     slug: "dopff-au-moulin",
@@ -43,6 +64,8 @@ export const wineries: Winery[] = [
     description:
       "Cooperative cellar from Treviso, Veneto, producing celebrated Prosecco DOC and northern Italian classics since 1953.",
     website: "https://www.collisoligo.com",
+    logo: `${LOGO_BASE}/soligo_1200x620.png`,
+    logoBg: "#695656",
   },
   {
     slug: "villa-cerna",
@@ -51,6 +74,17 @@ export const wineries: Winery[] = [
     description:
       "Tuscan estate in Castellina-in-Chianti producing structured Chianti Classico and Riserva from Sangiovese.",
     website: "https://www.villacerna.it",
+    logo: `${LOGO_BASE}/villa_cerna.png`,
+    logoBg: "#FFFFFF",
+  },
+  {
+    slug: "tenuta-alzatura",
+    name: "Tenuta Alzatura",
+    country: "Italy",
+    description:
+      "Umbrian estate in Montefalco producing characterful Sagrantino, Rosso and Grechetto whites.",
+    logo: `${LOGO_BASE}/alzatura.png`,
+    logoBg: "#695656",
   },
   {
     slug: "angelo-negro",
@@ -89,6 +123,8 @@ export const wineries: Winery[] = [
     description:
       "New World Winery of the Year 2024. Chilean producer with vineyards from Casablanca to Apalta and Maipo Andes.",
     website: "https://www.ventisquero.com",
+    logo: `${LOGO_BASE}/ventisquero_wines-lg-optimized.webp`,
+    logoBg: "#E8E0CD",
   },
   {
     slug: "stoneburn",
@@ -97,6 +133,8 @@ export const wineries: Winery[] = [
     description:
       "Marlborough estate producing vibrant Sauvignon Blanc from the cool, river-stone soils of the Wairau Valley.",
     website: "https://www.stoneburn.com",
+    logo: `${LOGO_BASE}/SBLogo_Rectangular.webp`,
+    logoBg: "#695656",
   },
   {
     slug: "tahbilk",
@@ -113,6 +151,8 @@ export const wineries: Winery[] = [
     description:
       "Mendoza producer crafting elegant high-altitude Malbec from the foothills of the Andes.",
     website: "https://www.bodegasdomingomolina.com.ar",
+    logo: `${LOGO_BASE}/phebus-blk.png`,
+    logoBg: "#F9F8F4",
   },
   {
     slug: "alvis-drift",
@@ -121,6 +161,8 @@ export const wineries: Winery[] = [
     description:
       "Western Cape family estate on the Breede River producing the celebrated Pinotage and Chenin Blanc range.",
     website: "https://www.alvisdrift.co.za",
+    logo: `${LOGO_BASE}/Alvis-Drift-Logo-3.png`,
+    logoBg: "#F9F8F4",
   },
   {
     slug: "aix",
@@ -136,6 +178,8 @@ export const wineries: Winery[] = [
     country: "Greece",
     description:
       "Peloponnese winery championing native Greek varieties: Agiorgitiko, Moschofilero, Malagouzia and Assyrtiko.",
+    logo: `${LOGO_BASE}/cropped-a414a851-e6d9-4e22-af28-9a56bf8b27e4-e1658236185854-1.png`,
+    logoBg: "#695656",
   },
   {
     slug: "yiaskouris",
@@ -144,5 +188,7 @@ export const wineries: Winery[] = [
     description:
       "Cypriot winery (PGI) producing indigenous Xynisteri, Maratheftiko and Mataro alongside international varieties.",
     website: "https://www.yiaskouriswines.net",
+    logo: `${LOGO_BASE}/yiaskouris-new-logo.png`,
+    logoBg: "#FFFFFF",
   },
 ];

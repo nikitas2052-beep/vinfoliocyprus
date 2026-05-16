@@ -38,6 +38,13 @@ export interface Winery {
   country: Country;
   description: string;
   website?: string;
+  /**
+   * Real partner logo URL (preferred). When absent, the UI falls back
+   * to Google's favicon endpoint via `logoFor(winery.website)`.
+   */
+  logo?: string;
+  /** Background tile colour used behind the logo on the partners page. */
+  logoBg?: string;
 }
 
 export interface CartItem {
