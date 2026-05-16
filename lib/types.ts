@@ -29,6 +29,7 @@ export interface Wine {
   image: string;
   stock: number;
   featured: boolean;
+  tags?: string[];
 }
 
 export interface Winery {

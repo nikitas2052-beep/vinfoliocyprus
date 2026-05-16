@@ -1,10 +1,15 @@
 import type { Winery } from "./types";
 
 // Google favicon CDN — returns a clean square icon for any domain.
-export const logoFor = (domain?: string) =>
-  domain
-    ? `https://www.google.com/s2/favicons?domain=${domain}&sz=128`
-    : undefined;
+export const logoFor = (websiteOrDomain?: string) => {
+  if (!websiteOrDomain) return undefined;
+  let host = websiteOrDomain;
+  try {
+    if (/^https?:\/\//.test(host)) host = new URL(host).hostname;
+  } catch {}
+  host = host.replace(/^www\./, "");
+  return `https://www.google.com/s2/favicons?domain=${host}&sz=128`;
+};
 
 export const wineries: Winery[] = [
   {

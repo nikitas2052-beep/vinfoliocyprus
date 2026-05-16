@@ -1575,6 +1575,32 @@ export function getFeaturedWines(): Wine[] {
   return wines.filter((w) => w.featured);
 }
 
+// Premium / cellar-worthy bottles surfaced in the Gifts sections.
+// (Tag-based selection — these wines also receive `tags: ["gift"]`
+// applied at module load via tagWine() below so the Wine.tags field
+// stays in sync if anything else queries it.)
+const GIFT_IDS = new Set<string>([
+  "chateauneuf-du-pape-clos-du-roi",
+  "brunello-gli-amici",
+  "isaltari-amarone-riserva",
+  "murari-amarone-docg",
+  "barolo-angelo-negro",
+  "barbaresco-angelo-negro",
+  "ventisquero-enclave",
+  "ventisquero-pangea",
+  "yiaskouris-oak-maratheftiko",
+]);
+
+// Apply the "gift" tag in place so downstream code (filters, search,
+// analytics) sees a consistent tags[] field.
+wines.forEach((w) => {
+  if (GIFT_IDS.has(w.id)) w.tags = Array.from(new Set([...(w.tags ?? []), "gift"]));
+});
+
+export function getGiftWines(limit = 6): Wine[] {
+  return wines.filter((w) => w.tags?.includes("gift")).slice(0, limit);
+}
+
 export function getRelatedWines(wine: Wine, limit = 4): Wine[] {
   return wines
     .filter(

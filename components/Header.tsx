@@ -8,10 +8,11 @@ import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useCart } from "@/lib/store";
 import { cn } from "@/lib/utils";
+import WineriesMegaDropdown from "./WineriesMegaDropdown";
 
+// "Wineries" rendered separately as a mega-dropdown component
 const navLinks = [
   { href: "/products", label: "Shop" },
-  { href: "/wineries", label: "Wineries" },
   { href: "/about", label: "Our Story" },
   { href: "/wholesale", label: "Trade" },
   { href: "/contact", label: "Contact" },
@@ -66,31 +67,12 @@ export default function Header() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-10">
-          {navLinks.map((link) => {
-            const active =
-              pathname === link.href ||
-              (link.href !== "/" && pathname.startsWith(link.href));
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "relative text-[13px] uppercase tracking-[0.18em] font-sans py-1 transition-colors",
-                  active
-                    ? "text-ink"
-                    : "text-ink/70 hover:text-ink",
-                )}
-              >
-                {link.label}
-                {active && (
-                  <motion.span
-                    layoutId="header-underline"
-                    className="absolute left-0 right-0 -bottom-1 h-px bg-bronze"
-                  />
-                )}
-              </Link>
-            );
-          })}
+          {/* Shop is first */}
+          {navLinks.slice(0, 1).map((link) => renderNav(link, pathname))}
+          {/* Mega-dropdown for Wineries */}
+          <WineriesMegaDropdown activePath={pathname} />
+          {/* Rest */}
+          {navLinks.slice(1).map((link) => renderNav(link, pathname))}
         </nav>
 
         <div className="flex items-center gap-1">
@@ -148,7 +130,13 @@ export default function Header() {
           className="lg:hidden border-t border-line bg-paper overflow-hidden"
         >
           <nav className="container-wide py-4 flex flex-col">
-            {navLinks.map((link) => (
+            {[
+              { href: "/products", label: "Shop" },
+              { href: "/wineries", label: "Wineries" },
+              { href: "/about", label: "Our Story" },
+              { href: "/wholesale", label: "Trade" },
+              { href: "/contact", label: "Contact" },
+            ].map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -161,5 +149,32 @@ export default function Header() {
         </motion.div>
       )}
     </header>
+  );
+}
+
+function renderNav(
+  link: { href: string; label: string },
+  pathname: string,
+) {
+  const active =
+    pathname === link.href ||
+    (link.href !== "/" && pathname.startsWith(link.href));
+  return (
+    <Link
+      key={link.href}
+      href={link.href}
+      className={cn(
+        "relative text-[13px] uppercase tracking-[0.18em] font-sans py-1 transition-colors",
+        active ? "text-ink" : "text-ink/70 hover:text-ink",
+      )}
+    >
+      {link.label}
+      {active && (
+        <motion.span
+          layoutId="header-underline"
+          className="absolute left-0 right-0 -bottom-1 h-px bg-bronze"
+        />
+      )}
+    </Link>
   );
 }
