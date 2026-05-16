@@ -241,7 +241,7 @@ export const wines: Wine[] = [
     pairing: "Canapés, fruit platters, breakfast brunch service.",
     producerInfo:
       "Soligo packages their Brut in 200 ml format for hospitality and on-trade venues.",
-    image: SPARKLING_IMG,
+    image: B("30"),
     stock: stock(10),
     featured: false,
   },
@@ -285,7 +285,7 @@ export const wines: Wine[] = [
     pairing: "Pasta al ragù, grilled vegetables, family pizza nights.",
     producerInfo:
       "From Soligo's Piave DOC range, grown on alluvial soils in the Veneto.",
-    image: RED_IMG,
+    image: B("32"),
     stock: stock(12),
     featured: false,
   },
@@ -307,7 +307,7 @@ export const wines: Wine[] = [
     pairing: "Antipasto misto, seafood pasta, salads, light cheeses.",
     producerInfo:
       "Soligo's Pinot Grigio comes from Veneto vineyards on gravelly soils.",
-    image: WHITE_IMG_2,
+    image: B("33"),
     stock: stock(13),
     featured: false,
   },
@@ -879,7 +879,7 @@ export const wines: Wine[] = [
     pairing: "Burgers, pasta with red sauce, mild cheeses, charcuterie.",
     producerInfo:
       "Viña Ventisquero, founded 1998, was named New World Winery of the Year 2024.",
-    image: RED_IMG,
+    image: B("01"),
     stock: stock(39),
     featured: false,
   },
@@ -901,7 +901,7 @@ export const wines: Wine[] = [
     pairing: "Grilled meats, BBQ, lamb chops, mushroom dishes.",
     producerInfo:
       "Ventisquero's Classico range showcases Chile's fruit-forward style at great value.",
-    image: RED_IMG_2,
+    image: B("02"),
     stock: stock(40),
     featured: false,
   },
@@ -989,7 +989,7 @@ export const wines: Wine[] = [
     pairing: "Grilled steak, lamb roast, hard cheeses, beef stews.",
     producerInfo:
       "Maipo's gravelly soils and sunny climate produce textbook Cabernet.",
-    image: RED_IMG_2,
+    image: B("06"),
     stock: stock(44),
     featured: false,
   },
@@ -1011,7 +1011,7 @@ export const wines: Wine[] = [
     pairing: "Roast pork, mushroom risotto, mild blues.",
     producerInfo:
       "Ventisquero's Reserve Merlot comes from carefully managed Maipo vineyards.",
-    image: RED_IMG,
+    image: B("07"),
     stock: stock(45),
     featured: false,
   },
@@ -1033,7 +1033,7 @@ export const wines: Wine[] = [
     pairing: "Duck breast, mushroom risotto, soft cheeses, grilled salmon.",
     producerInfo:
       "Casablanca's morning fogs are perfect for delicate Pinot Noir.",
-    image: RED_IMG_2,
+    image: B("10"),
     stock: stock(46),
     featured: false,
   },
@@ -1099,7 +1099,7 @@ export const wines: Wine[] = [
     pairing: "Roast duck, mushroom dishes, grilled tuna, soft washed-rind cheeses.",
     producerInfo:
       "Heru means 'creator' in the Mapuche language — Ventisquero's pinnacle Pinot.",
-    image: RED_IMG,
+    image: B("15"),
     stock: stock(49),
     featured: false,
   },
@@ -1121,7 +1121,7 @@ export const wines: Wine[] = [
     pairing: "Aged ribeye, slow-roasted lamb, dark chocolate desserts.",
     producerInfo:
       "Enclave represents Ventisquero's ultimate expression of Maipo Andes terroir.",
-    image: RED_IMG_2,
+    image: B("13"),
     stock: stock(50),
     featured: false,
   },
@@ -1143,7 +1143,7 @@ export const wines: Wine[] = [
     pairing: "Slow-cooked lamb, beef short ribs, mole, mushroom dishes.",
     producerInfo:
       "Obliqua refers to the steep, oblique slopes of Apalta where the grapes are grown.",
-    image: RED_IMG,
+    image: B("14"),
     stock: stock(51),
     featured: false,
   },
@@ -1165,7 +1165,7 @@ export const wines: Wine[] = [
     pairing: "Grilled ribeye, lamb shoulder, aged hard cheeses.",
     producerInfo:
       "Pangea is named after the prehistoric supercontinent — a tribute to Apalta's ancient terroir.",
-    image: RED_IMG_2,
+    image: B("12"),
     stock: stock(52),
     featured: true,
   },
@@ -1407,7 +1407,7 @@ export const wines: Wine[] = [
     pairing: "Sheftalia, souvla, halloumi grills, slow-cooked lamb stifado.",
     producerInfo:
       "Yiaskouris Winery is a family-run estate producing PGI Cyprus wines.",
-    image: RED_IMG,
+    image: B("48"),
     stock: stock(63),
     featured: true,
   },
@@ -1429,7 +1429,7 @@ export const wines: Wine[] = [
     pairing: "Slow-cooked lamb, kleftiko, hard cheeses, mushroom dishes.",
     producerInfo:
       "Yiaskouris champions native Cypriot grapes alongside international varieties.",
-    image: RED_IMG_2,
+    image: B("49"),
     stock: stock(64),
     featured: true,
   },
@@ -1451,7 +1451,7 @@ export const wines: Wine[] = [
     pairing: "Sheftalia, grilled lamb chops, eastern-spiced dishes.",
     producerInfo:
       "Yiaskouris' Shiraz line reflects Cyprus's adoption of premium international varieties.",
-    image: RED_IMG,
+    image: B("51"),
     stock: stock(65),
     featured: false,
   },
@@ -1473,7 +1473,7 @@ export const wines: Wine[] = [
     pairing: "Pasta with meat sauce, grilled vegetables, kebabs.",
     producerInfo:
       "Yiaskouris' core Shiraz offers Mediterranean charm at a friendly price.",
-    image: RED_IMG_2,
+    image: B("50"),
     stock: stock(66),
     featured: false,
   },
