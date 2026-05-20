@@ -36,40 +36,34 @@ export default function PartnersPanel() {
       {/* On desktop full-width panel: 4 cols. On the narrow side-panel
           layout: 2 cols. Mobile section: 2 cols. */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 mt-6 sm:mt-8 lg:mt-12">
-        {partners.map((w) => {
-          const src = logoFor(w);
-          const bg = w.logoBg ?? "#F9F8F4";
-          return (
-            <Link
-              key={w.slug}
-              href={`/products?winery=${encodeURIComponent(w.name)}`}
-              className="group flex flex-col items-center text-center"
-              title={w.name}
+        {partners.map((w) => (
+          <Link
+            key={w.slug}
+            href={`/products?winery=${encodeURIComponent(w.name)}`}
+            className="group flex flex-col items-center text-center"
+            title={w.name}
+          >
+            {/* Uniform chalk tile, monochrome at rest, full colour on hover. */}
+            <div
+              className="relative w-full aspect-[3/2] flex items-center justify-center
+                         overflow-hidden border border-line bg-chalk"
             >
-              {/* Logo tile with the winery's native brand background —
-                  keeps gold-on-dark logos legible, white-on-dark
-                  consistent, and never produces black blobs. */}
-              <div
-                className="relative w-full aspect-[3/2] flex items-center justify-center
-                           overflow-hidden border border-line transition-transform
-                           duration-300 group-hover:scale-[1.03]"
-                style={{ backgroundColor: bg }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={src!}
-                  alt={w.name}
-                  loading="lazy"
-                  className="max-w-[78%] max-h-[68%] w-auto h-auto object-contain
-                             transition-opacity duration-300 opacity-95 group-hover:opacity-100"
-                />
-              </div>
-              <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.22em] text-muted mt-2 group-hover:text-ink transition-colors">
-                {w.country}
-              </p>
-            </Link>
-          );
-        })}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={logoFor(w)!}
+                alt={w.name}
+                loading="lazy"
+                className="max-w-[78%] max-h-[68%] w-auto h-auto object-contain
+                           [filter:grayscale(100%)_contrast(135%)_brightness(0.25)]
+                           opacity-85 group-hover:[filter:none] group-hover:opacity-100
+                           transition-all duration-300"
+              />
+            </div>
+            <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.22em] text-muted mt-2 group-hover:text-ink transition-colors">
+              {w.country}
+            </p>
+          </Link>
+        ))}
       </div>
 
       <div className="mt-8 sm:mt-10 lg:mt-12">

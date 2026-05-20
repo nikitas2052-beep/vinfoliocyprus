@@ -26,58 +26,53 @@ export default function WineriesPage() {
         </p>
       </header>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
         {wineries.map((w, i) => {
           const count = wines.filter((wine) => wine.winery === w.name).length;
           const logo = logoFor(w);
-          const bg = w.logoBg ?? "#F9F8F4";
           return (
-            <Reveal key={w.slug} delay={i * 0.04}>
+            <Reveal key={w.slug} delay={i * 0.03}>
               <article className="card-paper h-full flex flex-col group hover:-translate-y-1 hover:shadow-card transition-all overflow-hidden">
-                {/* Logo tile on the winery's own brand background */}
-                <div
-                  className="relative aspect-[3/2] flex items-center justify-center overflow-hidden"
-                  style={{ backgroundColor: bg }}
-                >
+                {/* Monochrome logo tile on chalk — colour appears on hover */}
+                <div className="relative aspect-[4/3] flex items-center justify-center overflow-hidden bg-chalk">
                   {logo ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={logo}
                       alt={`${w.name} logo`}
                       loading="lazy"
-                      className="max-w-[78%] max-h-[68%] w-auto h-auto object-contain
-                                 transition-transform duration-300 group-hover:scale-105"
+                      className="max-w-[72%] max-h-[68%] w-auto h-auto object-contain
+                                 [filter:grayscale(100%)_contrast(135%)_brightness(0.25)]
+                                 opacity-85 group-hover:[filter:none] group-hover:opacity-100
+                                 transition-all duration-300"
                     />
                   ) : (
-                    <span className="font-serif italic text-ink text-2xl sm:text-3xl px-3 text-center leading-tight">
+                    <span className="font-serif italic text-ink text-base sm:text-xl px-2 text-center leading-tight">
                       {w.name}
                     </span>
                   )}
                   <span
-                    className="absolute top-2 right-2 text-lg sm:text-xl"
+                    className="absolute top-1.5 right-1.5 text-sm sm:text-base"
                     title={w.country}
                   >
                     {COUNTRY_FLAGS[w.country]}
                   </span>
                 </div>
 
-                {/* Caption */}
-                <div className="p-4 sm:p-5 flex flex-col flex-1">
-                  <h2 className="font-serif text-base sm:text-xl text-ink leading-tight">
+                {/* Compact caption */}
+                <div className="p-3 sm:p-4 flex flex-col flex-1">
+                  <h2 className="font-serif text-sm sm:text-base text-ink leading-tight line-clamp-1">
                     {w.name}
                   </h2>
-                  <p className="eyebrow !text-[9px] sm:!text-[10px] mt-1">
+                  <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-muted mt-1">
                     {w.country}
                   </p>
-                  <p className="text-ink/70 mt-2 sm:mt-3 text-xs sm:text-sm leading-relaxed flex-1 line-clamp-3 sm:line-clamp-none">
-                    {w.description}
-                  </p>
-                  <div className="mt-3 sm:mt-4 flex items-center justify-between text-[11px] sm:text-xs">
+                  <div className="mt-2 sm:mt-3 flex items-center justify-between text-[10px] sm:text-[11px]">
                     <Link
                       href={`/products?winery=${encodeURIComponent(w.name)}`}
                       className="text-burgundy hover:text-ink uppercase tracking-wider border-b border-ink/30 hover:border-ink pb-0.5"
                     >
-                      Wines ({count})
+                      {count} {count === 1 ? "wine" : "wines"}
                     </Link>
                     {w.website && (
                       <a
@@ -86,7 +81,7 @@ export default function WineriesPage() {
                         rel="noopener noreferrer"
                         className="text-muted hover:text-ink"
                       >
-                        Site ↗
+                        ↗
                       </a>
                     )}
                   </div>

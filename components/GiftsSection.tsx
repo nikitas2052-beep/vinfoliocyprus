@@ -48,7 +48,7 @@ export default function GiftsSection({
           {intro && <p className="text-ink/75 mt-1 max-w-xl">{intro}</p>}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12 mt-12">
+        <div className="grid grid-cols-3 gap-x-2 sm:gap-x-4 md:gap-x-6 gap-y-6 md:gap-y-12 mt-8 md:mt-12">
           {gifts.length === 0
             ? Array.from({ length: 3 }).map((_, i) => (
                 <PlaceholderCard key={i} />
@@ -85,11 +85,11 @@ function GiftCard({ wine, index }: { wine: Wine; index: number }) {
         delay: Math.min(index * 0.05, 0.3),
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="card-paper p-5 flex flex-col h-full hover:-translate-y-1
+      className="card-paper p-2 sm:p-4 md:p-5 flex flex-col h-full hover:-translate-y-1
                  hover:shadow-card transition-all duration-300"
     >
       <Link href={`/products/${wine.id}`} className="block">
-        <div className="relative aspect-[5/6] bottle-bg overflow-hidden mb-4">
+        <div className="relative aspect-[5/6] bottle-bg overflow-hidden mb-2 md:mb-4">
           {isPlaceholderImage(wine.image) ? (
             <BottleSilhouette wine={wine} />
           ) : (
@@ -97,28 +97,31 @@ function GiftCard({ wine, index }: { wine: Wine; index: number }) {
               src={wine.image}
               alt={wine.name}
               fill
-              sizes="(max-width:640px) 100vw, 360px"
+              sizes="(max-width:640px) 33vw, (max-width:1024px) 30vw, 360px"
               loading="lazy"
-              className="object-contain p-4 transition-transform duration-500 hover:scale-105"
+              className="object-contain p-2 md:p-4 transition-transform duration-500 hover:scale-105"
             />
           )}
         </div>
-        <p className="text-[10px] uppercase tracking-[0.22em] text-muted font-sans">
-          {wine.country} · {wine.region}
+        <p className="text-[8px] md:text-[10px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-muted font-sans truncate">
+          {wine.country}
         </p>
-        <h3 className="font-serif text-base font-semibold text-ink mt-1 line-clamp-1">
+        <h3 className="font-serif text-[13px] md:text-base font-semibold text-ink mt-0.5 md:mt-1 line-clamp-2 min-h-[2rem] md:min-h-0 leading-tight">
           {wine.name}
         </h3>
-        <p className="text-sm text-muted font-sans line-clamp-2 mt-1 min-h-[2.5rem]">
+        <p className="hidden md:block text-sm text-muted font-sans line-clamp-2 mt-1 min-h-[2.5rem]">
           {wine.shortDescription}
         </p>
       </Link>
-      <div className="mt-4 flex items-end justify-between">
-        <p className="font-serif text-base text-wine">
+      <div className="mt-2 md:mt-4 flex items-end justify-between gap-1">
+        <p className="font-serif text-sm md:text-base text-wine">
           {formatPrice(wine.price)}
         </p>
-        <button onClick={onAdd} className="btn-chalk !px-4 !py-2 !text-[11px]">
-          Shop Now
+        <button
+          onClick={onAdd}
+          className="btn-chalk !px-2 md:!px-4 !py-1.5 md:!py-2 !text-[9px] md:!text-[11px]"
+        >
+          Shop
         </button>
       </div>
     </motion.article>
