@@ -33,9 +33,10 @@ export default function PartnersPanel() {
         </p>
       </div>
 
-      {/* On desktop full-width panel: 4 cols. On the narrow side-panel
-          layout: 2 cols. Mobile section: 2 cols. */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 mt-6 sm:mt-8 lg:mt-12">
+      {/* Dense grid — more columns, smaller tiles. The hero panel
+          is full-screen on desktop now, so 6 cols breathes nicely
+          and the 11 logos sit as 2 tidy rows. */}
+      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 mt-5 sm:mt-8 lg:mt-10">
         {partners.map((w) => (
           <Link
             key={w.slug}
@@ -45,7 +46,7 @@ export default function PartnersPanel() {
           >
             {/* Uniform chalk tile, monochrome at rest, full colour on hover. */}
             <div
-              className="relative w-full aspect-[3/2] flex items-center justify-center
+              className="relative w-full aspect-[4/3] flex items-center justify-center
                          overflow-hidden border border-line bg-chalk"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -53,13 +54,13 @@ export default function PartnersPanel() {
                 src={logoFor(w)!}
                 alt={w.name}
                 loading="lazy"
-                className="max-w-[78%] max-h-[68%] w-auto h-auto object-contain
+                className="max-w-[70%] max-h-[60%] w-auto h-auto object-contain
                            [filter:grayscale(100%)_contrast(135%)_brightness(0.25)]
                            opacity-85 group-hover:[filter:none] group-hover:opacity-100
                            transition-all duration-300"
               />
             </div>
-            <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.22em] text-muted mt-2 group-hover:text-ink transition-colors">
+            <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.18em] text-muted mt-1.5 group-hover:text-ink transition-colors truncate w-full">
               {w.country}
             </p>
           </Link>
