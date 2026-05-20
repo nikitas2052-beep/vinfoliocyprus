@@ -28,9 +28,9 @@ export const wineries: Winery[] = [
     country: "France",
     description:
       "Historic Rhone Valley estate producing classic Chateauneuf-du-Pape and Cotes du Rhone with deep terroir expression.",
-    website: "https://www.chateau-gigognan.fr",
-    logo: `${LOGO_BASE}/logo-chateau-gigognan.jpeg-1024x488-1.jpg`,
-    logoBg: "#695656",
+    website: "https://gigognan.fr",
+    // Local SVG fetched from gigognan.fr — clean dark-on-white version
+    logo: "/logos/gigognan.svg",
   },
   {
     slug: "domaine-de-la-motte",
@@ -64,8 +64,8 @@ export const wineries: Winery[] = [
     description:
       "Cooperative cellar from Treviso, Veneto, producing celebrated Prosecco DOC and northern Italian classics since 1953.",
     website: "https://www.collisoligo.com",
-    logo: `${LOGO_BASE}/soligo_1200x620.png`,
-    logoBg: "#695656",
+    // Local PNG fetched from collisoligo.com — clean dark-on-white version
+    logo: "/logos/soligo.png",
   },
   {
     slug: "villa-cerna",
@@ -132,9 +132,9 @@ export const wineries: Winery[] = [
     country: "New Zealand",
     description:
       "Marlborough estate producing vibrant Sauvignon Blanc from the cool, river-stone soils of the Wairau Valley.",
-    website: "https://www.stoneburn.com",
-    logo: `${LOGO_BASE}/SBLogo_Rectangular.webp`,
-    logoBg: "#695656",
+    website: "https://www.stoneburn.co.nz",
+    // Local PNG fetched from stoneburn.co.nz — clean dark-on-white version
+    logo: "/logos/stoneburn.png",
   },
   {
     slug: "tahbilk",
@@ -178,8 +178,9 @@ export const wineries: Winery[] = [
     country: "Greece",
     description:
       "Peloponnese winery championing native Greek varieties: Agiorgitiko, Moschofilero, Malagouzia and Assyrtiko.",
-    logo: `${LOGO_BASE}/cropped-a414a851-e6d9-4e22-af28-9a56bf8b27e4-e1658236185854-1.png`,
-    logoBg: "#695656",
+    website: "https://www.boubas-wines.gr",
+    // Local PNG from boubas-wines.gr — transparent bg, monochrome-safe
+    logo: "/logos/boubas.png",
   },
   {
     slug: "yiaskouris",
