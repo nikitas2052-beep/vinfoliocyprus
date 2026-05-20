@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import PartnersPanel from "./PartnersPanel";
@@ -16,28 +17,17 @@ declare global {
 const GSAP_CORE = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
 const GSAP_ST = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js";
 
-// Module-level Promise cache. Without it, Strict Mode's double-mount
-// re-enters loadScript, sees the existing <script> tag, and resolves
-// immediately — before the script has actually finished executing —
-// causing window.gsap to be undefined on the second pass.
+// Module-level Promise cache so React Strict Mode's double-mount can't
+// race the same loadScript call and resolve before the script executes.
 const scriptCache = new Map<string, Promise<void>>();
 
 function loadScript(src: string): Promise<void> {
   if (typeof document === "undefined") return Promise.resolve();
   const cached = scriptCache.get(src);
   if (cached) return cached;
-
-  const existing = document.querySelector<HTMLScriptElement>(
-    `script[src="${src}"]`,
-  );
+  const existing = document.querySelector<HTMLScriptElement>(`script[src="${src}"]`);
   if (existing) {
-    // Attach a listener even though we didn't create the tag — covers
-    // the case where another caller injected it but hasn't waited yet.
     const p = new Promise<void>((resolve, reject) => {
-      // If the script already finished executing, querying any of its
-      // globals would return defined — but we can't generalise that
-      // check here, so we use both: an onload listener AND a 1.5s
-      // polling failsafe (resolves after the wait).
       let done = false;
       const finish = () => {
         if (done) return;
@@ -51,12 +41,9 @@ function loadScript(src: string): Promise<void> {
     scriptCache.set(src, p);
     return p;
   }
-
   const p = new Promise<void>((resolve, reject) => {
     const s = document.createElement("script");
     s.src = src;
-    // async=false so the second script (ScrollTrigger) only runs after
-    // gsap.min.js is fully executed, since ScrollTrigger needs gsap.
     s.async = false;
     s.onload = () => resolve();
     s.onerror = () => reject(new Error("script load failed: " + src));
@@ -67,33 +54,21 @@ function loadScript(src: string): Promise<void> {
 }
 
 /**
- * HeroVideo — full landing-page intro powered by scroll-scrubbed video.
+ * HeroVideo — splits desktop and mobile experiences.
  *
- * The video tells the story (8.1s, 243 frames, every frame a keyframe so
- * seeking is instant):
- *   t=0     full upright wine bottle, white bg
- *   t=4s    bottle has fallen, wine splashes into a giant V shape
- *   t=8s    bottle gone, only the red V splash on the LEFT half, white
- *           negative space on the RIGHT half (perfect for partners)
+ *   DESKTOP (≥1024px): GSAP ScrollTrigger pin + scroll-scrubbed video.
+ *     - Pin duration is now 150% of viewport (was 250%) so users don't
+ *       feel "stuck" while scrolling.
+ *     - On route change, ALL ScrollTriggers are killed AND any body
+ *       styles GSAP set are reset — this fixes the "navigation jams,
+ *       need to refresh" bug.
  *
- * Scroll narrative
- * ----------------
- *   0 ─ 65%  Section is PINNED, video.currentTime is scrubbed proportionally
- *            so scrolling drives the pour (bottle → splash → final V).
- *            Wordmark + Shop Now CTA float over the video and fade out
- *            during the second half.
- *   65 ─ 100% Video frozen at its final frame (V splash on the left).
- *            Partners panel slides in from the right (where the video's
- *            own white space lives) — they sit side-by-side, exactly
- *            like the user's screenshot 2.
+ *   MOBILE / TABLET (<1024px): no pin, no scroll-scrub. The video
+ *     autoplays muted on loop and is overlaid with the wordmark + CTAs.
+ *     Phones can't reliably scrub video.currentTime (especially Safari)
+ *     and pinning was the slowness source.
  *
- *   After ScrollTrigger releases the pin, the next section continues
- *   normally with the rest of the page.
- *
- * Graceful degradation
- * --------------------
- *   • GSAP fails to load → falls back to muted autoplay loop, no scrub
- *   • prefers-reduced-motion → no scrub; final-frame poster + CTAs
+ *   reduced-motion: still vineyard image fallback, CTAs render normally.
  */
 export default function HeroVideo() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -104,32 +79,75 @@ export default function HeroVideo() {
   const cueRef = useRef<HTMLDivElement>(null);
 
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [scrubReady, setScrubReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const pathname = usePathname();
 
+  // Detect prefers-reduced-motion + viewport class once on mount,
+  // re-evaluate on resize.
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduceMotion(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setReduceMotion(e.matches);
-    mq.addEventListener?.("change", handler);
-    return () => mq.removeEventListener?.("change", handler);
+    const motionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sizeMq = window.matchMedia("(max-width: 1023px)");
+    const ua = navigator.userAgent;
+    const isPhoneUA = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+
+    setReduceMotion(motionMq.matches);
+    setIsMobile(sizeMq.matches || isPhoneUA);
+
+    const onMotionChange = (e: MediaQueryListEvent) => setReduceMotion(e.matches);
+    const onSizeChange = (e: MediaQueryListEvent) => setIsMobile(e.matches || isPhoneUA);
+    motionMq.addEventListener?.("change", onMotionChange);
+    sizeMq.addEventListener?.("change", onSizeChange);
+    return () => {
+      motionMq.removeEventListener?.("change", onMotionChange);
+      sizeMq.removeEventListener?.("change", onSizeChange);
+    };
   }, []);
 
-  // ── GSAP scroll-scrub setup ───────────────────────────────────────────
+  // Mobile / reduced-motion: kick off autoplay loop
   useEffect(() => {
-    if (reduceMotion) return;
+    const v = videoRef.current;
+    if (!v) return;
+    if (isMobile || reduceMotion) {
+      v.loop = true;
+      v.muted = true;
+      v.play().catch(() => {});
+    }
+  }, [isMobile, reduceMotion]);
+
+  // ── GSAP scroll-scrub: DESKTOP ONLY ───────────────────────────────────
+  useEffect(() => {
+    if (isMobile || reduceMotion) return;
+
     let cancelled = false;
-    let trigger: { kill: () => void } | undefined;
+    let trigger: { kill: (reset?: boolean) => void } | undefined;
     let resizeHandler: (() => void) | undefined;
 
+    const killAllTriggersAndReset = () => {
+      // Aggressive cleanup so route navigation doesn't get jammed by a
+      // leftover pin spacer or scroll-lock.
+      try {
+        trigger?.kill(true);
+      } catch {}
+      if (typeof window !== "undefined" && window.ScrollTrigger) {
+        try {
+          window.ScrollTrigger.getAll().forEach((t: { kill: (r?: boolean) => void }) =>
+            t.kill(true),
+          );
+        } catch {}
+      }
+      if (typeof document !== "undefined") {
+        document.body.style.removeProperty("overflow");
+        document.body.style.removeProperty("padding-right");
+        document.documentElement.style.removeProperty("overflow");
+      }
+    };
+
     const init = async () => {
-      console.log("[Vinfolio Hero] init starting");
       try {
         await loadScript(GSAP_CORE);
         await loadScript(GSAP_ST);
-        console.log("[Vinfolio Hero] GSAP scripts loaded");
-      } catch (err) {
-        console.warn("[Vinfolio Hero] GSAP failed to load — falling back to autoplay loop", err);
+      } catch {
         const v = videoRef.current;
         if (v) {
           v.loop = true;
@@ -139,25 +157,17 @@ export default function HeroVideo() {
       }
       if (cancelled) return;
 
-      // Belt-and-suspenders: even after loadScript resolves, give the
-      // browser a few ticks to actually populate window.gsap.
-      const waitForGlobals = async () => {
-        for (let i = 0; i < 30; i++) {
-          if (window.gsap && window.ScrollTrigger) return;
-          await new Promise((r) => setTimeout(r, 50));
-        }
-      };
-      await waitForGlobals();
+      // Wait for window globals to actually populate
+      for (let i = 0; i < 30; i++) {
+        if (window.gsap && window.ScrollTrigger) break;
+        await new Promise((r) => setTimeout(r, 50));
+      }
       if (cancelled) return;
 
       const gsap = window.gsap;
       const ScrollTrigger = window.ScrollTrigger;
-      if (!gsap || !ScrollTrigger) {
-        console.warn("[Vinfolio Hero] window.gsap / ScrollTrigger missing after polling");
-        return;
-      }
+      if (!gsap || !ScrollTrigger) return;
       gsap.registerPlugin(ScrollTrigger);
-      console.log("[Vinfolio Hero] ScrollTrigger registered");
 
       const video = videoRef.current;
       const section = sectionRef.current;
@@ -167,49 +177,42 @@ export default function HeroVideo() {
       const cue = cueRef.current;
       if (!video || !section) return;
 
-      // Wait for video metadata so duration is known
       await new Promise<void>((res) => {
-        if (video.readyState >= 1 && isFinite(video.duration) && video.duration > 0) {
-          return res();
-        }
+        if (video.readyState >= 1 && isFinite(video.duration) && video.duration > 0) return res();
         const ready = () => res();
         video.addEventListener("loadedmetadata", ready, { once: true });
-        setTimeout(ready, 4000); // failsafe
+        setTimeout(ready, 4000);
       });
       if (cancelled) return;
 
-      const duration = isFinite(video.duration) && video.duration > 0 ? video.duration : 8;
-      console.log(`[Vinfolio Hero] video duration=${duration}s, ready=${video.readyState}`);
+      const duration =
+        isFinite(video.duration) && video.duration > 0 ? video.duration : 8;
       try {
         video.pause();
         video.currentTime = 0;
       } catch {}
 
-      // Scroll-progress thresholds
-      const SCRUB_END = 0.65; // video done by here
-      const PANEL_START = 0.6; // panel begins appearing
-      const PANEL_FULL = 0.9; // panel fully in place
-      const WORDMARK_OUT_START = 0.18;
-      const WORDMARK_OUT_END = 0.55;
-      const CTA_OUT_START = 0.12;
-      const CTA_OUT_END = 0.4;
+      const SCRUB_END = 0.65;
+      const PANEL_START = 0.55;
+      const PANEL_FULL = 0.9;
+      const WORDMARK_OUT_START = 0.15;
+      const WORDMARK_OUT_END = 0.5;
+      const CTA_OUT_START = 0.1;
+      const CTA_OUT_END = 0.38;
 
       const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
       const clamp01 = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
-      const norm = (v: number, a: number, b: number) =>
-        clamp01((v - a) / (b - a));
+      const norm = (v: number, a: number, b: number) => clamp01((v - a) / (b - a));
 
       trigger = ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: "+=250%", // pinned for 2.5 viewports of scroll
+        end: "+=150%", // shorter pin: 1.5 viewports of scroll, not 2.5
         pin: true,
         anticipatePin: 1,
         scrub: 0.4,
         onUpdate(self: { progress: number }) {
           const p = self.progress;
-
-          // 1) Drive the video frame
           const vp = clamp01(p / SCRUB_END);
           const t = vp * (duration - 0.05);
           if (Math.abs(video.currentTime - t) > 0.03) {
@@ -217,123 +220,133 @@ export default function HeroVideo() {
               video.currentTime = t;
             } catch {}
           }
-
-          // 2) Wordmark — migrates centre → upper-left, scales down, fades
           if (wordmark) {
             const wOut = norm(p, WORDMARK_OUT_START, WORDMARK_OUT_END);
-            const x = lerp(0, -40, wOut);
-            const y = lerp(0, -44, wOut);
-            const s = lerp(1, 0.32, wOut);
-            const o = 1 - wOut;
-            wordmark.style.transform =
-              `translate(${x}%, ${y}%) scale(${s.toFixed(3)})`;
-            wordmark.style.opacity = String(o.toFixed(3));
+            wordmark.style.transform = `translate(${lerp(0, -40, wOut)}%, ${lerp(0, -44, wOut)}%) scale(${lerp(1, 0.32, wOut).toFixed(3)})`;
+            wordmark.style.opacity = String((1 - wOut).toFixed(3));
           }
-
-          // 3) CTA — fades and slides down a little
           if (cta) {
             const cOut = norm(p, CTA_OUT_START, CTA_OUT_END);
             cta.style.transform = `translateY(${(cOut * 30).toFixed(1)}px)`;
             cta.style.opacity = String((1 - cOut).toFixed(3));
           }
-
-          // 4) Partners panel — slides in (right-side desktop, bottom mobile)
           if (panel) {
             const pp = norm(p, PANEL_START, PANEL_FULL);
-            const isMobile = window.innerWidth < 1024;
             panel.style.opacity = String(pp.toFixed(3));
-            if (isMobile) {
-              panel.style.transform = `translateY(${((1 - pp) * 100).toFixed(2)}%)`;
-            } else {
-              panel.style.transform = `translateX(${((1 - pp) * 100).toFixed(2)}%)`;
-            }
+            panel.style.transform = `translateX(${((1 - pp) * 100).toFixed(2)}%)`;
           }
-
-          // 5) Scroll cue — fades quickly once user starts
           if (cue) cue.style.opacity = String((1 - clamp01(p / 0.05)).toFixed(3));
         },
       });
 
-      // Re-position on resize (mobile/desktop break)
       resizeHandler = () => {
-        try { ScrollTrigger.refresh(); } catch {}
+        try {
+          window.ScrollTrigger?.refresh();
+        } catch {}
       };
       window.addEventListener("resize", resizeHandler);
-
-      console.log("[Vinfolio Hero] ScrollTrigger ready — scroll to scrub");
-      setScrubReady(true);
     };
 
     init();
+
     return () => {
       cancelled = true;
-      try { trigger?.kill(); } catch {}
+      killAllTriggersAndReset();
       if (resizeHandler) window.removeEventListener("resize", resizeHandler);
     };
-  }, [reduceMotion]);
+  }, [isMobile, reduceMotion]);
 
-  // ── Reduced-motion fallback hero ───────────────────────────────────────
-  if (reduceMotion) {
+  // Also force a kill on EVERY pathname change as a belt-and-suspenders.
+  // If we navigate to /products mid-pin, this guarantees nothing leaks.
+  useEffect(() => {
+    return () => {
+      if (typeof window !== "undefined" && window.ScrollTrigger) {
+        try {
+          window.ScrollTrigger.getAll().forEach((t: { kill: (r?: boolean) => void }) =>
+            t.kill(true),
+          );
+        } catch {}
+      }
+      if (typeof document !== "undefined") {
+        document.body.style.removeProperty("overflow");
+        document.body.style.removeProperty("padding-right");
+      }
+    };
+  }, [pathname]);
+
+  // ── MOBILE + REDUCED-MOTION hero ──────────────────────────────────────
+  if (isMobile || reduceMotion) {
     return (
-      <section className="relative w-full h-screen flex items-center justify-center bg-paper overflow-hidden -mt-20 md:-mt-24">
-        <Image
-          src="https://images.unsplash.com/photo-1506377585622-bedcbb027afc?auto=format&fit=crop&w=2400&q=80"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/15" />
-        <div className="relative text-center px-6">
-          <Image
-            src="https://vinfolio.com.cy/wp-content/uploads/2020/03/Logo-Transparent-1.png"
-            alt="Vinfolio"
-            width={520}
-            height={150}
-            priority
-            className="h-24 md:h-32 w-auto brightness-0 invert mx-auto"
+      <>
+        <section className="relative w-full h-[90vh] min-h-[560px] overflow-hidden bg-paper -mt-20">
+          <video
+            ref={videoRef}
+            src="/assets/hero-video-web.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          <p className="font-serif italic text-paper text-xl mt-6">
-            Strong partnerships, poured by hand.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/products"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-paper text-ink uppercase text-sm tracking-[0.06em] hover:bg-bronze hover:text-paper transition-colors"
-            >
-              Shop Now
-            </Link>
-            <Link
-              href="/wineries"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-transparent text-paper border border-paper/70 uppercase text-sm tracking-[0.06em] hover:bg-paper hover:text-ink transition-colors"
-            >
-              Meet our partners
-            </Link>
+          <div aria-hidden className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-paper to-transparent pointer-events-none" />
+          <div aria-hidden className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-paper to-transparent pointer-events-none" />
+          <div aria-hidden className="absolute inset-0 bg-black/15 pointer-events-none" />
+
+          <div className="relative h-full flex flex-col items-center justify-center text-center px-5 pt-16">
+            <Image
+              src="https://vinfolio.com.cy/wp-content/uploads/2020/03/Logo-Transparent-1.png"
+              alt="Vinfolio"
+              width={420}
+              height={120}
+              priority
+              className="h-16 sm:h-20 w-auto brightness-0 invert drop-shadow-[0_4px_18px_rgba(0,0,0,0.5)]"
+            />
+            <p className="font-serif italic text-paper mt-6 text-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
+              Strong partnerships, poured by hand.
+            </p>
+            <div className="mt-6 flex flex-col gap-2.5 w-full max-w-[280px]">
+              <Link
+                href="/products"
+                className="inline-flex items-center justify-center px-6 py-3
+                           bg-paper text-ink uppercase text-[13px] tracking-[0.06em]"
+              >
+                Shop Now
+              </Link>
+              <Link
+                href="/wineries"
+                className="inline-flex items-center justify-center px-6 py-3
+                           bg-transparent text-paper border border-paper/80 uppercase text-[13px] tracking-[0.06em]"
+              >
+                Meet our partners
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Partners panel renders as a normal section below on mobile */}
+        <section className="bg-paper py-10 border-t border-line">
+          <PartnersPanel />
+        </section>
+      </>
     );
   }
 
+  // ── DESKTOP hero with scroll-scrub ────────────────────────────────────
   return (
     <section
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden bg-paper -mt-20 md:-mt-24"
       aria-label="Vinfolio — wine to V"
     >
-      {/* THE VIDEO — full-bleed, scrubs frame-by-frame with scroll */}
       <video
         ref={videoRef}
         src="/assets/hero-video-web.mp4"
         muted
         playsInline
         preload="auto"
-        // Important: NOT autoplay (we drive currentTime manually)
         className="absolute inset-0 w-full h-full object-cover"
       />
-
-      {/* Top/bottom paper fades — blend video edges into the white page */}
       <div
         aria-hidden
         className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-paper to-transparent pointer-events-none z-[1]"
@@ -343,8 +356,6 @@ export default function HeroVideo() {
         className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-paper to-transparent pointer-events-none z-[1]"
       />
 
-      {/* Wordmark — centre on load, migrates to upper-left as you scroll.
-          Filtered to pure white so it stands cleanly on the video. */}
       <div
         ref={wordmarkRef}
         className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 will-change-transform"
@@ -359,7 +370,6 @@ export default function HeroVideo() {
         />
       </div>
 
-      {/* Tagline + CTAs — fade as scroll begins */}
       <div
         ref={ctaRef}
         className="absolute inset-x-0 bottom-[18%] flex flex-col items-center text-center px-6 z-10 will-change-transform"
@@ -389,21 +399,10 @@ export default function HeroVideo() {
         </div>
       </div>
 
-      {/* Partners panel — slides in from the right (desktop) or bottom
-          (mobile/tablet). Width tuned to 42% of viewport so the red V
-          splash from the video stays clearly visible on the left. */}
       <motion.aside
         ref={panelRef}
-        style={{
-          opacity: 0,
-          transform:
-            typeof window !== "undefined" && window.innerWidth < 1024
-              ? "translateY(100%)"
-              : "translateX(100%)",
-        }}
-        className="absolute z-20 will-change-transform
-                   lg:top-0 lg:right-0 lg:h-full lg:w-[42%]
-                   inset-x-0 bottom-0 h-[72vh]
+        style={{ opacity: 0, transform: "translateX(100%)" }}
+        className="absolute z-20 will-change-transform top-0 right-0 h-full w-[42%]
                    bg-paper border-l border-line
                    shadow-[-30px_0_60px_-40px_rgba(0,0,0,0.18)]"
         aria-label="Our partner wineries"
@@ -411,7 +410,6 @@ export default function HeroVideo() {
         <PartnersPanel />
       </motion.aside>
 
-      {/* Scroll cue */}
       <div
         ref={cueRef}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 text-ink/60 text-[10px] uppercase tracking-[0.32em] font-sans flex flex-col items-center gap-2 pointer-events-none z-10 transition-opacity"
@@ -423,9 +421,6 @@ export default function HeroVideo() {
           className="w-px h-8 bg-ink/40"
         />
       </div>
-
-      {/* Tiny invisible status node for debugging GSAP readiness */}
-      <span aria-hidden className="sr-only">{scrubReady ? "ok" : "loading"}</span>
     </section>
   );
 }

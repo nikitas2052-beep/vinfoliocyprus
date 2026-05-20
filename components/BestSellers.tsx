@@ -47,7 +47,9 @@ export default function BestSellers() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-10 max-w-[1050px] mx-auto">
+      {/* Always 3 columns — even on phones, so the 6 best-sellers fit
+          as 3×2 instead of a single tower of 6 huge cards. */}
+      <div className="grid grid-cols-3 gap-x-2 sm:gap-x-4 md:gap-x-5 gap-y-6 md:gap-y-10 max-w-[1050px] mx-auto">
         {list.map((w, i) => (
           <CompactWineCard key={w.id} wine={w} index={i} />
         ))}
@@ -94,7 +96,7 @@ function CompactWineCard({ wine, index }: { wine: Wine; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.3), ease: [0.22, 1, 0.36, 1] }}
-      className="group max-w-[260px] mx-auto w-full"
+      className="group w-full"
     >
       <Link href={`/products/${wine.id}`} className="block">
         <div className="relative aspect-[5/6] bottle-bg overflow-hidden">
@@ -102,12 +104,12 @@ function CompactWineCard({ wine, index }: { wine: Wine; index: number }) {
             src={wine.image}
             alt={wine.name}
             fill
-            sizes="(max-width:640px) 100vw, 260px"
-            className="object-contain p-3 transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width:640px) 33vw, (max-width:1024px) 30vw, 260px"
+            className="object-contain p-2 md:p-3 transition-transform duration-700 group-hover:scale-105"
           />
           <span
             className={cn(
-              "absolute top-2.5 left-2.5 type-badge",
+              "absolute top-1.5 left-1.5 md:top-2.5 md:left-2.5 type-badge !text-[8px] md:!text-[10px] !px-1.5 md:!px-2",
               typeColor(wine.type),
             )}
           >
@@ -117,26 +119,22 @@ function CompactWineCard({ wine, index }: { wine: Wine; index: number }) {
             onClick={onAdd}
             aria-label={`Add ${wine.name} to cart`}
             className="absolute bottom-2.5 right-2.5 w-9 h-9 bg-ink text-paper
-                       flex items-center justify-center
+                       hidden md:flex items-center justify-center
                        opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0
                        transition-all duration-300 hover:bg-wine"
           >
             <Plus className="w-4 h-4" strokeWidth={1.5} />
           </button>
         </div>
-        <div className="pt-3 space-y-0.5">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-muted font-sans">
-            {wine.country} · {wine.region}
+        <div className="pt-2 md:pt-3 space-y-0.5">
+          <p className="text-[8px] md:text-[10px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-muted font-sans truncate">
+            {wine.country}
           </p>
-          <h3 className="font-serif text-lg text-ink leading-tight line-clamp-2 min-h-[2.75rem] group-hover:text-bronze transition-colors">
+          <h3 className="font-serif text-[13px] md:text-lg text-ink leading-tight line-clamp-2 min-h-[2.25rem] md:min-h-[2.75rem] group-hover:text-bronze transition-colors">
             {wine.name}
           </h3>
-          <p className="text-xs text-muted font-sans">{wine.winery}</p>
-          <p className="font-serif text-base text-ink pt-0.5">
+          <p className="font-serif text-sm md:text-base text-ink pt-0.5">
             {formatPrice(wine.price)}
-            <span className="text-[10px] text-muted ml-1.5 uppercase tracking-wider font-sans">
-              {wine.sizeMl >= 1000 ? `${wine.sizeMl / 1000}L` : `${wine.sizeMl}ml`}
-            </span>
           </p>
         </div>
       </Link>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAgeGate } from "@/lib/store";
 
@@ -17,7 +18,7 @@ export default function AgeVerificationModal() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] bg-burgundy-900/60 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] bg-ink/60 backdrop-blur-md flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
           aria-labelledby="age-title"
@@ -27,44 +28,62 @@ export default function AgeVerificationModal() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="card-surface max-w-md w-full p-8 text-center bg-chalk"
+            className="relative bg-paper border border-line max-w-md w-full px-7 pt-10 pb-8 text-center shadow-2xl"
           >
-            <div className="flex justify-center mb-6">
-              <div className="wine-seal !w-20 !h-20 text-3xl">V</div>
+            {/* Vinfolio logo at the top of the modal */}
+            <div className="flex justify-center mb-5">
+              <Image
+                src="https://vinfolio.com.cy/wp-content/uploads/2020/03/Logo-Transparent-1.png"
+                alt="Vinfolio"
+                width={320}
+                height={92}
+                priority
+                className="h-14 sm:h-16 w-auto object-contain"
+              />
             </div>
+
             <h2
               id="age-title"
-              className="font-serif text-3xl text-ink tracking-wide"
+              className="font-serif text-2xl sm:text-3xl text-ink tracking-wide"
             >
-              Welcome to Vinfolio
+              Welcome
             </h2>
-            <p className="font-serif italic text-bronze mt-1">
-              Strong partnerships build stronger companies
+            <p className="font-serif italic text-bronze mt-2 text-sm sm:text-base">
+              Strong partnerships, poured by hand.
             </p>
 
-            <div className="gold-divider mx-auto" />
+            <div className="h-px w-12 bg-bronze mx-auto my-5" />
 
-            <p className="text-cream/85 mt-4">
-              You must be of legal drinking age (18+) to enter this site.
+            <p className="text-ink/85 leading-relaxed">
+              You must be of legal drinking age{" "}
+              <span className="font-semibold">(18+)</span> to enter this site.
             </p>
             <p className="text-muted text-sm mt-2">
               By entering you confirm you are 18 years or older.
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-              <button onClick={verify} className="btn-gold flex-1">
+            <div className="mt-7 flex flex-col sm:flex-row gap-2.5 justify-center">
+              <button
+                onClick={verify}
+                className="flex-1 inline-flex items-center justify-center
+                           px-6 py-3 bg-ink text-paper uppercase text-[13px] tracking-[0.06em]
+                           hover:bg-wine transition-colors"
+              >
                 I am 18 or older
               </button>
               <a
                 href="https://www.google.com"
-                className="btn-ghost flex-1"
+                className="flex-1 inline-flex items-center justify-center
+                           px-6 py-3 bg-paper text-ink border border-ink/30
+                           uppercase text-[13px] tracking-[0.06em]
+                           hover:bg-chalk transition-colors"
                 aria-label="Leave site"
               >
                 Leave site
               </a>
             </div>
 
-            <p className="text-xs text-muted mt-6">
+            <p className="text-xs text-muted mt-5">
               Please drink responsibly. Vinfolio Ltd · Cyprus.
             </p>
           </motion.div>
