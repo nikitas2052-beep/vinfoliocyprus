@@ -63,16 +63,18 @@ export default function ProductFilters() {
   const filterBody = (
     <div className="space-y-6">
       <FilterGroup label="Type">
-        <div className="flex flex-wrap gap-2">
+        {/* 2-col grid on mobile so chips stack cleanly two-by-two
+            instead of an awkward flex wrap. */}
+        <div className="grid grid-cols-2 lg:flex lg:flex-wrap gap-2">
           {wineTypes.map((t) => (
             <button
               key={t}
               onClick={() => update("type", selectedType === t ? "" : t)}
               className={cn(
-                "px-3 py-1.5 text-xs uppercase tracking-wider rounded-sm border transition-colors",
+                "px-3 py-2 lg:py-1.5 text-xs uppercase tracking-wider rounded-sm border transition-colors text-center",
                 selectedType === t
-                  ? "bg-gradient-bronze text-burgundy-800 border-gold shadow-wine-soft"
-                  : "border-line text-cream/80 hover:border-line hover:bg-burgundy/5",
+                  ? "bg-ink text-paper border-ink"
+                  : "border-line text-ink/80 bg-paper hover:border-ink hover:bg-chalk",
               )}
             >
               {t}
@@ -127,7 +129,7 @@ export default function ProductFilters() {
       </FilterGroup>
 
       <FilterGroup label="Bottle size">
-        <div className="flex flex-wrap gap-2">
+        <div className="grid grid-cols-2 lg:flex lg:flex-wrap gap-2">
           {wineSizes.map((s) => {
             const sStr = String(s);
             const label = s >= 1000 ? `${s / 1000} L` : `${s} ml`;
@@ -137,10 +139,10 @@ export default function ProductFilters() {
                 key={s}
                 onClick={() => update("size", active ? "" : sStr)}
                 className={cn(
-                  "px-3 py-1.5 text-xs rounded-sm border transition-colors",
+                  "px-3 py-2 lg:py-1.5 text-xs rounded-sm border transition-colors text-center",
                   active
-                    ? "bg-gradient-bronze text-burgundy-800 border-gold shadow-wine-soft"
-                    : "border-line text-cream/80 hover:border-line hover:bg-burgundy/5",
+                    ? "bg-ink text-paper border-ink"
+                    : "border-line text-ink/80 bg-paper hover:border-ink hover:bg-chalk",
                 )}
               >
                 {label}

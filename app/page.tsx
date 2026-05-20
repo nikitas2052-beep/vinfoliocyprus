@@ -24,7 +24,8 @@ export default function HomePage() {
 
       <Testimonials />
 
-      {/* CHANGE 6 — Two Gifts sections backed by gift-tagged products */}
+      {/* Single Gifts section (the "A glass for every table" variant
+          was removed per user request — too repetitive). */}
       <GiftsSection
         eyebrow="Don't know where to start?"
         title={
@@ -34,17 +35,6 @@ export default function HomePage() {
         }
         intro="Hand-selected magnums and cellar-worthy bottles, ready to wrap."
         variant="chalk"
-      />
-
-      <GiftsSection
-        eyebrow="A glass for every table"
-        title={
-          <>
-            From the cellar —{" "}
-            <span className="italic text-bronze">straight to the table</span>.
-          </>
-        }
-        intro="Six gifts that work as well for a dinner party as for a milestone."
       />
     </>
   );

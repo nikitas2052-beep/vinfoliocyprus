@@ -402,9 +402,8 @@ export default function HeroVideo() {
       <motion.aside
         ref={panelRef}
         style={{ opacity: 0, transform: "translateX(100%)" }}
-        className="absolute z-20 will-change-transform top-0 right-0 h-full w-[42%]
-                   bg-paper border-l border-line
-                   shadow-[-30px_0_60px_-40px_rgba(0,0,0,0.18)]"
+        className="absolute z-20 will-change-transform top-0 right-0 h-full w-full
+                   bg-paper shadow-[-30px_0_60px_-40px_rgba(0,0,0,0.18)]"
         aria-label="Our partner wineries"
       >
         <PartnersPanel />

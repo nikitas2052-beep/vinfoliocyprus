@@ -9,6 +9,7 @@ import type { Wine } from "@/lib/types";
 import { useCart } from "@/lib/store";
 import { cn, formatPrice } from "@/lib/utils";
 import { getFeaturedWines, wines as allWines } from "@/lib/wines";
+import BottleSilhouette, { isPlaceholderImage } from "./BottleSilhouette";
 
 /**
  * BestSellers — formerly "Featured Bottles".
@@ -100,13 +101,17 @@ function CompactWineCard({ wine, index }: { wine: Wine; index: number }) {
     >
       <Link href={`/products/${wine.id}`} className="block">
         <div className="relative aspect-[5/6] bottle-bg overflow-hidden">
-          <Image
-            src={wine.image}
-            alt={wine.name}
-            fill
-            sizes="(max-width:640px) 33vw, (max-width:1024px) 30vw, 260px"
-            className="object-contain p-2 md:p-3 transition-transform duration-700 group-hover:scale-105"
-          />
+          {isPlaceholderImage(wine.image) ? (
+            <BottleSilhouette wine={wine} />
+          ) : (
+            <Image
+              src={wine.image}
+              alt={wine.name}
+              fill
+              sizes="(max-width:640px) 33vw, (max-width:1024px) 30vw, 260px"
+              className="object-contain p-2 md:p-3 transition-transform duration-700 group-hover:scale-105"
+            />
+          )}
           <span
             className={cn(
               "absolute top-1.5 left-1.5 md:top-2.5 md:left-2.5 type-badge !text-[8px] md:!text-[10px] !px-1.5 md:!px-2",

@@ -10,6 +10,7 @@ import type { Wine } from "@/lib/types";
 import { COUNTRY_FLAGS, cn, formatPrice } from "@/lib/utils";
 import { useCart } from "@/lib/store";
 import WineCard from "@/components/WineCard";
+import BottleSilhouette, { isPlaceholderImage } from "./BottleSilhouette";
 
 type Tab = "description" | "pairing" | "producer";
 
@@ -48,14 +49,18 @@ export default function ProductDetail({
           transition={{ duration: 0.5 }}
           className="relative aspect-[3/4] bottle-bg rounded-sm overflow-hidden border border-line shadow-card-soft"
         >
-          <Image
-            src={wine.image}
-            alt={wine.name}
-            fill
-            priority
-            sizes="(max-width:1024px) 100vw, 50vw"
-            className="object-contain p-8"
-          />
+          {isPlaceholderImage(wine.image) ? (
+            <BottleSilhouette wine={wine} />
+          ) : (
+            <Image
+              src={wine.image}
+              alt={wine.name}
+              fill
+              priority
+              sizes="(max-width:1024px) 100vw, 50vw"
+              className="object-contain p-8"
+            />
+          )}
           <div className="absolute top-4 right-4 wine-seal !w-14 !h-14 !text-base">
             {wine.year ?? "V"}
           </div>

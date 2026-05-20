@@ -1,8 +1,11 @@
 import type { Wine } from "./types";
 
-// Real Vinfolio bottle photos (from vinfolio.com.cy CDN)
+// Real Vinfolio bottle photos (from vinfolio.com.cy CDN).
+// Uses the 1152x1536 size — plenty of pixels for any card on the site;
+// Next.js Image further optimises per-viewport via its image API so
+// the network payload stays small.
 const B = (n: string) =>
-  `https://vinfolio.com.cy/wp-content/uploads/2025/10/VINFOLIO_ALL_WINES_09-25-${n}-315x420.png`;
+  `https://vinfolio.com.cy/wp-content/uploads/2025/10/VINFOLIO_ALL_WINES_09-25-${n}-1152x1536.png`;
 
 const RED_IMG =
   "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80";

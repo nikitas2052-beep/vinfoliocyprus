@@ -43,20 +43,25 @@ export default function AboutPage() {
           and max-h bumped)
         • Founder caption directly below the photo
       */}
-      <section className="mt-20" id="our-story">
+      <section className="mt-14 sm:mt-20" id="our-story">
         <Reveal>
           <p className="eyebrow">Our Story</p>
-          <h2 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-ink leading-[1.05] mt-3 mb-10">
+          <h2 className="font-serif text-[clamp(1.75rem,4vw,3.25rem)] text-ink leading-[1.05] mt-3 mb-6 sm:mb-10">
             Twenty-five years in wine —{" "}
-            <span className="italic text-bronze">distilled into one Cypriot cellar.</span>
+            <span className="italic text-bronze">
+              distilled into one Cypriot cellar.
+            </span>
           </h2>
         </Reveal>
 
-        <div className="grid lg:grid-cols-[55fr_45fr] gap-10 lg:gap-14 items-start">
+        {/* Mobile: photo first, then text. Desktop: 55/45 side-by-side. */}
+        <div className="grid lg:grid-cols-[55fr_45fr] gap-6 sm:gap-10 lg:gap-14 items-start">
           <Reveal>
             <figure>
-              <div className="relative aspect-[3/4] overflow-hidden bg-chalk
-                              max-h-[820px]">
+              <div
+                className="relative aspect-[4/5] sm:aspect-[3/4] overflow-hidden
+                           bg-chalk max-h-[820px]"
+              >
                 <Image
                   src="https://vinfolio.com.cy/wp-content/uploads/elementor/thumbs/About-Us-rd4uusj3pa0jrzs14muo5w9tnlwrlmhhs8zztt40ks.jpg"
                   alt="Yiannakis Aristidou, founder of Vinfolio"
@@ -66,14 +71,14 @@ export default function AboutPage() {
                   priority
                 />
               </div>
-              <figcaption className="mt-4 text-xs uppercase tracking-[0.08em] text-muted font-sans">
+              <figcaption className="mt-3 text-[10px] sm:text-xs uppercase tracking-[0.08em] text-muted font-sans">
                 Yiannakis Aristidou · Founder & Curator
               </figcaption>
             </figure>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="space-y-5 text-ink/85 leading-relaxed pr-0 lg:pr-0">
+            <div className="space-y-4 sm:space-y-5 text-ink/85 leading-relaxed text-sm sm:text-base">
               <p>
                 Vinfolio was founded by{" "}
                 <span className="font-serif italic text-bronze">
@@ -97,9 +102,9 @@ export default function AboutPage() {
                 . Each bottle in our portfolio reflects our philosophy of
                 balancing tradition, taste, and authenticity.
               </p>
-              <div className="card-paper p-5">
+              <div className="card-paper p-4 sm:p-5">
                 <p className="eyebrow">Contact the founder</p>
-                <p className="mt-2 text-ink">
+                <p className="mt-2 text-ink text-sm break-words">
                   <a href="tel:+35799571267" className="link-bronze">
                     +357 99 571267
                   </a>{" "}

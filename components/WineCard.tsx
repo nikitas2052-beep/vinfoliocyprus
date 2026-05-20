@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import type { Wine } from "@/lib/types";
 import { useCart } from "@/lib/store";
 import { cn, formatPrice } from "@/lib/utils";
+import BottleSilhouette, { isPlaceholderImage } from "./BottleSilhouette";
 
 function typeColor(t: Wine["type"]): string {
   switch (t) {
@@ -53,13 +54,17 @@ export default function WineCard({
       <Link href={`/products/${wine.id}`} className="block">
         {/* Bottle */}
         <div className="relative aspect-[3/4] bottle-bg overflow-hidden">
-          <Image
-            src={wine.image}
-            alt={wine.name}
-            fill
-            sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 25vw"
-            className="object-contain p-6 transition-transform duration-700 group-hover:scale-105"
-          />
+          {isPlaceholderImage(wine.image) ? (
+            <BottleSilhouette wine={wine} />
+          ) : (
+            <Image
+              src={wine.image}
+              alt={wine.name}
+              fill
+              sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 25vw"
+              className="object-contain p-6 transition-transform duration-700 group-hover:scale-105"
+            />
+          )}
           <span
             className={cn(
               "absolute top-3 left-3 type-badge",

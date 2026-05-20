@@ -8,6 +8,7 @@ import { useCart } from "@/lib/store";
 import { formatPrice } from "@/lib/utils";
 import { getGiftWines } from "@/lib/wines";
 import type { Wine } from "@/lib/types";
+import BottleSilhouette, { isPlaceholderImage } from "./BottleSilhouette";
 
 interface Props {
   eyebrow: string;
@@ -89,14 +90,18 @@ function GiftCard({ wine, index }: { wine: Wine; index: number }) {
     >
       <Link href={`/products/${wine.id}`} className="block">
         <div className="relative aspect-[5/6] bottle-bg overflow-hidden mb-4">
-          <Image
-            src={wine.image}
-            alt={wine.name}
-            fill
-            sizes="(max-width:640px) 100vw, 360px"
-            loading="lazy"
-            className="object-contain p-4 transition-transform duration-500 hover:scale-105"
-          />
+          {isPlaceholderImage(wine.image) ? (
+            <BottleSilhouette wine={wine} />
+          ) : (
+            <Image
+              src={wine.image}
+              alt={wine.name}
+              fill
+              sizes="(max-width:640px) 100vw, 360px"
+              loading="lazy"
+              className="object-contain p-4 transition-transform duration-500 hover:scale-105"
+            />
+          )}
         </div>
         <p className="text-[10px] uppercase tracking-[0.22em] text-muted font-sans">
           {wine.country} · {wine.region}
