@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { wineries, logoFor } from "@/lib/wineries";
 import { wines } from "@/lib/wines";
-import { COUNTRY_FLAGS } from "@/lib/utils";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
@@ -26,13 +25,16 @@ export default function WineriesPage() {
         </p>
       </header>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3">
         {wineries.map((w, i) => {
           const count = wines.filter((wine) => wine.winery === w.name).length;
           const logo = logoFor(w);
           return (
-            <Reveal key={w.slug} delay={i * 0.03}>
-              <article className="card-paper h-full flex flex-col group hover:-translate-y-1 hover:shadow-card transition-all overflow-hidden">
+            <Reveal key={w.slug} delay={i * 0.02}>
+              <Link
+                href={`/products?winery=${encodeURIComponent(w.name)}`}
+                className="card-paper h-full flex flex-col group hover:-translate-y-0.5 hover:shadow-card transition-all overflow-hidden"
+              >
                 {/* Monochrome logo tile on chalk — colour appears on hover */}
                 <div className="relative aspect-[4/3] flex items-center justify-center overflow-hidden bg-chalk">
                   {logo ? (
@@ -47,46 +49,22 @@ export default function WineriesPage() {
                                  transition-all duration-300"
                     />
                   ) : (
-                    <span className="font-serif italic text-ink text-base sm:text-xl px-2 text-center leading-tight">
+                    <span className="font-serif italic text-ink text-[11px] sm:text-sm px-1 text-center leading-tight">
                       {w.name}
                     </span>
                   )}
-                  <span
-                    className="absolute top-1.5 right-1.5 text-sm sm:text-base"
-                    title={w.country}
-                  >
-                    {COUNTRY_FLAGS[w.country]}
-                  </span>
                 </div>
 
-                {/* Compact caption */}
-                <div className="p-3 sm:p-4 flex flex-col flex-1">
-                  <h2 className="font-serif text-sm sm:text-base text-ink leading-tight line-clamp-1">
+                {/* Ultra-compact caption */}
+                <div className="p-2 sm:p-2.5 flex flex-col flex-1">
+                  <h2 className="font-serif text-[11px] sm:text-xs text-ink leading-tight line-clamp-1">
                     {w.name}
                   </h2>
-                  <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-muted mt-1">
-                    {w.country}
+                  <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.15em] text-muted mt-0.5 truncate">
+                    {w.country} · {count}
                   </p>
-                  <div className="mt-2 sm:mt-3 flex items-center justify-between text-[10px] sm:text-[11px]">
-                    <Link
-                      href={`/products?winery=${encodeURIComponent(w.name)}`}
-                      className="text-burgundy hover:text-ink uppercase tracking-wider border-b border-ink/30 hover:border-ink pb-0.5"
-                    >
-                      {count} {count === 1 ? "wine" : "wines"}
-                    </Link>
-                    {w.website && (
-                      <a
-                        href={w.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted hover:text-ink"
-                      >
-                        ↗
-                      </a>
-                    )}
-                  </div>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           );
         })}

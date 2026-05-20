@@ -2,7 +2,7 @@ import HeroVideo from "@/components/HeroVideo";
 import BestSellers from "@/components/BestSellers";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
-import GiftsSection from "@/components/GiftsSection";
+import GiftBoxesCarousel from "@/components/GiftBoxesCarousel";
 
 export default function HomePage() {
   return (
@@ -24,18 +24,10 @@ export default function HomePage() {
 
       <Testimonials />
 
-      {/* Single Gifts section (the "A glass for every table" variant
-          was removed per user request — too repetitive). */}
-      <GiftsSection
-        eyebrow="Don't know where to start?"
-        title={
-          <>
-            Gifts they'll <span className="italic text-bronze">remember</span>.
-          </>
-        }
-        intro="Hand-selected magnums and cellar-worthy bottles, ready to wrap."
-        variant="chalk"
-      />
+      {/* Real gift-box carousel sourced from the live vinfolio.com.cy
+          /shop slider — 5 boxes with coverflow scroll, matches what
+          the user already has on the existing WordPress site. */}
+      <GiftBoxesCarousel />
     </>
   );
 }
