@@ -16,17 +16,54 @@ declare global {
 const GSAP_CORE = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
 const GSAP_ST = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js";
 
+// Module-level Promise cache. Without it, Strict Mode's double-mount
+// re-enters loadScript, sees the existing <script> tag, and resolves
+// immediately — before the script has actually finished executing —
+// causing window.gsap to be undefined on the second pass.
+const scriptCache = new Map<string, Promise<void>>();
+
 function loadScript(src: string): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if (typeof document === "undefined") return resolve();
-    if (document.querySelector(`script[src="${src}"]`)) return resolve();
+  if (typeof document === "undefined") return Promise.resolve();
+  const cached = scriptCache.get(src);
+  if (cached) return cached;
+
+  const existing = document.querySelector<HTMLScriptElement>(
+    `script[src="${src}"]`,
+  );
+  if (existing) {
+    // Attach a listener even though we didn't create the tag — covers
+    // the case where another caller injected it but hasn't waited yet.
+    const p = new Promise<void>((resolve, reject) => {
+      // If the script already finished executing, querying any of its
+      // globals would return defined — but we can't generalise that
+      // check here, so we use both: an onload listener AND a 1.5s
+      // polling failsafe (resolves after the wait).
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        resolve();
+      };
+      existing.addEventListener("load", finish, { once: true });
+      existing.addEventListener("error", () => reject(new Error("script error")), { once: true });
+      setTimeout(finish, 1500);
+    });
+    scriptCache.set(src, p);
+    return p;
+  }
+
+  const p = new Promise<void>((resolve, reject) => {
     const s = document.createElement("script");
     s.src = src;
-    s.async = true;
+    // async=false so the second script (ScrollTrigger) only runs after
+    // gsap.min.js is fully executed, since ScrollTrigger needs gsap.
+    s.async = false;
     s.onload = () => resolve();
     s.onerror = () => reject(new Error("script load failed: " + src));
     document.head.appendChild(s);
   });
+  scriptCache.set(src, p);
+  return p;
 }
 
 /**
@@ -86,11 +123,13 @@ export default function HeroVideo() {
     let resizeHandler: (() => void) | undefined;
 
     const init = async () => {
+      console.log("[Vinfolio Hero] init starting");
       try {
         await loadScript(GSAP_CORE);
         await loadScript(GSAP_ST);
+        console.log("[Vinfolio Hero] GSAP scripts loaded");
       } catch (err) {
-        console.warn("GSAP failed to load — falling back to autoplay", err);
+        console.warn("[Vinfolio Hero] GSAP failed to load — falling back to autoplay loop", err);
         const v = videoRef.current;
         if (v) {
           v.loop = true;
@@ -100,10 +139,25 @@ export default function HeroVideo() {
       }
       if (cancelled) return;
 
+      // Belt-and-suspenders: even after loadScript resolves, give the
+      // browser a few ticks to actually populate window.gsap.
+      const waitForGlobals = async () => {
+        for (let i = 0; i < 30; i++) {
+          if (window.gsap && window.ScrollTrigger) return;
+          await new Promise((r) => setTimeout(r, 50));
+        }
+      };
+      await waitForGlobals();
+      if (cancelled) return;
+
       const gsap = window.gsap;
       const ScrollTrigger = window.ScrollTrigger;
-      if (!gsap || !ScrollTrigger) return;
+      if (!gsap || !ScrollTrigger) {
+        console.warn("[Vinfolio Hero] window.gsap / ScrollTrigger missing after polling");
+        return;
+      }
       gsap.registerPlugin(ScrollTrigger);
+      console.log("[Vinfolio Hero] ScrollTrigger registered");
 
       const video = videoRef.current;
       const section = sectionRef.current;
@@ -125,6 +179,7 @@ export default function HeroVideo() {
       if (cancelled) return;
 
       const duration = isFinite(video.duration) && video.duration > 0 ? video.duration : 8;
+      console.log(`[Vinfolio Hero] video duration=${duration}s, ready=${video.readyState}`);
       try {
         video.pause();
         video.currentTime = 0;
@@ -205,6 +260,7 @@ export default function HeroVideo() {
       };
       window.addEventListener("resize", resizeHandler);
 
+      console.log("[Vinfolio Hero] ScrollTrigger ready — scroll to scrub");
       setScrubReady(true);
     };
 
