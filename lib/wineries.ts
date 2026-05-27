@@ -46,8 +46,8 @@ export const wineries: Winery[] = [
     country: "France",
     description:
       "Chablis house producing classic, mineral-driven Burgundy whites from limestone-rich Kimmeridgian soils.",
-    logo: `${LOGO_BASE}/280.jpg`,
-    logoBg: "#F9F8F4",
+    website: "https://chablis-michaut.fr",
+    logo: "/logos/michaut.png",
   },
   {
     slug: "dopff-au-moulin",
@@ -100,6 +100,7 @@ export const wineries: Winery[] = [
     country: "Italy",
     description:
       "Boutique Valpolicella producer of artisanal Amarone Riserva and Valpolicella Superiore from appassimento grapes.",
+    logo: "/logos/isaltari.png",
   },
   {
     slug: "murari",
@@ -171,6 +172,7 @@ export const wineries: Winery[] = [
     description:
       "Provence rosé icon from Coteaux d'Aix en Provence — pale, dry and Mediterranean in style.",
     website: "https://www.aixrose.com",
+    logo: "/logos/aix.png",
   },
   {
     slug: "boubas",
