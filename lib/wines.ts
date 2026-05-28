@@ -112,7 +112,7 @@ export const wines: Wine[] = [
     pairing: "Lobster, roasted poultry in cream sauce, scallops, mature Comté.",
     producerInfo:
       "Domaine de la Motte's Premier Cru parcels are among the most sought-after in Chablis, hand-harvested at optimum maturity.",
-    image: WHITE_IMG_2,
+    image: "/wines/chablis-premier-cru-de-la-motte.jfif",
     stock: stock(4),
     featured: false,
   },
@@ -134,7 +134,7 @@ export const wines: Wine[] = [
     pairing: "Choucroute, sushi, grilled white fish, or aromatic Thai curries.",
     producerInfo:
       "Dopff au Moulin in Riquewihr is a benchmark Alsace producer celebrated for refined varietal expressions.",
-    image: WHITE_IMG,
+    image: "/wines/riesling-dopff-au-moulin.webp",
     stock: stock(5),
     featured: false,
   },
@@ -156,7 +156,7 @@ export const wines: Wine[] = [
     pairing: "Crottin de Chavignol, oysters, ceviche, grilled halloumi salad.",
     producerInfo:
       "Family estate practicing sustainable viticulture in the eastern Loire.",
-    image: WHITE_IMG_2,
+    image: "/wines/sancerre-blanc-pre-semele.webp",
     stock: stock(6),
     featured: true,
   },
@@ -178,7 +178,7 @@ export const wines: Wine[] = [
     pairing: "Salade niçoise, grilled prawns, tomato bruschetta, summer meze.",
     producerInfo:
       "AIX is produced at Maison Saint AIX, a 100-hectare estate at 420 m elevation in the Coteaux d'Aix en Provence.",
-    image: ROSE_IMG,
+    image: "/wines/aix-rose-provence.jfif",
     stock: stock(7),
     featured: true,
   },
@@ -420,7 +420,7 @@ export const wines: Wine[] = [
     pairing: "Braised veal, brasato al Barolo, truffle risotto, aged Castelmagno.",
     producerInfo:
       "The Negro family has produced wine in Roero since the 17th century, now in its fourth generation.",
-    image: RED_IMG,
+    image: "/wines/barolo-angelo-negro.png",
     stock: stock(18),
     featured: true,
   },
@@ -442,7 +442,7 @@ export const wines: Wine[] = [
     pairing: "Roast duck, hare ragù, aged tomes, dark chocolate.",
     producerInfo:
       "Negro's Barbaresco draws on hillside Nebbiolo parcels in the Langhe.",
-    image: RED_IMG_2,
+    image: "/wines/barbaresco-angelo-negro.jpg",
     stock: stock(19),
     featured: false,
   },
@@ -640,7 +640,7 @@ export const wines: Wine[] = [
     pairing: "Aperitif, oysters, fried calamari, fresh goat's cheese.",
     producerInfo:
       "Les Jamelles is the varietal label of Catherine and Laurent Delaunay in Languedoc.",
-    image: SPARKLING_IMG,
+    image: "/wines/les-jamelles-champenoise-brut.webp",
     stock: stock(28),
     featured: false,
   },
@@ -662,7 +662,7 @@ export const wines: Wine[] = [
     pairing: "Grilled lamb skewers, beef daube, hard sheep's cheese.",
     producerInfo:
       "Les Jamelles works with selected growers across Languedoc-Roussillon.",
-    image: RED_IMG,
+    image: "/wines/les-jamelles-mourvedre.jfif",
     stock: stock(29),
     featured: false,
   },
@@ -684,7 +684,7 @@ export const wines: Wine[] = [
     pairing: "Grilled steak, lamb burgers, ratatouille.",
     producerInfo:
       "From Les Jamelles' single-varietal Sud de la France collection.",
-    image: RED_IMG_2,
+    image: "/wines/les-jamelles-syrah.jpg",
     stock: stock(30),
     featured: false,
   },
@@ -706,7 +706,7 @@ export const wines: Wine[] = [
     pairing: "Grilled red meats, lamb tagine, hard cheeses.",
     producerInfo:
       "Created by Catherine Delaunay, Les Jamelles is a single-variety expression of southern France.",
-    image: RED_IMG,
+    image: "/wines/les-jamelles-malbec.jfif",
     stock: stock(31),
     featured: false,
   },
@@ -728,7 +728,7 @@ export const wines: Wine[] = [
     pairing: "Roast chicken, mushroom risotto, mild cheeses.",
     producerInfo:
       "Part of Les Jamelles' pure-varietal collection from Pays d'Oc.",
-    image: RED_IMG_2,
+    image: "/wines/les-jamelles-merlot.jpg",
     stock: stock(32),
     featured: false,
   },
@@ -750,7 +750,7 @@ export const wines: Wine[] = [
     pairing: "Mediterranean salads, grilled prawns, sushi, summer brunch.",
     producerInfo:
       "Les Jamelles' Reflets Secrets is a premium expression of southern French rosé.",
-    image: ROSE_IMG,
+    image: "/wines/les-jamelles-reflets-rose.png",
     stock: stock(33),
     featured: false,
   },
@@ -772,7 +772,7 @@ export const wines: Wine[] = [
     pairing: "Salads, light pasta, fish goujons, aperitivo snacks.",
     producerInfo:
       "Les Petites Jamelles is the everyday tier of the Delaunay portfolio.",
-    image: WHITE_IMG_2,
+    image: "/wines/petites-jamelles-blanc.png",
     stock: stock(34),
     featured: false,
   },
@@ -794,7 +794,7 @@ export const wines: Wine[] = [
     pairing: "Pasta, pizza, charcuterie, simple stews.",
     producerInfo:
       "Les Petites Jamelles offers Languedoc charm at an entry price point.",
-    image: RED_IMG,
+    image: "/wines/petites-jamelles-rouge.webp",
     stock: stock(35),
     featured: false,
   },
@@ -816,7 +816,7 @@ export const wines: Wine[] = [
     pairing: "Thai curries, foie gras, blue cheese, spiced tagines.",
     producerInfo:
       "Les Jamelles brings Alsace-style aromatics to Languedoc soils.",
-    image: WHITE_IMG,
+    image: "/wines/les-jamelles-gewurztraminer.jfif",
     stock: stock(36),
     featured: false,
   },
@@ -838,7 +838,7 @@ export const wines: Wine[] = [
     pairing: "Roast chicken, prawn linguine, soft cheeses, Asian-inspired dishes.",
     producerInfo:
       "Part of Les Jamelles' single-varietal Languedoc range.",
-    image: WHITE_IMG_2,
+    image: "/wines/les-jamelles-viognier.jpg",
     stock: stock(37),
     featured: false,
   },
@@ -860,7 +860,7 @@ export const wines: Wine[] = [
     pairing: "Goat's cheese salad, fresh seafood, ceviche, grilled chicken.",
     producerInfo:
       "From Les Jamelles' pure-varietal Pays d'Oc collection.",
-    image: WHITE_IMG,
+    image: "/wines/les-jamelles-sauvignon-blanc.webp",
     stock: stock(38),
     featured: false,
   },
@@ -1058,7 +1058,7 @@ export const wines: Wine[] = [
     pairing: "Grilled lamb, beef short ribs, mole-spiced dishes.",
     producerInfo:
       "Ventisquero's Grey series highlights single-vineyard, terroir-driven wines.",
-    image: RED_IMG,
+    image: "/wines/ventisquero-grey-carmenere.webp",
     stock: stock(47),
     featured: true,
   },
@@ -1080,7 +1080,7 @@ export const wines: Wine[] = [
     pairing: "Grilled steak, slow-braised short ribs, aged Manchego.",
     producerInfo:
       "Apalta is one of Chile's most prestigious terroirs for Syrah and Carménère.",
-    image: RED_IMG_2,
+    image: "/wines/ventisquero-grey-syrah.jpg",
     stock: stock(48),
     featured: false,
   },

@@ -39,6 +39,7 @@ export const wineries: Winery[] = [
     description:
       "Family-run Chablis producer crafting mineral, age-worthy Chardonnay from limestone-rich Burgundy soils.",
     website: "https://www.chablis-domaine-de-la-motte.fr",
+    logo: "/logos/domaine-de-la-motte.png",
   },
   {
     slug: "domaine-michaut",
@@ -135,7 +136,7 @@ export const wineries: Winery[] = [
       "Marlborough estate producing vibrant Sauvignon Blanc from the cool, river-stone soils of the Wairau Valley.",
     website: "https://www.stoneburn.co.nz",
     // Local PNG fetched from stoneburn.co.nz — clean dark-on-white version
-    logo: "/logos/stoneburn.png",
+    logo: "/logos/stoneburn.webp",
   },
   {
     slug: "tahbilk",
