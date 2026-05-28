@@ -109,7 +109,7 @@ function CompactWineCard({ wine, index }: { wine: Wine; index: number }) {
               alt={wine.name}
               fill
               sizes="(max-width:640px) 33vw, (max-width:1024px) 30vw, 260px"
-              className="object-contain p-2 md:p-3 transition-transform duration-700 group-hover:scale-105 mix-blend-multiply"
+              className="object-contain p-2 md:p-3 transition-transform duration-700 group-hover:scale-105 mix-blend-multiply brightness-110"
             />
           )}
           <span
