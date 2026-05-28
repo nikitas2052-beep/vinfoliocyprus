@@ -43,7 +43,7 @@ export default function WineriesPage() {
                       src={logo}
                       alt={`${w.name} logo`}
                       loading="lazy"
-                      className="max-w-[72%] max-h-[68%] w-auto h-auto object-contain
+                      className="max-w-[90%] max-h-[70%] w-auto h-auto object-contain
                                  [filter:grayscale(100%)_contrast(135%)_brightness(0.25)]
                                  opacity-85 group-hover:[filter:none] group-hover:opacity-100
                                  transition-all duration-300"
