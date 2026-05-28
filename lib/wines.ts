@@ -112,7 +112,7 @@ export const wines: Wine[] = [
     pairing: "Lobster, roasted poultry in cream sauce, scallops, mature Comté.",
     producerInfo:
       "Domaine de la Motte's Premier Cru parcels are among the most sought-after in Chablis, hand-harvested at optimum maturity.",
-    image: "/wines/chablis-premier-cru-de-la-motte.jfif",
+    image: "/wines/chablis-premier-cru-de-la-motte.jpg",
     stock: stock(4),
     featured: false,
   },
@@ -178,7 +178,7 @@ export const wines: Wine[] = [
     pairing: "Salade niçoise, grilled prawns, tomato bruschetta, summer meze.",
     producerInfo:
       "AIX is produced at Maison Saint AIX, a 100-hectare estate at 420 m elevation in the Coteaux d'Aix en Provence.",
-    image: "/wines/aix-rose-provence.jfif",
+    image: "/wines/aix-rose-provence.jpg",
     stock: stock(7),
     featured: true,
   },
@@ -662,7 +662,7 @@ export const wines: Wine[] = [
     pairing: "Grilled lamb skewers, beef daube, hard sheep's cheese.",
     producerInfo:
       "Les Jamelles works with selected growers across Languedoc-Roussillon.",
-    image: "/wines/les-jamelles-mourvedre.jfif",
+    image: "/wines/les-jamelles-mourvedre.jpg",
     stock: stock(29),
     featured: false,
   },
@@ -706,7 +706,7 @@ export const wines: Wine[] = [
     pairing: "Grilled red meats, lamb tagine, hard cheeses.",
     producerInfo:
       "Created by Catherine Delaunay, Les Jamelles is a single-variety expression of southern France.",
-    image: "/wines/les-jamelles-malbec.jfif",
+    image: "/wines/les-jamelles-malbec.jpg",
     stock: stock(31),
     featured: false,
   },
@@ -816,7 +816,7 @@ export const wines: Wine[] = [
     pairing: "Thai curries, foie gras, blue cheese, spiced tagines.",
     producerInfo:
       "Les Jamelles brings Alsace-style aromatics to Languedoc soils.",
-    image: "/wines/les-jamelles-gewurztraminer.jfif",
+    image: "/wines/les-jamelles-gewurztraminer.jpg",
     stock: stock(36),
     featured: false,
   },
