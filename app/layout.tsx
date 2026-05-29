@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s · Vinfolio",
   },
   description:
-    "Vinfolio Ltd — importer & distributor of fine wines in Cyprus. Strong partnerships build stronger companies. Curated bottles from Cyprus, Greece, Italy, France, Chile and beyond.",
+    "Vinfolio Ltd, importer and distributor of fine wines in Cyprus. Strong partnerships build stronger companies. Curated bottles from Cyprus, Greece, Italy, France, Chile and beyond.",
   keywords: [
     "wine Cyprus",
     "Limassol wine shop",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Vinfolio · Cyprus",
-    description: "Strong partnerships build stronger companies — fine wine importer in Cyprus.",
+    description: "Strong partnerships build stronger companies. Fine wine importer in Cyprus.",
   },
 };
 

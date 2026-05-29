@@ -7,7 +7,7 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Our Wineries",
   description:
-    "The producers behind Vinfolio's portfolio — historic family estates and pioneering New World winemakers.",
+    "The producers behind Vinfolio's portfolio: historic family estates and pioneering New World winemakers.",
 };
 
 export default function WineriesPage() {

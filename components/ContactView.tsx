@@ -33,7 +33,7 @@ export default function ContactView() {
         <h1 className="heading-serif text-5xl mt-2">Get in Touch</h1>
         <div className="gold-divider" />
         <p className="text-muted mt-3">
-          Trade inquiries, retail orders, private events — we're happy to help.
+          Trade inquiries, retail orders, private events. We're happy to help.
         </p>
       </header>
 

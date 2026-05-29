@@ -115,13 +115,13 @@ h1, h2, h3, h4, h5 {
   .link-gold { @apply link-bronze; }
   .gold-divider { @apply rule; }
   .wine-seal {
-    border: 1px solid #B98D58;
+    border: 1px solid #C31432;
     border-radius: 50%;
     width: 56px; height: 56px;
     display: inline-flex; align-items: center; justify-content: center;
     font-family: var(--font-cormorant), serif;
     font-style: italic;
-    color: #B98D58;
+    color: #C31432;
     background: #F9F8F4;
     letter-spacing: 0.04em;
   }

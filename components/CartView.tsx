@@ -155,7 +155,7 @@ export default function CartView() {
             </div>
           </dl>
           <button
-            onClick={() => toast("Checkout coming soon — contact us to complete the order.")}
+            onClick={() => toast("Checkout coming soon. Contact us to complete the order.")}
             className="btn-gold w-full mt-6"
           >
             Proceed to Checkout

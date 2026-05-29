@@ -8,13 +8,13 @@ const STEPS = [
     n: "01",
     Icon: Compass,
     title: "Discover",
-    text: "Browse 70 bottles from 17 estates — each with tasting notes, food pairings and producer story.",
+    text: "Browse 70 bottles from 17 estates, each with tasting notes, food pairings and producer story.",
   },
   {
     n: "02",
     Icon: Wine,
     title: "Curate your case",
-    text: "Build a mixed case across reds, whites, rosé and sparkling — or call us for a tailored selection.",
+    text: "Build a mixed case across reds, whites, rosé and sparkling, or call us for a tailored selection.",
   },
   {
     n: "03",

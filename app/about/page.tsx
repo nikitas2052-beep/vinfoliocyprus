@@ -8,7 +8,7 @@ import { COUNTRY_FLAGS } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Vinfolio Ltd — founded by Yiannakis Aristidou — is an importer and distributor of fine wines in Cyprus, based in Kato Polemidia, Limassol.",
+    "Vinfolio Ltd, founded by Yiannakis Aristidou, is an importer and distributor of fine wines in Cyprus, based in Kato Polemidia, Limassol.",
 };
 
 export default function AboutPage() {
@@ -24,7 +24,7 @@ export default function AboutPage() {
         <p className="text-ink/90 text-lg leading-relaxed mt-4">
           Vinfolio is a Cypriot wine import company founded with the vision of
           bringing carefully curated fine wines from renowned wineries
-          worldwide to Cyprus — wines with character, quality, and a compelling
+          worldwide to Cyprus: wines with character, quality, and a compelling
           story to tell.
         </p>
         <blockquote className="mt-8 border-l-2 border-bronze pl-5 bg-chalk py-4">
@@ -47,7 +47,7 @@ export default function AboutPage() {
         <Reveal>
           <p className="eyebrow">Our Story</p>
           <h2 className="font-serif text-[clamp(1.75rem,4vw,3.25rem)] text-ink leading-[1.05] mt-3 mb-6 sm:mb-10">
-            Twenty-five years in wine —{" "}
+            Twenty-five years in wine,{" "}
             <span className="italic text-bronze">
               distilled into one Cypriot cellar.
             </span>
@@ -91,7 +91,7 @@ export default function AboutPage() {
               <p>
                 The company was built on principles of{" "}
                 <em className="text-ink">trust, collaboration, and respect</em>{" "}
-                for clients and partners — values that shape every relationship
+                for clients and partners, values that shape every relationship
                 we form with growers and customers alike.
               </p>
               <p>
@@ -137,7 +137,7 @@ export default function AboutPage() {
               },
               {
                 title: "Educate",
-                text: "Share the story behind each label — terroir, history, vinification — so every glass means more.",
+                text: "Share the story behind each label: terroir, history and vinification, so every glass means more.",
               },
               {
                 title: "Distribute",
@@ -161,7 +161,7 @@ export default function AboutPage() {
           </h2>
           <div className="rule" />
           <p className="text-muted mt-2">
-            A short list of partner houses — from family estates to
+            A short list of partner houses, from family estates to
             award-winning New World pioneers.
           </p>
         </Reveal>

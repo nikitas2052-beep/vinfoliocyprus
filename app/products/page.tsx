@@ -6,7 +6,7 @@ import WineCardSkeleton from "@/components/WineCardSkeleton";
 export const metadata: Metadata = {
   title: "All Wines",
   description:
-    "Browse Vinfolio's full wine collection — reds, whites, rosés and sparklings from Cyprus, Greece, Italy, France, Chile and beyond.",
+    "Browse Vinfolio's full wine collection: reds, whites, rosés and sparklings from Cyprus, Greece, Italy, France, Chile and beyond.",
 };
 
 export default function ProductsPage() {

@@ -1,7 +1,7 @@
 import type { Wine } from "./types";
 
 // Real Vinfolio bottle photos (from vinfolio.com.cy CDN).
-// Uses the 1152x1536 size — plenty of pixels for any card on the site;
+// Uses the 1152x1536 size: plenty of pixels for any card on the site;
 // Next.js Image further optimises per-viewport via its image API so
 // the network payload stays small.
 const B = (n: string) =>
@@ -37,7 +37,7 @@ export const wines: Wine[] = [
     price: 35.0,
     alcohol: 14.5,
     shortDescription:
-      "A regal Grenache-led blend from the Pope's vineyards — rich, spicy and built for the long haul.",
+      "A regal Grenache-led blend from the Pope's vineyards: rich, spicy and built for the long haul.",
     description:
       "Crafted at the historic Chateau Gigognan in the heart of the southern Rhone, this Chateauneuf-du-Pape blends Grenache, Syrah and Mourvedre grown on iconic galets roulés. The wine opens with notes of kirsch, dark plum, garrigue and sweet liquorice, supported by velvety tannins and an enveloping warmth from the southern sun.\n\nFermentation is conducted plot-by-plot, with maturation in large oak foudres preserving fruit purity while adding gentle structure. The result is a wine of generosity and depth, drinking beautifully now but rewarding another decade in the cellar.",
     pairing:
@@ -60,7 +60,7 @@ export const wines: Wine[] = [
     price: 13.5,
     alcohol: 13.5,
     shortDescription:
-      "Generous southern Rhone red — ripe red fruit, gentle spice, very food-friendly.",
+      "Generous southern Rhone red: ripe red fruit, gentle spice, very food-friendly.",
     description:
       "A bright, sun-soaked blend from selected southern Rhone parcels. Predominantly Grenache with Syrah, it shows red cherry, raspberry, pepper and a touch of Mediterranean herb.\n\nFresh acidity and supple tannins make it endlessly drinkable, ideal as a midweek table wine yet refined enough for a Sunday roast.",
     pairing:
@@ -85,7 +85,7 @@ export const wines: Wine[] = [
     shortDescription:
       "Chiselled, mineral Chardonnay from the Kimmeridgian soils of Chablis.",
     description:
-      "Domaine de la Motte expresses the cool northern reach of Burgundy with precision. Stainless-steel vinification preserves the citrus core — lemon zest, green apple, oyster shell — while a fine saline thread runs through the mid-palate.\n\nUnoaked and laser-focused, this is Chablis as it should be: bright, taut, and built for the table.",
+      "Domaine de la Motte expresses the cool northern reach of Burgundy with precision. Stainless-steel vinification preserves the citrus core of lemon zest, green apple and oyster shell, while a fine saline thread runs through the mid-palate.\n\nUnoaked and laser-focused, this is Chablis as it should be: bright, taut, and built for the table.",
     pairing:
       "Fresh oysters, goat's cheese, pan-fried sea bream, or Cypriot meze with grilled halloumi.",
     producerInfo:
@@ -128,7 +128,7 @@ export const wines: Wine[] = [
     price: 12.0,
     alcohol: 12.5,
     shortDescription:
-      "Dry Alsace Riesling — citrus blossom, white peach, vivid minerality.",
+      "Dry Alsace Riesling: citrus blossom, white peach, vivid minerality.",
     description:
       "From one of Alsace's oldest wine families (founded 1574), this Riesling is the classic dry style of the region. Lime peel, green apple and white flower lead onto a tight, mineral palate with a clean, dry finish.\n\nA versatile aperitif and food wine that ages remarkably well, gaining petrol notes and depth after a few years.",
     pairing: "Choucroute, sushi, grilled white fish, or aromatic Thai curries.",
@@ -152,7 +152,7 @@ export const wines: Wine[] = [
     shortDescription:
       "Pure, taut Sauvignon Blanc from the chalky hills of Sancerre.",
     description:
-      "The Pré Semelé family farms ancient flint and limestone parcels above the Loire. Their Sancerre Blanc is intensely aromatic — gooseberry, cut grass, blackcurrant leaf — yet structured and refined on the palate.\n\nLong, gunflint-driven finish makes it a benchmark Loire white.",
+      "The Pré Semelé family farms ancient flint and limestone parcels above the Loire. Their Sancerre Blanc is intensely aromatic: gooseberry, cut grass, blackcurrant leaf, yet structured and refined on the palate.\n\nLong, gunflint-driven finish makes it a benchmark Loire white.",
     pairing: "Crottin de Chavignol, oysters, ceviche, grilled halloumi salad.",
     producerInfo:
       "Family estate practicing sustainable viticulture in the eastern Loire.",
@@ -172,7 +172,7 @@ export const wines: Wine[] = [
     price: 10.9,
     alcohol: 13.0,
     shortDescription:
-      "Pale, dry Provence rosé — strawberry, white peach, Mediterranean herb.",
+      "Pale, dry Provence rosé: strawberry, white peach, Mediterranean herb.",
     description:
       "AIX is one of Provence's most recognisable rosés, blended from Grenache, Cinsault and Syrah on stony, sun-baked slopes north of Aix-en-Provence.\n\nDelicate salmon hue, with red berry, citrus and a fresh herbal lift. Crisp acidity carries a dry, gastronomic finish.",
     pairing: "Salade niçoise, grilled prawns, tomato bruschetta, summer meze.",
@@ -218,7 +218,7 @@ export const wines: Wine[] = [
     shortDescription:
       "Pink Prosecco with strawberry, rose petal and a refreshing fine bead.",
     description:
-      "A vintage-dated rosé Prosecco blending Glera and Pinot Nero. Delicate copper-pink colour, with notes of wild strawberry, raspberry and citrus zest.\n\nDry, lively and beautifully balanced — a charming celebration glass.",
+      "A vintage-dated rosé Prosecco blending Glera and Pinot Nero. Delicate copper-pink colour, with notes of wild strawberry, raspberry and citrus zest.\n\nDry, lively and beautifully balanced: a charming celebration glass.",
     pairing: "Smoked salmon, tuna tartare, charcuterie, light desserts.",
     producerInfo:
       "Soligo's millesimato rosé is produced from a single vintage with extended autoclave ageing.",
@@ -238,9 +238,9 @@ export const wines: Wine[] = [
     price: 2.3,
     alcohol: 11.0,
     shortDescription:
-      "Single-serve 200 ml Prosecco — perfect for events, picnics and gifting.",
+      "Single-serve 200 ml Prosecco: perfect for events, picnics and gifting.",
     description:
-      "The classic Soligo Brut in a charming 200 ml bottle. Fresh, fruity and dry, with a lively mousse — ideal for receptions, hotel mini-bars and on-the-go celebrations.",
+      "The classic Soligo Brut in a charming 200 ml bottle. Fresh, fruity and dry, with a lively mousse: ideal for receptions, hotel mini-bars and on-the-go celebrations.",
     pairing: "Canapés, fruit platters, breakfast brunch service.",
     producerInfo:
       "Soligo packages their Brut in 200 ml format for hospitality and on-trade venues.",
@@ -262,7 +262,7 @@ export const wines: Wine[] = [
     shortDescription:
       "Approachable Italian sparkling with white peach, apple and citrus.",
     description:
-      "An entry-level Italian spumante from Treviso — fresh, gently fruity and crisp. Easy-drinking, with a dry, balanced finish.",
+      "An entry-level Italian spumante from Treviso: fresh, gently fruity and crisp. Easy-drinking, with a dry, balanced finish.",
     pairing: "Aperitivo, light pasta, calamari fritti.",
     producerInfo:
       "Produced by Cantina Colli del Soligo using the Charmat method.",
@@ -282,7 +282,7 @@ export const wines: Wine[] = [
     price: 6.9,
     alcohol: 12.5,
     shortDescription:
-      "Friendly, plump Merlot in a magnum — perfect for parties and gatherings.",
+      "Friendly, plump Merlot in a magnum: perfect for parties and gatherings.",
     description:
       "A soft, fruit-driven Merlot from the Piave plain, with red plum, cherry and a gentle herbaceous touch. Smooth tannins make it easy and inviting.\n\nPresented in 1500 ml format, it's the perfect bottle for sharing.",
     pairing: "Pasta al ragù, grilled vegetables, family pizza nights.",
@@ -304,7 +304,7 @@ export const wines: Wine[] = [
     price: 6.9,
     alcohol: 12.0,
     shortDescription:
-      "Classic Veneto Pinot Grigio — pear, citrus, easy and refreshing — in magnum.",
+      "Classic Veneto Pinot Grigio: pear, citrus, easy and refreshing, in magnum.",
     description:
       "A clean, varietal Pinot Grigio with pear, lemon zest and a subtle almond finish. Stainless-steel fermentation preserves freshness and aromatic purity.\n\nThe 1500 ml format is ideal for sharing at the table.",
     pairing: "Antipasto misto, seafood pasta, salads, light cheeses.",
@@ -326,7 +326,7 @@ export const wines: Wine[] = [
     price: 7.5,
     alcohol: 13.0,
     shortDescription:
-      "Classic Sangiovese — red cherry, violet, savoury olive — pure Tuscan charm.",
+      "Classic Sangiovese: red cherry, violet, savoury olive, pure Tuscan charm.",
     description:
       "A bright, food-friendly Chianti from Castellina-in-Chianti. Predominantly Sangiovese with a small share of complementary varieties, showing red cherry, dried herbs and a savoury edge.\n\nFresh acidity and chalky tannins make it a perfect everyday Italian.",
     pairing: "Pizza margherita, tagliatelle al ragù, grilled lamb chops.",
@@ -348,9 +348,9 @@ export const wines: Wine[] = [
     price: 7.5,
     alcohol: 12.5,
     shortDescription:
-      "Tuscany's signature white — citrus, green almond, distinct mineral bite.",
+      "Tuscany's signature white: citrus, green almond, distinct mineral bite.",
     description:
-      "Vernaccia is the historic white grape of San Gimignano. This bottling shows lemon, white flower and a hint of bitter almond on the finish — a savoury, mineral white with character.",
+      "Vernaccia is the historic white grape of San Gimignano. This bottling shows lemon, white flower and a hint of bitter almond on the finish: a savoury, mineral white with character.",
     pairing: "Pecorino, vegetable risotto, fritto misto, grilled fish.",
     producerInfo:
       "Le Corti dei Podestà's Vernaccia is hand-harvested in San Gimignano.",
@@ -370,7 +370,7 @@ export const wines: Wine[] = [
     price: 12.9,
     alcohol: 13.5,
     shortDescription:
-      "Structured Sangiovese from the Classico zone — depth, finesse, length.",
+      "Structured Sangiovese from the Classico zone: depth, finesse, length.",
     description:
       "From Villa Cerna's vineyards in Castellina-in-Chianti, Primocolle Chianti Classico is aged in oak to integrate the firm Sangiovese tannins.\n\nDark cherry, balsamic herbs and tobacco lead a textured palate with persistent length. A serious Tuscan red at a fair price.",
     pairing: "Bistecca alla Fiorentina, aged Pecorino, wild mushroom pappardelle.",
@@ -392,7 +392,7 @@ export const wines: Wine[] = [
     price: 25.0,
     alcohol: 14.0,
     shortDescription:
-      "Riserva-level Chianti Classico — concentrated, polished, age-worthy.",
+      "Riserva-level Chianti Classico: concentrated, polished, age-worthy.",
     description:
       "An estate-grown Riserva aged 24 months in oak. The wine offers black cherry, leather, sweet tobacco and crushed violet over a long, mineral finish.\n\nFirm but ripe tannins promise another decade of pleasure in the cellar.",
     pairing: "Roast beef, osso buco, aged hard cheeses, truffle dishes.",
@@ -414,7 +414,7 @@ export const wines: Wine[] = [
     price: 35.5,
     alcohol: 14.0,
     shortDescription:
-      "Classical Barolo — rose, tar, dark cherry — built to age.",
+      "Classical Barolo: rose, tar, dark cherry, built to age.",
     description:
       "Angelo Negro's Barolo from Piedmont showcases the Nebbiolo grape at its most ageworthy. Garnet-edged colour gives way to a perfumed nose of rose petal, dried cherry, leather and tar.\n\nThe palate is structured, grippy, and remarkably long. Decant before serving or cellar for 5–15 years.",
     pairing: "Braised veal, brasato al Barolo, truffle risotto, aged Castelmagno.",
@@ -436,9 +436,9 @@ export const wines: Wine[] = [
     price: 27.95,
     alcohol: 14.0,
     shortDescription:
-      "Elegant, perfumed Nebbiolo — Barolo's silkier sister.",
+      "Elegant, perfumed Nebbiolo: Barolo's silkier sister.",
     description:
-      "Barbaresco is often described as the more elegant counterpart to Barolo. Angelo Negro's bottling delivers fragrant red rose, raspberry, sweet spice and silky tannins.\n\nLighter on its feet than the Barolo, but no less compelling — drinks beautifully now or with 8–10 years' age.",
+      "Barbaresco is often described as the more elegant counterpart to Barolo. Angelo Negro's bottling delivers fragrant red rose, raspberry, sweet spice and silky tannins.\n\nLighter on its feet than the Barolo, but no less compelling: drinks beautifully now or with 8–10 years' age.",
     pairing: "Roast duck, hare ragù, aged tomes, dark chocolate.",
     producerInfo:
       "Negro's Barbaresco draws on hillside Nebbiolo parcels in the Langhe.",
@@ -458,7 +458,7 @@ export const wines: Wine[] = [
     price: 31.5,
     alcohol: 14.5,
     shortDescription:
-      "Pure Sangiovese Grosso — the king of Montalcino.",
+      "Pure Sangiovese Grosso: the king of Montalcino.",
     description:
       "Aged in oak for the regulation 24 months and a further period in bottle, Gli Amici Brunello offers dark cherry, fig, leather and Mediterranean scrub.\n\nThe palate is layered and powerful, with fine, integrated tannins and a long savoury finish. A reference for collectors.",
     pairing: "Tuscan steak, wild boar, aged Pecorino, slow-braised oxtail.",
@@ -480,7 +480,7 @@ export const wines: Wine[] = [
     price: 50.0,
     alcohol: 15.5,
     shortDescription:
-      "Riserva Amarone — opulent, deep, contemplative. A collector's pour.",
+      "Riserva Amarone: opulent, deep, contemplative. A collector's pour.",
     description:
       "Made from appassimento-dried Corvina, Rondinella and Molinara grapes, this Riserva-level Amarone reveals dried fig, sour cherry liqueur, dark chocolate, espresso and balsamic notes.\n\nFull-bodied yet elegantly balanced, with velvety tannins and a long, warming finish. Built to age 15+ years.",
     pairing: "Slow-cooked braises, game, aged Parmigiano, dark chocolate desserts.",
@@ -502,7 +502,7 @@ export const wines: Wine[] = [
     price: 18.0,
     alcohol: 13.5,
     shortDescription:
-      "Concentrated Valpolicella Superiore — cherry, plum, gentle spice.",
+      "Concentrated Valpolicella Superiore: cherry, plum, gentle spice.",
     description:
       "A Superiore-classification Valpolicella with extra depth from longer ageing. Notes of black cherry, sweet plum and a touch of cocoa, with savoury, herbal lift on the finish.",
     pairing: "Pasta with lamb ragù, grilled lamb chops, polenta with mushrooms.",
@@ -524,7 +524,7 @@ export const wines: Wine[] = [
     price: 30.0,
     alcohol: 15.0,
     shortDescription:
-      "Powerful, raisined Amarone — Corvina at its most expressive.",
+      "Powerful, raisined Amarone: Corvina at its most expressive.",
     description:
       "Grapes are dried for 100+ days to concentrate the sugars before fermentation. The result is a powerhouse of dried cherry, fig, dark chocolate and tobacco.\n\nFull, plush palate with warming alcohol and a long, lingering finish.",
     pairing: "Beef brisket, braised short ribs, aged Asiago, dark chocolate tart.",
@@ -546,7 +546,7 @@ export const wines: Wine[] = [
     price: 13.5,
     alcohol: 14.0,
     shortDescription:
-      "'Baby Amarone' — Valpolicella refermented on Amarone skins for richness.",
+      "'Baby Amarone': Valpolicella refermented on Amarone skins for richness.",
     description:
       "Ripasso takes regular Valpolicella and re-passes it over Amarone lees, picking up structure, body and flavour. Murari's version delivers sour cherry, raisin, cocoa and a savoury, balsamic finish.\n\nGreat value for the depth on offer.",
     pairing: "Osso buco, pasta with sausage ragù, lamb stew, hard cheeses.",
@@ -568,7 +568,7 @@ export const wines: Wine[] = [
     price: 7.9,
     alcohol: 12.5,
     shortDescription:
-      "Light, juicy Valpolicella — fresh cherry, supple, easy.",
+      "Light, juicy Valpolicella: fresh cherry, supple, easy.",
     description:
       "An entry-level Valpolicella blending Corvina, Rondinella and Molinara. Bright cherry and red plum, with soft tannins and a refreshing finish.\n\nServe slightly cool for maximum enjoyment.",
     pairing: "Pizza, charcuterie, mushroom pasta, light grilled meats.",
@@ -590,7 +590,7 @@ export const wines: Wine[] = [
     price: 5.9,
     alcohol: 12.0,
     shortDescription:
-      "Ramato-style Pinot Grigio — pale copper, refreshing, gastronomic.",
+      "Ramato-style Pinot Grigio: pale copper, refreshing, gastronomic.",
     description:
       "A Veneto Pinot Grigio with brief skin contact, giving a delicate copper-pink colour. Aromatic notes of strawberry, white peach and citrus zest, with a crisp dry palate.",
     pairing: "Carpaccio, prosciutto with melon, seafood risotto.",
@@ -612,7 +612,7 @@ export const wines: Wine[] = [
     price: 5.9,
     alcohol: 12.0,
     shortDescription:
-      "Crisp Veneto Pinot Grigio — pear, citrus, refreshing finish.",
+      "Crisp Veneto Pinot Grigio: pear, citrus, refreshing finish.",
     description:
       "Cool fermentation preserves the bright fruit and aromatic purity. Pear, green apple, citrus zest and a clean dry finish.\n\nA reliable, food-friendly Italian white.",
     pairing: "Antipasti, vegetable risotto, light fish, summer salads.",
@@ -634,7 +634,7 @@ export const wines: Wine[] = [
     price: 10.9,
     alcohol: 12.0,
     shortDescription:
-      "Traditional-method bubbly from southern France — Champenoise without the Champagne price.",
+      "Traditional-method bubbly from southern France: Champenoise without the Champagne price.",
     description:
       "Produced by the classical Champenoise method, this Brut sparkler from Les Jamelles offers green apple, brioche and white flower notes, with a fine, persistent mousse and a dry, mineral finish.",
     pairing: "Aperitif, oysters, fried calamari, fresh goat's cheese.",
@@ -656,7 +656,7 @@ export const wines: Wine[] = [
     price: 7.0,
     alcohol: 13.5,
     shortDescription:
-      "Dark, spicy Mourvèdre — blackberry, leather, garrigue.",
+      "Dark, spicy Mourvèdre: blackberry, leather, garrigue.",
     description:
       "Mourvèdre thrives in Languedoc's heat, yielding a dense, savoury wine with black fruit, pepper and a wild, herbal lift. Sleek tannins and a long finish.",
     pairing: "Grilled lamb skewers, beef daube, hard sheep's cheese.",
@@ -678,7 +678,7 @@ export const wines: Wine[] = [
     price: 6.75,
     alcohol: 13.5,
     shortDescription:
-      "Languedoc Syrah — blueberry, black pepper, smooth and ripe.",
+      "Languedoc Syrah: blueberry, black pepper, smooth and ripe.",
     description:
       "A varietal southern French Syrah with juicy black fruit, white pepper and a touch of violet. Approachable tannins and good freshness make it an easy match for grilled meats.",
     pairing: "Grilled steak, lamb burgers, ratatouille.",
@@ -700,7 +700,7 @@ export const wines: Wine[] = [
     price: 6.95,
     alcohol: 13.5,
     shortDescription:
-      "Sun-ripened French Malbec — dark plum, cocoa, supple finish.",
+      "Sun-ripened French Malbec: dark plum, cocoa, supple finish.",
     description:
       "A southern French take on Malbec, offering ripe black plum, cocoa, sweet spice and silky tannins. Plenty of charm at a friendly price.",
     pairing: "Grilled red meats, lamb tagine, hard cheeses.",
@@ -722,7 +722,7 @@ export const wines: Wine[] = [
     price: 6.75,
     alcohol: 13.5,
     shortDescription:
-      "Plush, fruit-forward Merlot — ripe plum, soft tannins, smooth finish.",
+      "Plush, fruit-forward Merlot: ripe plum, soft tannins, smooth finish.",
     description:
       "A sun-ripened Languedoc Merlot with notes of black plum, cherry compote and a hint of vanilla. Smooth and gentle, perfect for everyday drinking.",
     pairing: "Roast chicken, mushroom risotto, mild cheeses.",
@@ -744,7 +744,7 @@ export const wines: Wine[] = [
     price: 8.5,
     alcohol: 12.5,
     shortDescription:
-      "Pale, perfumed southern French rosé — citrus, peach, dry and elegant.",
+      "Pale, perfumed southern French rosé: citrus, peach, dry and elegant.",
     description:
       "A delicate, pale-pink rosé blending Grenache and Cinsault. Aromatic notes of white peach, citrus zest and red berry, with a fresh, refined dry palate.",
     pairing: "Mediterranean salads, grilled prawns, sushi, summer brunch.",
@@ -766,7 +766,7 @@ export const wines: Wine[] = [
     price: 4.25,
     alcohol: 12.0,
     shortDescription:
-      "Fresh & fruity entry-level Languedoc white — easy daily drinking.",
+      "Fresh & fruity entry-level Languedoc white: easy daily drinking.",
     description:
       "A bright, fruit-forward blend of southern French white varieties. Lemon, peach and white flower notes lead a clean, dry palate.",
     pairing: "Salads, light pasta, fish goujons, aperitivo snacks.",
@@ -788,9 +788,9 @@ export const wines: Wine[] = [
     price: 4.25,
     alcohol: 13.0,
     shortDescription:
-      "Soft, juicy southern French red — strawberry, plum, gentle spice.",
+      "Soft, juicy southern French red: strawberry, plum, gentle spice.",
     description:
-      "A friendly Languedoc red blending Merlot, Syrah and Grenache. Easy red fruit, soft tannins and a clean finish — uncomplicated and very drinkable.",
+      "A friendly Languedoc red blending Merlot, Syrah and Grenache. Easy red fruit, soft tannins and a clean finish: uncomplicated and very drinkable.",
     pairing: "Pasta, pizza, charcuterie, simple stews.",
     producerInfo:
       "Les Petites Jamelles offers Languedoc charm at an entry price point.",
@@ -810,7 +810,7 @@ export const wines: Wine[] = [
     price: 8.5,
     alcohol: 13.0,
     shortDescription:
-      "Aromatic Gewurztraminer — lychee, rose, exotic spice.",
+      "Aromatic Gewurztraminer: lychee, rose, exotic spice.",
     description:
       "A southern French expression of the famously perfumed Gewurztraminer grape. Lychee, rose petal, ginger and exotic fruit on the nose, with a richer, off-dry palate balanced by good acidity.",
     pairing: "Thai curries, foie gras, blue cheese, spiced tagines.",
@@ -832,7 +832,7 @@ export const wines: Wine[] = [
     price: 6.9,
     alcohol: 13.5,
     shortDescription:
-      "Lush Viognier — apricot, honeysuckle, full-bodied charm.",
+      "Lush Viognier: apricot, honeysuckle, full-bodied charm.",
     description:
       "A fragrant, full-bodied southern French Viognier. Ripe apricot, peach, honeysuckle and a touch of ginger lead a lush, mouth-filling palate balanced by gentle acidity.",
     pairing: "Roast chicken, prawn linguine, soft cheeses, Asian-inspired dishes.",
@@ -854,9 +854,9 @@ export const wines: Wine[] = [
     price: 6.75,
     alcohol: 12.5,
     shortDescription:
-      "Crisp Languedoc Sauvignon — citrus, gooseberry, refreshing.",
+      "Crisp Languedoc Sauvignon: citrus, gooseberry, refreshing.",
     description:
-      "Bright tropical and citrus notes — gooseberry, lime peel, white peach — supported by zippy acidity and a clean mineral finish. A great-value daily white.",
+      "Bright tropical and citrus notes: gooseberry, lime peel, white peach, supported by zippy acidity and a clean mineral finish. A great-value daily white.",
     pairing: "Goat's cheese salad, fresh seafood, ceviche, grilled chicken.",
     producerInfo:
       "From Les Jamelles' pure-varietal Pays d'Oc collection.",
@@ -876,7 +876,7 @@ export const wines: Wine[] = [
     price: 5.95,
     alcohol: 13.0,
     shortDescription:
-      "Soft, plummy Chilean Merlot — easy fruit, smooth tannins.",
+      "Soft, plummy Chilean Merlot: easy fruit, smooth tannins.",
     description:
       "A friendly Central Valley Merlot from New World Winery of the Year 2024. Ripe plum, blackberry and a touch of vanilla, with smooth tannins and an inviting finish.",
     pairing: "Burgers, pasta with red sauce, mild cheeses, charcuterie.",
@@ -898,7 +898,7 @@ export const wines: Wine[] = [
     price: 5.95,
     alcohol: 13.5,
     shortDescription:
-      "Juicy Chilean Syrah — blackberry, pepper, soft and approachable.",
+      "Juicy Chilean Syrah: blackberry, pepper, soft and approachable.",
     description:
       "A New World Syrah with ripe black fruit, white pepper and a touch of mocha. Smooth tannins make it a versatile crowd-pleaser.",
     pairing: "Grilled meats, BBQ, lamb chops, mushroom dishes.",
@@ -920,7 +920,7 @@ export const wines: Wine[] = [
     price: 5.95,
     alcohol: 12.5,
     shortDescription:
-      "Bright Chilean Sauvignon — citrus, tropical fruit, zippy finish.",
+      "Bright Chilean Sauvignon: citrus, tropical fruit, zippy finish.",
     description:
       "A clean, varietal Sauvignon Blanc with lime, passionfruit and grapefruit notes. Crisp acidity and a refreshing dry finish.",
     pairing: "Seafood, salads, fresh cheeses, light Asian dishes.",
@@ -942,7 +942,7 @@ export const wines: Wine[] = [
     price: 7.5,
     alcohol: 13.0,
     shortDescription:
-      "Cool-climate Casablanca Sauvignon — fresh, mineral, expressive.",
+      "Cool-climate Casablanca Sauvignon: fresh, mineral, expressive.",
     description:
       "From the cool, ocean-influenced Casablanca Valley. Intense aromas of grapefruit, gooseberry and fresh herbs, with crisp acidity and a saline finish.",
     pairing: "Sushi, oysters, ceviche, goat's cheese salad.",
@@ -964,7 +964,7 @@ export const wines: Wine[] = [
     price: 7.5,
     alcohol: 13.0,
     shortDescription:
-      "Lightly oaked Casablanca Chardonnay — peach, vanilla, balanced.",
+      "Lightly oaked Casablanca Chardonnay: peach, vanilla, balanced.",
     description:
       "A poised Chardonnay from cool Casablanca, partially oak-aged. Notes of yellow peach, lemon curd, almond and gentle vanilla. Balanced, with good freshness and texture.",
     pairing: "Roast chicken, seafood pasta, soft cheeses, creamy chowders.",
@@ -986,7 +986,7 @@ export const wines: Wine[] = [
     price: 7.5,
     alcohol: 13.5,
     shortDescription:
-      "Structured Maipo Cabernet — blackcurrant, eucalyptus, gentle oak.",
+      "Structured Maipo Cabernet: blackcurrant, eucalyptus, gentle oak.",
     description:
       "Maipo Valley is the classic home of Chilean Cabernet. Ventisquero's Reserve shows ripe blackcurrant, cassis, mint and a touch of cedar from oak ageing.\n\nFirm but ripe tannins promise food-friendly versatility.",
     pairing: "Grilled steak, lamb roast, hard cheeses, beef stews.",
@@ -1008,7 +1008,7 @@ export const wines: Wine[] = [
     price: 7.5,
     alcohol: 13.5,
     shortDescription:
-      "Plump Maipo Merlot — ripe plum, chocolate, supple finish.",
+      "Plump Maipo Merlot: ripe plum, chocolate, supple finish.",
     description:
       "A polished, fruit-forward Merlot with notes of ripe plum, dark cherry and chocolate. Round tannins and good length.",
     pairing: "Roast pork, mushroom risotto, mild blues.",
@@ -1030,7 +1030,7 @@ export const wines: Wine[] = [
     price: 7.5,
     alcohol: 13.0,
     shortDescription:
-      "Cool-climate Pinot Noir — red cherry, earth, silky texture.",
+      "Cool-climate Pinot Noir: red cherry, earth, silky texture.",
     description:
       "From cool Casablanca, this Pinot Noir delivers red cherry, raspberry and earthy notes with gentle oak influence. Silky tannins and a refreshing finish.",
     pairing: "Duck breast, mushroom risotto, soft cheeses, grilled salmon.",
@@ -1052,7 +1052,7 @@ export const wines: Wine[] = [
     price: 12.95,
     alcohol: 14.0,
     shortDescription:
-      "Single-block Carménère — Chile's signature grape, oak-aged and concentrated.",
+      "Single-block Carménère: Chile's signature grape, oak-aged and concentrated.",
     description:
       "The Grey range showcases single-block expressions. This Carménère, aged 12 months in oak, delivers blackberry, dark plum, green pepper, chocolate and a smoky edge.\n\nA serious, complex example of Chile's flagship variety.",
     pairing: "Grilled lamb, beef short ribs, mole-spiced dishes.",
@@ -1074,7 +1074,7 @@ export const wines: Wine[] = [
     price: 12.95,
     alcohol: 14.0,
     shortDescription:
-      "Single-block Apalta Syrah — dense, peppery, beautifully oaked.",
+      "Single-block Apalta Syrah: dense, peppery, beautifully oaked.",
     description:
       "From the famous Apalta amphitheater, this Grey Syrah offers blackberry, white pepper, violet and dark chocolate, with firm but polished tannins.\n\nOak ageing adds toast and structure without dominating the fruit.",
     pairing: "Grilled steak, slow-braised short ribs, aged Manchego.",
@@ -1096,12 +1096,12 @@ export const wines: Wine[] = [
     price: 20.0,
     alcohol: 13.5,
     shortDescription:
-      "Premium Casablanca Pinot — Burgundian elegance from cool Chile.",
+      "Premium Casablanca Pinot: Burgundian elegance from cool Chile.",
     description:
       "Heru is Ventisquero's top-tier Pinot Noir, made from selected parcels in cool Casablanca. Silky, perfumed and elegant, with red cherry, forest floor, gentle spice and integrated oak.",
     pairing: "Roast duck, mushroom dishes, grilled tuna, soft washed-rind cheeses.",
     producerInfo:
-      "Heru means 'creator' in the Mapuche language — Ventisquero's pinnacle Pinot.",
+      "Heru means 'creator' in the Mapuche language: Ventisquero's pinnacle Pinot.",
     image: B("15"),
     stock: stock(49),
     featured: false,
@@ -1118,9 +1118,9 @@ export const wines: Wine[] = [
     price: 50.0,
     alcohol: 14.5,
     shortDescription:
-      "High-altitude Andes Cabernet blend — Ventisquero's pinnacle of Maipo terroir.",
+      "High-altitude Andes Cabernet blend: Ventisquero's pinnacle of Maipo terroir.",
     description:
-      "Sourced from old-vine vineyards in Pirque at the foot of the Andes. A powerful Cabernet-led blend with dark cassis, graphite, cedar and fine, chiselled tannins.\n\nAge-worthy and refined — one of Chile's icon wines.",
+      "Sourced from old-vine vineyards in Pirque at the foot of the Andes. A powerful Cabernet-led blend with dark cassis, graphite, cedar and fine, chiselled tannins.\n\nAge-worthy and refined: one of Chile's icon wines.",
     pairing: "Aged ribeye, slow-roasted lamb, dark chocolate desserts.",
     producerInfo:
       "Enclave represents Ventisquero's ultimate expression of Maipo Andes terroir.",
@@ -1140,9 +1140,9 @@ export const wines: Wine[] = [
     price: 40.0,
     alcohol: 14.5,
     shortDescription:
-      "Carménère-led icon from Apalta — deep, spicy, age-worthy.",
+      "Carménère-led icon from Apalta: deep, spicy, age-worthy.",
     description:
-      "From the iconic Apalta amphitheater, Obliqua is a Carménère-driven blend showing intense black fruit, sweet spice, dark chocolate and tobacco.\n\nFine, dense tannins and a long, layered finish — a serious cellar wine.",
+      "From the iconic Apalta amphitheater, Obliqua is a Carménère-driven blend showing intense black fruit, sweet spice, dark chocolate and tobacco.\n\nFine, dense tannins and a long, layered finish: a serious cellar wine.",
     pairing: "Slow-cooked lamb, beef short ribs, mole, mushroom dishes.",
     producerInfo:
       "Obliqua refers to the steep, oblique slopes of Apalta where the grapes are grown.",
@@ -1167,7 +1167,7 @@ export const wines: Wine[] = [
       "Pangea is a collaboration with John Duval (ex-Penfolds Grange). A dense, dark, brooding Syrah with black plum, espresso, smoked meat and violet.\n\nFine-grained tannins and remarkable length make this an icon of Chilean Syrah.",
     pairing: "Grilled ribeye, lamb shoulder, aged hard cheeses.",
     producerInfo:
-      "Pangea is named after the prehistoric supercontinent — a tribute to Apalta's ancient terroir.",
+      "Pangea is named after the prehistoric supercontinent: a tribute to Apalta's ancient terroir.",
     image: B("12"),
     stock: stock(52),
     featured: true,
@@ -1184,7 +1184,7 @@ export const wines: Wine[] = [
     price: 9.9,
     alcohol: 12.5,
     shortDescription:
-      "Classic Marlborough — passionfruit, lime, gooseberry, vibrant.",
+      "Classic Marlborough: passionfruit, lime, gooseberry, vibrant.",
     description:
       "Stoneburn's Sauvignon Blanc captures the unmistakable Marlborough signature: passionfruit, gooseberry, lime zest and fresh-cut grass. The palate is crisp, intensely flavoured and refreshingly long.",
     pairing: "Goat's cheese, Thai green curry, seafood, asparagus.",
@@ -1206,7 +1206,7 @@ export const wines: Wine[] = [
     price: 14.95,
     alcohol: 14.0,
     shortDescription:
-      "Old-vine Australian Shiraz — plush black fruit, peppery spice.",
+      "Old-vine Australian Shiraz: plush black fruit, peppery spice.",
     description:
       "Tahbilk has produced wine in Nagambie Lakes, Victoria, since 1860. This Shiraz combines ripe blackberry, cracked pepper, eucalyptus and sweet spice from oak ageing.\n\nA classic Australian style with cellaring potential.",
     pairing: "Grilled lamb, BBQ ribs, pepper steak, hard cheeses.",
@@ -1228,7 +1228,7 @@ export const wines: Wine[] = [
     price: 10.5,
     alcohol: 14.0,
     shortDescription:
-      "High-altitude Mendoza Malbec — plum, violet, supple oak.",
+      "High-altitude Mendoza Malbec: plum, violet, supple oak.",
     description:
       "Mendoza Malbec from the foothills of the Andes. Notes of ripe black plum, violet, blueberry and a touch of cocoa, with velvety tannins and good length.",
     pairing: "Argentine asado, grilled steak, empanadas, hard cheeses.",
@@ -1250,7 +1250,7 @@ export const wines: Wine[] = [
     price: 8.75,
     alcohol: 12.5,
     shortDescription:
-      "South African Chenin — pear, quince, honeyed mid-palate, crisp finish.",
+      "South African Chenin: pear, quince, honeyed mid-palate, crisp finish.",
     description:
       "Old-vine Chenin from the Breede River Valley. Notes of ripe pear, quince, white peach and a honeyed depth balanced by bright acidity.",
     pairing: "Roast pork, chicken curry, soft cheeses, prawn dishes.",
@@ -1272,9 +1272,9 @@ export const wines: Wine[] = [
     price: 8.75,
     alcohol: 14.0,
     shortDescription:
-      "South Africa's signature red — dark fruit, smoke, espresso.",
+      "South Africa's signature red: dark fruit, smoke, espresso.",
     description:
-      "Pinotage is South Africa's unique cross of Pinot Noir and Cinsault. This Western Cape version delivers blackberry, plum, smoky bacon and a touch of espresso — a confident, characterful red.",
+      "Pinotage is South Africa's unique cross of Pinot Noir and Cinsault. This Western Cape version delivers blackberry, plum, smoky bacon and a touch of espresso: a confident, characterful red.",
     pairing: "BBQ, lamb sosaties, dark chocolate, hard cheeses.",
     producerInfo:
       "Alvi's Drift produces a celebrated range of South African classics.",
@@ -1294,7 +1294,7 @@ export const wines: Wine[] = [
     price: 7.9,
     alcohol: 13.5,
     shortDescription:
-      "Nemea Agiorgitiko — ripe red cherry, sweet spice, silky tannins.",
+      "Nemea Agiorgitiko: ripe red cherry, sweet spice, silky tannins.",
     description:
       "Agiorgitiko is the noble red grape of Nemea. Boubas crafts a polished, fruit-forward example with red cherry, raspberry, sweet spice and gentle oak. Approachable and very food-friendly.",
     pairing: "Lamb kleftiko, moussaka, grilled chops, hard sheep's cheese.",
@@ -1316,7 +1316,7 @@ export const wines: Wine[] = [
     price: 6.9,
     alcohol: 12.5,
     shortDescription:
-      "Greek rosé from Nemea — strawberry, watermelon, fresh and dry.",
+      "Greek rosé from Nemea: strawberry, watermelon, fresh and dry.",
     description:
       "A pale-pink Agiorgitiko rosé with bright red berry, watermelon and a crisp dry finish. Vivid acidity and elegant fruit make it a versatile food wine.",
     pairing: "Greek salad, grilled prawns, halloumi, summer meze.",
@@ -1338,7 +1338,7 @@ export const wines: Wine[] = [
     price: 6.9,
     alcohol: 12.0,
     shortDescription:
-      "Aromatic Moschofilero — rose, white peach, citrus, vibrant.",
+      "Aromatic Moschofilero: rose, white peach, citrus, vibrant.",
     description:
       "Moschofilero is the aromatic pink-skinned grape of Mantinia. Notes of rose petal, white peach, citrus zest and lychee, with vivid acidity and a crisp dry finish.",
     pairing: "Sushi, grilled seafood, chicken souvlaki, fresh herb salads.",
@@ -1360,7 +1360,7 @@ export const wines: Wine[] = [
     price: 7.9,
     alcohol: 12.5,
     shortDescription:
-      "Greek Malagouzia — jasmine, peach, basil, expressive and aromatic.",
+      "Greek Malagouzia: jasmine, peach, basil, expressive and aromatic.",
     description:
       "A characterful Greek white showing jasmine, white peach, lemon balm and a hint of fresh basil. Generous mid-palate balanced by crisp acidity.",
     pairing: "Sea bass, white tarama, lemon-marinated chicken, Cypriot meze.",
@@ -1382,9 +1382,9 @@ export const wines: Wine[] = [
     price: 7.5,
     alcohol: 13.0,
     shortDescription:
-      "Corinth Assyrtiko — citrus, sea spray, mineral intensity.",
+      "Corinth Assyrtiko: citrus, sea spray, mineral intensity.",
     description:
-      "Assyrtiko from Corinth shows the variety's signature citrus, green apple, sea-salt minerality and steely acidity.\n\nLong, savoury finish — perfect with Mediterranean cuisine.",
+      "Assyrtiko from Corinth shows the variety's signature citrus, green apple, sea-salt minerality and steely acidity.\n\nLong, savoury finish: perfect with Mediterranean cuisine.",
     pairing: "Grilled octopus, fish meze, calamari, feta dishes.",
     producerInfo:
       "Boubas crafts a Corinth expression of Greece's most famous white grape.",
@@ -1404,7 +1404,7 @@ export const wines: Wine[] = [
     price: 5.5,
     alcohol: 13.0,
     shortDescription:
-      "Cypriot red blend — Mataro and Agiorgitiko — juicy and savoury.",
+      "Cypriot red blend of Mataro and Agiorgitiko, juicy and savoury.",
     description:
       "A friendly Cypriot blend of Mataro (Mourvèdre) and Agiorgitiko, showing red plum, dried herbs, sun-warmed earth and a savoury, food-friendly finish.",
     pairing: "Sheftalia, souvla, halloumi grills, slow-cooked lamb stifado.",
@@ -1426,7 +1426,7 @@ export const wines: Wine[] = [
     price: 10.5,
     alcohol: 14.0,
     shortDescription:
-      "Native Maratheftiko — Cyprus's flagship red, dark, spicy, oak-aged.",
+      "Native Maratheftiko: Cyprus's flagship red, dark, spicy, oak-aged.",
     description:
       "Maratheftiko is Cyprus's most prestigious indigenous red grape. Oak-aged for added structure, this bottling delivers black cherry, plum, sweet spice and cedar.\n\nFirm tannins and good length make it a serious Cypriot expression.",
     pairing: "Slow-cooked lamb, kleftiko, hard cheeses, mushroom dishes.",
@@ -1448,7 +1448,7 @@ export const wines: Wine[] = [
     price: 9.5,
     alcohol: 13.5,
     shortDescription:
-      "Cypriot Shiraz — sun-soaked black fruit and Mediterranean herb.",
+      "Cypriot Shiraz: sun-soaked black fruit and Mediterranean herb.",
     description:
       "Shiraz thrives in Cyprus's warm Mediterranean climate. Oak-aged for structure, this wine offers blackberry, fig, white pepper and a touch of liquorice.",
     pairing: "Sheftalia, grilled lamb chops, eastern-spiced dishes.",
@@ -1470,7 +1470,7 @@ export const wines: Wine[] = [
     price: 7.5,
     alcohol: 13.5,
     shortDescription:
-      "Cypriot Shiraz — black fruit, pepper, supple and approachable.",
+      "Cypriot Shiraz: black fruit, pepper, supple and approachable.",
     description:
       "An everyday Cypriot Shiraz with ripe blackberry, plum, gentle pepper and soft tannins. A great-value daily red from the island.",
     pairing: "Pasta with meat sauce, grilled vegetables, kebabs.",
@@ -1492,9 +1492,9 @@ export const wines: Wine[] = [
     price: 5.5,
     alcohol: 11.5,
     shortDescription:
-      "Indigenous Cypriot Xynisteri — citrus, white blossom, gentle and dry.",
+      "Indigenous Cypriot Xynisteri: citrus, white blossom, gentle and dry.",
     description:
-      "Xynisteri is Cyprus's most planted white grape. This bottling shows lemon zest, white peach, almond and a fresh, dry finish — a perfect Mediterranean aperitif.",
+      "Xynisteri is Cyprus's most planted white grape. This bottling shows lemon zest, white peach, almond and a fresh, dry finish: a perfect Mediterranean aperitif.",
     pairing: "Cypriot meze, grilled halloumi, light fish, salads.",
     producerInfo:
       "Yiaskouris' Xynisteri is sourced from indigenous Cypriot vineyards.",
@@ -1514,7 +1514,7 @@ export const wines: Wine[] = [
     price: 5.5,
     alcohol: 11.5,
     shortDescription:
-      "Off-dry Xynisteri — citrus and white flower with a touch of sweetness.",
+      "Off-dry Xynisteri: citrus and white flower with a touch of sweetness.",
     description:
       "A medium-dry version of the indigenous Xynisteri, offering ripe lemon, honeysuckle and a gentle sweetness that pairs beautifully with spicier dishes.",
     pairing: "Mild curries, spiced poultry, fresh fruit, Cypriot pastries.",
@@ -1536,7 +1536,7 @@ export const wines: Wine[] = [
     price: 7.0,
     alcohol: 13.0,
     shortDescription:
-      "Cypriot Assyrtiko — citrus, mineral, dry, and gastronomic.",
+      "Cypriot Assyrtiko: citrus, mineral, dry, and gastronomic.",
     description:
       "A taut, mineral Assyrtiko grown on Cypriot soils. Notes of lemon zest, green apple, sea salt and a long, savoury finish.",
     pairing: "Grilled octopus, sea bream, calamari, halloumi meze.",
@@ -1558,7 +1558,7 @@ export const wines: Wine[] = [
     price: 5.5,
     alcohol: 12.5,
     shortDescription:
-      "Cypriot rosé — Mataro and Maratheftiko — fruity, dry, summer-ready.",
+      "Cypriot rosé of Mataro and Maratheftiko, fruity, dry, summer-ready.",
     description:
       "A bright Cypriot rosé blending Mataro and Maratheftiko. Strawberry, watermelon and a touch of red cherry, with a crisp dry finish.",
     pairing: "Halloumi salad, grilled seafood, meze, light pasta.",
@@ -1579,7 +1579,7 @@ export function getFeaturedWines(): Wine[] {
 }
 
 // Premium / cellar-worthy bottles surfaced in the Gifts sections.
-// (Tag-based selection — these wines also receive `tags: ["gift"]`
+// (Tag-based selection: these wines also receive `tags: ["gift"]`
 // applied at module load via tagWine() below so the Wine.tags field
 // stays in sync if anything else queries it.)
 const GIFT_IDS = new Set<string>([

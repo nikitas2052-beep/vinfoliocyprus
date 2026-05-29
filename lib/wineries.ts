@@ -7,7 +7,7 @@ import type { Winery } from "./types";
 const LOGO_BASE = "https://vinfolio.com.cy/wp-content/uploads/2025/10";
 
 /**
- * Fallback: Google's favicon endpoint — returns a clean square icon
+ * Fallback: Google's favicon endpoint: returns a clean square icon
  * for any domain. Used when a winery has no `logo` set yet.
  */
 export const logoFor = (winery: Winery): string | undefined => {
@@ -29,7 +29,7 @@ export const wineries: Winery[] = [
     description:
       "Historic Rhone Valley estate producing classic Chateauneuf-du-Pape and Cotes du Rhone with deep terroir expression.",
     website: "https://gigognan.fr",
-    // Local SVG fetched from gigognan.fr — clean dark-on-white version
+    // Local SVG fetched from gigognan.fr: clean dark-on-white version
     logo: "/logos/gigognan.svg",
   },
   {
@@ -65,7 +65,7 @@ export const wineries: Winery[] = [
     description:
       "Cooperative cellar from Treviso, Veneto, producing celebrated Prosecco DOC and northern Italian classics since 1953.",
     website: "https://www.collisoligo.com",
-    // Local PNG fetched from collisoligo.com — clean dark-on-white version
+    // Local PNG fetched from collisoligo.com: clean dark-on-white version
     logo: "/logos/soligo.png",
   },
   {
@@ -135,7 +135,7 @@ export const wineries: Winery[] = [
     description:
       "Marlborough estate producing vibrant Sauvignon Blanc from the cool, river-stone soils of the Wairau Valley.",
     website: "https://www.stoneburn.co.nz",
-    // Local PNG fetched from stoneburn.co.nz — clean dark-on-white version
+    // Local PNG fetched from stoneburn.co.nz: clean dark-on-white version
     logo: "/logos/stoneburn.webp",
   },
   {
@@ -171,7 +171,7 @@ export const wineries: Winery[] = [
     name: "AIX",
     country: "France",
     description:
-      "Provence rosé icon from Coteaux d'Aix en Provence — pale, dry and Mediterranean in style.",
+      "Provence rosé icon from Coteaux d'Aix en Provence: pale, dry and Mediterranean in style.",
     website: "https://www.aixrose.com",
     logo: "/logos/aix.png",
   },
@@ -182,7 +182,7 @@ export const wineries: Winery[] = [
     description:
       "Peloponnese winery championing native Greek varieties: Agiorgitiko, Moschofilero, Malagouzia and Assyrtiko.",
     website: "https://www.boubas-wines.gr",
-    // Local PNG from boubas-wines.gr — transparent bg, monochrome-safe
+    // Local PNG from boubas-wines.gr: transparent bg, monochrome-safe
     logo: "/logos/boubas.png",
   },
   {

@@ -38,7 +38,7 @@ export default function BestSellers() {
           </h2>
           <div className="rule" />
           <p className="text-ink/75 mt-1">
-            The six bottles our customers reach for most often — wines we're
+            The six bottles our customers reach for most often, wines we're
             pouring ourselves, right now.
           </p>
         </div>

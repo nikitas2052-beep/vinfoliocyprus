@@ -37,17 +37,17 @@ const config: Config = {
           700: "#570817",
           800: "#33050E",
         },
-        // Accent: warm bronze / brushed gold (#B98D58)
+        // Accent: deep wine red (mirrors wine palette)
         bronze: {
-          DEFAULT: "#B98D58",
-          50: "#FBF5ED",
-          100: "#F4E6D2",
-          200: "#E6CBA1",
-          300: "#D7B070",
-          400: "#B98D58",
-          500: "#977045",
-          600: "#735434",
-          700: "#4F3923",
+          DEFAULT: "#C31432",
+          50: "#FCE7EB",
+          100: "#F8C9D2",
+          200: "#EE8A99",
+          300: "#E04D62",
+          400: "#C31432",
+          500: "#9F1029",
+          600: "#7B0C20",
+          700: "#570817",
         },
         // Neutral surfaces
         paper: "#FFFFFF",
@@ -71,9 +71,9 @@ const config: Config = {
           900: "#1A030A",
         },
         gold: {
-          DEFAULT: "#B98D58",
-          light: "#D7B070",
-          dark: "#977045",
+          DEFAULT: "#C31432",
+          light: "#E04D62",
+          dark: "#9F1029",
         },
         seal: "#C31432",
       },
@@ -110,7 +110,7 @@ const config: Config = {
         "ken-burns": "ken-burns 14s ease-in-out infinite alternate",
       },
       backgroundImage: {
-        "gradient-bronze": "linear-gradient(135deg, #D7B070 0%, #977045 100%)",
+        "gradient-bronze": "linear-gradient(135deg, #E04D62 0%, #9F1029 100%)",
         "gradient-ink": "linear-gradient(135deg, #242E35 0%, #13191E 100%)",
       },
       boxShadow: {

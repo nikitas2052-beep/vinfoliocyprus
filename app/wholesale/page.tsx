@@ -29,7 +29,7 @@ export default function WholesalePage() {
         <p className="text-ink/85 text-lg leading-relaxed mt-4">
           Vinfolio supplies restaurants, hotels, wine bars and independent
           retailers across Cyprus. Our portfolio bridges classical European
-          regions with awarded New World producers — built for serious wine
+          regions with awarded New World producers, built for serious wine
           programs.
         </p>
       </header>
@@ -81,7 +81,7 @@ export default function WholesalePage() {
       <section className="mt-20 card-surface p-8 md:p-12 text-center bg-chalk">
         <p className="font-serif italic text-bronze text-xl">"Wine Enthusiasts"</p>
         <p className="font-serif text-3xl md:text-4xl text-ink mt-2 max-w-3xl mx-auto">
-          The same care we put in our personal cellar — extended to your
+          The same care we put in our personal cellar, extended to your
           restaurant, hotel or shop.
         </p>
         <p className="text-muted mt-4">— Yiannakis Aristidou, founder</p>

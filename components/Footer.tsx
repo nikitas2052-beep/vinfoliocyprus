@@ -15,7 +15,7 @@ export default function Footer() {
       toast.error("Please enter a valid email address.");
       return;
     }
-    toast.success("Thank you — you're on the Vinfolio list.");
+    toast.success("Thank you, you're on the Vinfolio list.");
     setEmail("");
   };
 
@@ -36,7 +36,7 @@ export default function Footer() {
           </p>
           <p className="text-paper/70 text-sm mt-5 max-w-sm">
             Vinfolio Ltd is a Cypriot fine-wine importer & distributor based in
-            Kato Polemidia, Limassol — curating wines with character from the
+            Kato Polemidia, Limassol. Curating wines with character from the
             great regions of the world.
           </p>
           <div className="flex gap-3 mt-7">

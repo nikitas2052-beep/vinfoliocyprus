@@ -5,7 +5,7 @@ import { Quote } from "lucide-react";
 
 const QUOTES = [
   {
-    body: "Vinfolio's curation reads like a love letter to terroir — every bottle has a name, a face, a vineyard behind it.",
+    body: "Vinfolio's curation reads like a love letter to terroir. Every bottle has a name, a face, a vineyard behind it.",
     author: "Anna Markou",
     role: "Head Sommelier, Limassol",
   },
