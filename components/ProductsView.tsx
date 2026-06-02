@@ -44,10 +44,10 @@ export default function ProductsView() {
         list = [...list].sort((a, b) => b.price - a.price);
         break;
       case "name-asc":
-        list = [...list].sort((a, b) => a.name.localeCompare(b.name));
+        list = [...list].sort((a, b) => a.name.localeCompare(b.name, "en"));
         break;
       case "country":
-        list = [...list].sort((a, b) => a.country.localeCompare(b.country));
+        list = [...list].sort((a, b) => a.country.localeCompare(b.country, "en"));
         break;
     }
     return list;
