@@ -119,6 +119,12 @@ export default function HeroVideo() {
   useEffect(() => {
     if (isMobile || reduceMotion) return;
 
+    // When returning to the homepage via client navigation, the browser can
+    // restore a deep scroll position — which would drop us at the END of the
+    // pinned hero (the partners panel) instead of the start. Reset to top so
+    // the animation always begins from the bottle/wordmark.
+    if (typeof window !== "undefined") window.scrollTo(0, 0);
+
     let cancelled = false;
     let trigger: { kill: (reset?: boolean) => void } | undefined;
     let resizeHandler: (() => void) | undefined;
@@ -238,6 +244,13 @@ export default function HeroVideo() {
           if (cue) cue.style.opacity = String((1 - clamp01(p / 0.05)).toFixed(3));
         },
       });
+
+      // Recalculate after the pin/spacer exists and pin from a clean top.
+      try {
+        window.scrollTo(0, 0);
+        ScrollTrigger.refresh();
+        window.scrollTo(0, 0);
+      } catch {}
 
       resizeHandler = () => {
         try {
