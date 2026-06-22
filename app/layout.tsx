@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Cormorant_Infant, Alata } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -67,6 +68,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${alata.variable}`}>
+      <head>
+        {/*
+          Guard against the well-known React + browser auto-translation crash
+          ("Failed to execute 'removeChild' on 'Node'"). When Chrome/Google
+          Translate rewrites text nodes, React's reconciliation can try to
+          remove/insert a node whose parent has changed. These defensive
+          overrides no-op in that case instead of throwing, so translated
+          pages keep working. https://github.com/facebook/react/issues/11538
+        */}
+        <Script id="translate-crash-guard" strategy="beforeInteractive">
+          {`(function(){if(typeof Node==='function'&&Node.prototype){var rc=Node.prototype.removeChild;Node.prototype.removeChild=function(c){if(c&&c.parentNode!==this){return c;}return rc.apply(this,arguments);};var ib=Node.prototype.insertBefore;Node.prototype.insertBefore=function(n,r){if(r&&r.parentNode!==this){return n;}return ib.apply(this,arguments);};}})();`}
+        </Script>
+      </head>
       <body className="min-h-screen flex flex-col bg-paper text-ink">
         <AgeVerificationModal />
         <Header />

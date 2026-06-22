@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Error({
   error,
@@ -10,52 +11,28 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Surface full detail in the console too.
-    console.error("CAUGHT BY app/error.tsx:", error);
+    console.error(error);
   }, [error]);
 
   return (
-    <div
-      style={{
-        padding: 24,
-        fontFamily: "monospace",
-        fontSize: 14,
-        lineHeight: 1.5,
-        color: "#242E35",
-        maxWidth: 900,
-        margin: "40px auto",
-        whiteSpace: "pre-wrap",
-        wordBreak: "break-word",
-      }}
-    >
-      <h2 style={{ fontSize: 20, marginBottom: 16 }}>Something went wrong</h2>
-      <p>
-        <b>name:</b> {error?.name || "(none)"}
+    <div className="container-wide py-24 text-center">
+      <p className="eyebrow">Something went wrong</p>
+      <h1 className="heading-serif text-4xl md:text-5xl mt-2">
+        Let&apos;s try that again
+      </h1>
+      <div className="gold-divider mx-auto" />
+      <p className="text-muted mt-3 max-w-md mx-auto">
+        Sorry, this page ran into a problem. Please try reloading, or head back
+        to the collection.
       </p>
-      <p>
-        <b>message:</b> {error?.message || "(none)"}
-      </p>
-      <p>
-        <b>digest:</b> {error?.digest || "(none)"}
-      </p>
-      <p style={{ marginTop: 12 }}>
-        <b>stack:</b>
-        {"\n"}
-        {error?.stack || "(none)"}
-      </p>
-      <button
-        onClick={reset}
-        style={{
-          marginTop: 20,
-          padding: "8px 16px",
-          background: "#242E35",
-          color: "#fff",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
-        Try again
-      </button>
+      <div className="mt-8 flex items-center justify-center gap-3">
+        <button onClick={reset} className="btn-gold">
+          Try again
+        </button>
+        <Link href="/" className="btn-chalk">
+          Home
+        </Link>
+      </div>
     </div>
   );
 }
