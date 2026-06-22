@@ -115,6 +115,22 @@ export default function HeroVideo() {
     }
   }, [isMobile, reduceMotion]);
 
+  // When the homepage mounts (incl. client navigation back to "/"), the
+  // browser / router can restore the previous deep scroll position. With the
+  // scroll-pinned hero that lands the user at the END of the animation (the
+  // partners/wineries panel) instead of the bottle. A single scrollTo(0,0)
+  // loses the race against late scroll restoration, so we pin scroll to the
+  // top for the first ~400ms after mount.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    let frame = 0;
+    let raf = requestAnimationFrame(function pin() {
+      window.scrollTo(0, 0);
+      if (++frame < 24) raf = requestAnimationFrame(pin);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   // ── GSAP scroll-scrub: DESKTOP ONLY ───────────────────────────────────
   useEffect(() => {
     if (isMobile || reduceMotion) return;
