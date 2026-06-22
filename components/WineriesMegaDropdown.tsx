@@ -26,7 +26,6 @@ export default function WineriesMegaDropdown({
 }) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
-  const closeTimer = useRef<number | undefined>(undefined);
 
   const active = activePath.startsWith("/wineries");
 
@@ -49,22 +48,8 @@ export default function WineriesMegaDropdown({
     };
   }, [open]);
 
-  const scheduleClose = () => {
-    window.clearTimeout(closeTimer.current);
-    closeTimer.current = window.setTimeout(() => setOpen(false), 220);
-  };
-  const cancelClose = () => window.clearTimeout(closeTimer.current);
-
   return (
-    <div
-      ref={wrapRef}
-      onMouseEnter={() => {
-        cancelClose();
-        setOpen(true);
-      }}
-      onMouseLeave={scheduleClose}
-      className="relative"
-    >
+    <div ref={wrapRef} className="relative">
       <button
         type="button"
         aria-haspopup="true"
@@ -97,16 +82,6 @@ export default function WineriesMegaDropdown({
         )}
       </button>
 
-      {/* Bridge — covers the gap between trigger and panel so hover
-          intent isn't lost as the user moves the mouse down. */}
-      {open && (
-        <div
-          aria-hidden
-          className="fixed left-0 right-0 top-20 md:top-24 h-3 z-50"
-          onMouseEnter={cancelClose}
-        />
-      )}
-
       <AnimatePresence>
         {open && (
           <motion.div
@@ -115,8 +90,6 @@ export default function WineriesMegaDropdown({
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
             className="fixed left-0 right-0 top-20 md:top-24 bg-paper border-b border-line shadow-soft z-50 max-h-[80vh] overflow-y-auto"
-            onMouseEnter={cancelClose}
-            onMouseLeave={scheduleClose}
             role="menu"
           >
             <div className="container-wide py-10">
