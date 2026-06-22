@@ -8,6 +8,11 @@ import { toast } from "sonner";
 import { useCart } from "@/lib/store";
 import { getWineById } from "@/lib/wines";
 
+// Web3Forms access key is public by design (it lives in the page). Restrict it
+// to this domain in the Web3Forms dashboard for spam protection.
+const WEB3FORMS_KEY = "31b30b5b-bb30-466a-a4f5-87b1563cec91";
+const OFFER_CC = "vinfoliowines@gmail.com";
+
 export default function CartView() {
   const items = useCart((s) => s.items);
   const updateQuantity = useCart((s) => s.updateQuantity);
@@ -45,29 +50,47 @@ export default function CartView() {
     }
     setSubmitting(true);
     try {
-      const res = await fetch("/api/request-offer", {
+      const wineLines = lines
+        .map(({ item, wine }, i) => {
+          const size =
+            wine.sizeMl >= 1000
+              ? `${wine.sizeMl / 1000} L`
+              : `${wine.sizeMl} ml`;
+          const vintage = wine.year ? ` (${wine.year})` : "";
+          return `${i + 1}. ${item.quantity} x ${wine.name} - ${wine.winery}${vintage} - ${size}`;
+        })
+        .join("\n");
+
+      const message =
+        `New offer request from the Vinfolio website\n` +
+        `----------------------------------------\n\n` +
+        `Customer\n` +
+        `  Name:    ${form.name}\n` +
+        `  Email:   ${form.email}\n` +
+        `  Phone:   ${form.phone || "-"}\n` +
+        `  Company: ${form.company || "-"}\n\n` +
+        `Wines requested (${lines.length})\n${wineLines}\n\n` +
+        `Notes\n  ${form.message || "-"}\n`;
+
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          ...form,
-          items: lines.map(({ item, wine }) => ({
-            name: wine.name,
-            winery: wine.winery,
-            vintage: wine.year,
-            size:
-              wine.sizeMl >= 1000
-                ? `${wine.sizeMl / 1000} L`
-                : `${wine.sizeMl} ml`,
-            quantity: item.quantity,
-          })),
+          access_key: WEB3FORMS_KEY,
+          subject: `New Offer Request - ${form.name}`,
+          from_name: "Vinfolio Website",
+          email: form.email,
+          replyto: form.email,
+          cc: OFFER_CC,
+          message,
         }),
       });
       const data = (await res.json().catch(() => ({}))) as {
-        ok?: boolean;
-        error?: string;
+        success?: boolean;
+        message?: string;
       };
-      if (!res.ok || !data.ok) {
-        throw new Error(data.error || "Something went wrong.");
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Could not send your request.");
       }
       clearCart();
       setDone(true);
