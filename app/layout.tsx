@@ -73,12 +73,15 @@ export default function RootLayout({
           Guard against the well-known React + browser auto-translation crash
           ("Failed to execute 'removeChild' on 'Node'"). When Chrome/Google
           Translate rewrites text nodes, React's reconciliation can try to
-          remove/insert a node whose parent has changed. These defensive
-          overrides no-op in that case instead of throwing, so translated
-          pages keep working. https://github.com/facebook/react/issues/11538
+          remove/insert a node whose parent has changed. Instead of throwing,
+          we operate on the node's ACTUAL parent (remove it where it really
+          lives / append when the reference is detached). Operating on the
+          real parent — rather than no-op'ing — is important so libraries that
+          re-parent nodes (e.g. GSAP ScrollTrigger's pin-spacer) still get
+          cleaned up on navigation. https://github.com/facebook/react/issues/11538
         */}
         <Script id="translate-crash-guard" strategy="beforeInteractive">
-          {`(function(){if(typeof Node==='function'&&Node.prototype){var rc=Node.prototype.removeChild;Node.prototype.removeChild=function(c){if(c&&c.parentNode!==this){return c;}return rc.apply(this,arguments);};var ib=Node.prototype.insertBefore;Node.prototype.insertBefore=function(n,r){if(r&&r.parentNode!==this){return n;}return ib.apply(this,arguments);};}})();`}
+          {`(function(){if(typeof Node==='function'&&Node.prototype){var rc=Node.prototype.removeChild;Node.prototype.removeChild=function(c){if(c&&c.parentNode!==this){return c.parentNode?rc.call(c.parentNode,c):c;}return rc.apply(this,arguments);};var ib=Node.prototype.insertBefore;Node.prototype.insertBefore=function(n,r){if(r&&r.parentNode!==this){return ib.call(this,n,null);}return ib.apply(this,arguments);};}})();`}
         </Script>
       </head>
       <body className="min-h-screen flex flex-col bg-paper text-ink">
