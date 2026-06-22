@@ -7,7 +7,7 @@ import { wines } from "@/lib/wines";
 import WineCard from "@/components/WineCard";
 import ProductFilters from "@/components/ProductFilters";
 
-type Sort = "price-asc" | "price-desc" | "name-asc" | "country";
+type Sort = "name-asc" | "country";
 
 export default function ProductsView() {
   const params = useSearchParams();
@@ -19,7 +19,6 @@ export default function ProductsView() {
   const region = params.get("region") ?? "";
   const winery = params.get("winery") ?? "";
   const size = params.get("size") ?? "";
-  const maxPrice = Number(params.get("maxPrice") ?? 60);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -29,7 +28,6 @@ export default function ProductsView() {
       if (region && w.region !== region) return false;
       if (winery && w.winery !== winery) return false;
       if (size && String(w.sizeMl) !== size) return false;
-      if (w.price > maxPrice) return false;
       if (q) {
         const hay = `${w.name} ${w.winery} ${w.region} ${w.country} ${w.type}`.toLowerCase();
         if (!hay.includes(q)) return false;
@@ -37,12 +35,6 @@ export default function ProductsView() {
       return true;
     });
     switch (sort) {
-      case "price-asc":
-        list = [...list].sort((a, b) => a.price - b.price);
-        break;
-      case "price-desc":
-        list = [...list].sort((a, b) => b.price - a.price);
-        break;
       case "name-asc":
         list = [...list].sort((a, b) => a.name.localeCompare(b.name, "en"));
         break;
@@ -51,7 +43,7 @@ export default function ProductsView() {
         break;
     }
     return list;
-  }, [query, sort, type, country, region, winery, size, maxPrice]);
+  }, [query, sort, type, country, region, winery, size]);
 
   return (
     <div className="container-wide py-10">
@@ -87,8 +79,6 @@ export default function ProductsView() {
               className="input-field sm:w-56"
             >
               <option value="name-asc">Name · A–Z</option>
-              <option value="price-asc">Price · low to high</option>
-              <option value="price-desc">Price · high to low</option>
               <option value="country">Country</option>
             </select>
           </div>

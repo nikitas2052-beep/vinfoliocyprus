@@ -92,7 +92,7 @@ export default function Header() {
           </Link>
           <button
             onClick={openCart}
-            aria-label="Open cart"
+            aria-label="Open your request list"
             className="relative p-2.5 text-ink hover:text-bronze transition-colors"
           >
             <ShoppingBag className="w-[18px] h-[18px]" strokeWidth={1.5} />

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { useCart } from "@/lib/store";
-import { formatPrice } from "@/lib/utils";
 import { getGiftWines } from "@/lib/wines";
 import type { Wine } from "@/lib/types";
 import BottleSilhouette, { isPlaceholderImage } from "./BottleSilhouette";
@@ -70,8 +69,8 @@ function GiftCard({ wine, index }: { wine: Wine; index: number }) {
     e.preventDefault();
     e.stopPropagation();
     addItem(wine.id, 1);
-    toast.success(`${wine.name} added to cart`, {
-      action: { label: "View cart", onClick: () => openCart() },
+    toast.success(`${wine.name} added to your request`, {
+      action: { label: "View request", onClick: () => openCart() },
     });
   };
 
@@ -114,14 +113,14 @@ function GiftCard({ wine, index }: { wine: Wine; index: number }) {
         </p>
       </Link>
       <div className="mt-2 md:mt-4 flex items-end justify-between gap-1">
-        <p className="font-serif text-sm md:text-base text-wine">
-          {formatPrice(wine.price)}
+        <p className="font-serif text-sm md:text-base text-bronze">
+          Request offer
         </p>
         <button
           onClick={onAdd}
           className="btn-chalk !px-2 md:!px-4 !py-1.5 md:!py-2 !text-[9px] md:!text-[11px]"
         >
-          Shop
+          Add
         </button>
       </div>
     </motion.article>

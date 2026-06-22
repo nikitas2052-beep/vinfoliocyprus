@@ -12,9 +12,6 @@ import {
 } from "@/lib/wines";
 import { cn } from "@/lib/utils";
 
-const PRICE_MIN = 0;
-const PRICE_MAX = 60;
-
 export default function ProductFilters() {
   const router = useRouter();
   const params = useSearchParams();
@@ -25,7 +22,6 @@ export default function ProductFilters() {
   const selectedRegion = params.get("region") ?? "";
   const selectedWinery = params.get("winery") ?? "";
   const selectedSize = params.get("size") ?? "";
-  const maxPrice = Number(params.get("maxPrice") ?? PRICE_MAX);
 
   const regions = useMemo(() => {
     const filtered = selectedCountry
@@ -50,7 +46,6 @@ export default function ProductFilters() {
     selectedRegion,
     selectedWinery,
     selectedSize,
-    maxPrice < PRICE_MAX ? "p" : "",
   ].filter(Boolean).length;
 
   useEffect(() => {
@@ -149,22 +144,6 @@ export default function ProductFilters() {
               </button>
             );
           })}
-        </div>
-      </FilterGroup>
-
-      <FilterGroup label={`Max price · €${maxPrice}`}>
-        <input
-          type="range"
-          min={PRICE_MIN}
-          max={PRICE_MAX}
-          step={1}
-          value={maxPrice}
-          onChange={(e) => update("maxPrice", e.target.value)}
-          className="w-full accent-gold"
-        />
-        <div className="flex justify-between text-xs text-muted mt-1">
-          <span>€{PRICE_MIN}</span>
-          <span>€{PRICE_MAX}</span>
         </div>
       </FilterGroup>
 

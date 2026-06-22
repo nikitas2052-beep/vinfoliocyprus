@@ -7,7 +7,7 @@ import { Plus, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import type { Wine } from "@/lib/types";
 import { useCart } from "@/lib/store";
-import { cn, formatPrice } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { getFeaturedWines, wines as allWines } from "@/lib/wines";
 import BottleSilhouette, { isPlaceholderImage } from "./BottleSilhouette";
 
@@ -86,8 +86,8 @@ function CompactWineCard({ wine, index }: { wine: Wine; index: number }) {
     e.preventDefault();
     e.stopPropagation();
     addItem(wine.id, 1);
-    toast.success(`${wine.name} added to cart`, {
-      action: { label: "View cart", onClick: () => openCart() },
+    toast.success(`${wine.name} added to your request`, {
+      action: { label: "View request", onClick: () => openCart() },
     });
   };
 
@@ -138,8 +138,8 @@ function CompactWineCard({ wine, index }: { wine: Wine; index: number }) {
           <h3 className="font-serif text-[13px] md:text-lg text-ink leading-tight line-clamp-2 min-h-[2.25rem] md:min-h-[2.75rem] group-hover:text-bronze transition-colors">
             {wine.name}
           </h3>
-          <p className="font-serif text-sm md:text-base text-ink pt-0.5">
-            {formatPrice(wine.price)}
+          <p className="font-serif text-sm md:text-base text-bronze pt-0.5">
+            Request offer
           </p>
         </div>
       </Link>

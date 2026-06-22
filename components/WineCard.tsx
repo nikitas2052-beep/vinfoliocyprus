@@ -7,7 +7,7 @@ import { Plus } from "lucide-react";
 import { toast } from "sonner";
 import type { Wine } from "@/lib/types";
 import { useCart } from "@/lib/store";
-import { cn, formatPrice } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import BottleSilhouette, { isPlaceholderImage } from "./BottleSilhouette";
 
 function typeColor(t: Wine["type"]): string {
@@ -38,8 +38,8 @@ export default function WineCard({
     e.preventDefault();
     e.stopPropagation();
     addItem(wine.id, 1);
-    toast.success(`${wine.name} added to cart`, {
-      action: { label: "View cart", onClick: () => openCart() },
+    toast.success(`${wine.name} added to your request`, {
+      action: { label: "View request", onClick: () => openCart() },
     });
   };
 
@@ -75,7 +75,7 @@ export default function WineCard({
           </span>
           <button
             onClick={onAdd}
-            aria-label={`Add ${wine.name} to cart`}
+            aria-label={`Add ${wine.name} to your request`}
             className="absolute bottom-3 right-3 w-10 h-10 bg-ink text-paper
                        flex items-center justify-center
                        opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0
@@ -95,9 +95,9 @@ export default function WineCard({
             {wine.name}
           </h3>
           <p className="text-sm text-muted font-sans">{wine.winery}</p>
-          <p className="font-serif text-lg text-ink pt-1">
-            {formatPrice(wine.price)}
-            <span className="text-[10px] text-muted ml-1.5 uppercase tracking-wider font-sans">
+          <p className="font-serif text-base text-bronze pt-1 flex items-center gap-1.5">
+            Request offer
+            <span className="text-[10px] text-muted uppercase tracking-wider font-sans">
               {wine.sizeMl >= 1000 ? `${wine.sizeMl / 1000}L` : `${wine.sizeMl}ml`}
             </span>
           </p>

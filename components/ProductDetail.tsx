@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { Minus, Plus, ShoppingBag, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import type { Wine } from "@/lib/types";
-import { COUNTRY_FLAGS, cn, formatPrice } from "@/lib/utils";
+import { COUNTRY_FLAGS, cn } from "@/lib/utils";
 import { useCart } from "@/lib/store";
 import WineCard from "@/components/WineCard";
 import BottleSilhouette, { isPlaceholderImage } from "./BottleSilhouette";
@@ -28,8 +28,8 @@ export default function ProductDetail({
 
   const onAdd = () => {
     addItem(wine.id, qty);
-    toast.success(`${qty} × ${wine.name} added to cart`, {
-      action: { label: "View cart", onClick: () => openCart() },
+    toast.success(`${qty} × ${wine.name} added to your request`, {
+      action: { label: "View request", onClick: () => openCart() },
     });
   };
 
@@ -102,14 +102,12 @@ export default function ProductDetail({
           </dl>
 
           <div className="mt-8 card-surface p-5 bg-chalk">
-            <div className="flex items-baseline gap-3">
-              <p className="font-serif text-4xl text-burgundy">
-                {formatPrice(wine.price)}
-              </p>
-              <p className="text-xs text-muted uppercase tracking-wider">
-                excl. VAT
-              </p>
-            </div>
+            <p className="font-serif text-2xl text-bronze">
+              Request a personalised offer
+            </p>
+            <p className="text-xs text-muted mt-1">
+              Choose your quantity and add it to your request, no payment now.
+            </p>
 
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <div className="inline-flex items-center border border-line rounded-sm bg-surface">
@@ -131,7 +129,7 @@ export default function ProductDetail({
               </div>
               <button onClick={onAdd} className="btn-gold flex-1 min-w-[200px]">
                 <ShoppingBag className="w-4 h-4" />
-                Add to cart · {formatPrice(wine.price * qty)}
+                Add to request
               </button>
             </div>
           </div>

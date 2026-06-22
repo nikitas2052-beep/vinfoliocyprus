@@ -1,12 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
+import { Minus, Plus, Trash2, Wine as WineIcon, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { useCart } from "@/lib/store";
 import { getWineById } from "@/lib/wines";
-import { VAT_RATE, formatPrice } from "@/lib/utils";
 
 export default function CartView() {
   const items = useCart((s) => s.items);
@@ -15,22 +15,95 @@ export default function CartView() {
   const hydrated = useCart((s) => s.hydrated);
   const clearCart = useCart((s) => s.clearCart);
 
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    message: "",
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+
   const lines = items
     .map((i) => ({ item: i, wine: getWineById(i.wineId) }))
-    .filter((l): l is { item: typeof l.item; wine: NonNullable<typeof l.wine> } => Boolean(l.wine));
+    .filter(
+      (l): l is { item: typeof l.item; wine: NonNullable<typeof l.wine> } =>
+        Boolean(l.wine),
+    );
 
-  const subtotal = lines.reduce(
-    (sum, { item, wine }) => sum + wine.price * item.quantity,
-    0,
-  );
-  const vat = +(subtotal * VAT_RATE).toFixed(2);
-  const shipping = subtotal === 0 ? 0 : subtotal >= 60 ? 0 : 4.5;
-  const total = +(subtotal + vat + shipping).toFixed(2);
+  const onField =
+    (key: keyof typeof form) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm((f) => ({ ...f, [key]: e.target.value }));
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim()) {
+      toast.error("Please fill in your name and email.");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/request-offer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          items: lines.map(({ item, wine }) => ({
+            name: wine.name,
+            winery: wine.winery,
+            vintage: wine.year,
+            size:
+              wine.sizeMl >= 1000
+                ? `${wine.sizeMl / 1000} L`
+                : `${wine.sizeMl} ml`,
+            quantity: item.quantity,
+          })),
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+      };
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+      clearCart();
+      setDone(true);
+    } catch (err) {
+      toast.error(
+        err instanceof Error ? err.message : "Could not send your request.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   if (!hydrated) {
     return (
       <div className="container-wide py-20">
         <p className="text-muted">Loading…</p>
+      </div>
+    );
+  }
+
+  if (done) {
+    return (
+      <div className="container-wide py-20">
+        <div className="card-surface p-12 text-center max-w-xl mx-auto">
+          <div className="flex justify-center text-bronze">
+            <CheckCircle2 className="w-14 h-14" strokeWidth={1.25} />
+          </div>
+          <h1 className="heading-serif text-4xl mt-6">Request sent</h1>
+          <p className="text-muted mt-3">
+            Thank you. We&apos;ve received your selection and will get back to
+            you shortly with a personalised offer.
+          </p>
+          <Link href="/products" className="btn-gold mt-8 inline-flex">
+            Back to the collection
+          </Link>
+        </div>
       </div>
     );
   }
@@ -42,12 +115,13 @@ export default function CartView() {
           <div className="flex justify-center">
             <div className="wine-seal !w-20 !h-20 text-3xl">V</div>
           </div>
-          <h1 className="heading-serif text-4xl mt-6">Your cart is empty</h1>
+          <h1 className="heading-serif text-4xl mt-6">Your selection is empty</h1>
           <p className="text-muted mt-3">
-            Discover wines from Cyprus, Greece, Italy, France, Chile and more.
+            Add the wines you&apos;re interested in and request a personalised
+            offer.
           </p>
           <Link href="/products" className="btn-gold mt-8 inline-flex">
-            <ShoppingBag className="w-4 h-4" /> Browse the collection
+            <WineIcon className="w-4 h-4" /> Browse the collection
           </Link>
         </div>
       </div>
@@ -56,10 +130,18 @@ export default function CartView() {
 
   return (
     <div className="container-wide py-12">
-      <h1 className="heading-serif text-4xl md:text-5xl">Your Cart</h1>
+      <p className="eyebrow">No commitment</p>
+      <h1 className="heading-serif text-4xl md:text-5xl mt-2">
+        Request an Offer
+      </h1>
       <div className="gold-divider" />
+      <p className="text-muted mt-2 max-w-2xl">
+        Choose the wines you&apos;re interested in and leave your details. We&apos;ll
+        reply with a tailored quote, no payment needed now.
+      </p>
 
       <div className="grid lg:grid-cols-3 gap-8 mt-8">
+        {/* Selected wines */}
         <div className="lg:col-span-2 space-y-4">
           {lines.map(({ item, wine }) => (
             <div
@@ -68,7 +150,7 @@ export default function CartView() {
             >
               <Link
                 href={`/products/${wine.id}`}
-                className="relative w-24 h-32 flex-shrink-0 bg-gradient-to-b from-burgundy-900/40 to-ink rounded-sm overflow-hidden"
+                className="relative w-24 h-32 flex-shrink-0 bottle-bg rounded-sm overflow-hidden"
               >
                 <Image
                   src={wine.image}
@@ -79,25 +161,25 @@ export default function CartView() {
                 />
               </Link>
               <div className="flex-1 min-w-0">
-                <p className="eyebrow !text-[10px]">
-                  {wine.winery}
-                </p>
+                <p className="eyebrow !text-[10px]">{wine.winery}</p>
                 <Link
                   href={`/products/${wine.id}`}
-                  className="font-serif text-xl text-ink hover:text-burgundy transition-colors block"
+                  className="font-serif text-xl text-ink hover:text-bronze transition-colors block"
                 >
                   {wine.name}
                 </Link>
                 <p className="text-xs text-muted mt-1">
                   {wine.country} · {wine.region} ·{" "}
-                  {wine.sizeMl >= 1000 ? `${wine.sizeMl / 1000} L` : `${wine.sizeMl} ml`}
+                  {wine.sizeMl >= 1000
+                    ? `${wine.sizeMl / 1000} L`
+                    : `${wine.sizeMl} ml`}
                 </p>
                 <div className="mt-4 flex items-center gap-4 flex-wrap">
-                  <div className="inline-flex items-center border border-line rounded-sm bg-ink/50">
+                  <div className="inline-flex items-center border border-line rounded-sm">
                     <button
                       onClick={() => updateQuantity(wine.id, item.quantity - 1)}
                       aria-label="Decrease"
-                      className="p-2 hover:bg-chalk text-burgundy"
+                      className="p-2 hover:bg-chalk text-bronze"
                     >
                       <Minus className="w-3.5 h-3.5" />
                     </button>
@@ -105,7 +187,7 @@ export default function CartView() {
                     <button
                       onClick={() => updateQuantity(wine.id, item.quantity + 1)}
                       aria-label="Increase"
-                      className="p-2 hover:bg-chalk text-burgundy"
+                      className="p-2 hover:bg-chalk text-bronze"
                     >
                       <Plus className="w-3.5 h-3.5" />
                     </button>
@@ -115,83 +197,87 @@ export default function CartView() {
                       removeItem(wine.id);
                       toast("Removed", { description: wine.name });
                     }}
-                    className="inline-flex items-center gap-1 text-sm text-muted hover:text-seal transition-colors"
+                    className="inline-flex items-center gap-1 text-sm text-muted hover:text-wine transition-colors"
                   >
                     <Trash2 className="w-4 h-4" /> Remove
                   </button>
                 </div>
               </div>
-              <p className="font-serif text-xl text-burgundy whitespace-nowrap">
-                {formatPrice(wine.price * item.quantity)}
-              </p>
             </div>
           ))}
 
           <button
             onClick={() => {
               clearCart();
-              toast("Cart cleared");
+              toast("Selection cleared");
             }}
-            className="text-sm text-muted hover:text-seal transition-colors"
+            className="text-sm text-muted hover:text-wine transition-colors"
           >
-            Clear cart
+            Clear selection
           </button>
         </div>
 
+        {/* Request form */}
         <aside className="card-surface p-6 h-fit lg:sticky lg:top-24 bg-chalk">
-          <h2 className="font-serif text-2xl text-ink">Order Summary</h2>
+          <h2 className="font-serif text-2xl text-ink">Your details</h2>
           <div className="gold-divider" />
-          <dl className="space-y-3 mt-4 text-sm">
-            <Row label="Subtotal" value={formatPrice(subtotal)} />
-            <Row label={`VAT (${Math.round(VAT_RATE * 100)}%)`} value={formatPrice(vat)} />
-            <Row
-              label="Shipping"
-              value={shipping === 0 ? "Free" : formatPrice(shipping)}
-              hint={subtotal < 60 ? `Free over ${formatPrice(60)}` : undefined}
+          <form onSubmit={submit} className="space-y-3 mt-4">
+            <input
+              className="input-field"
+              placeholder="Full name *"
+              value={form.name}
+              onChange={onField("name")}
+              required
             />
-            <div className="border-t border-line pt-3 flex items-baseline justify-between">
-              <dt className="font-serif text-lg text-ink">Total</dt>
-              <dd className="font-serif text-2xl text-burgundy">{formatPrice(total)}</dd>
-            </div>
-          </dl>
-          <button
-            onClick={() => toast("Checkout coming soon. Contact us to complete the order.")}
-            className="btn-gold w-full mt-6"
-          >
-            Proceed to Checkout
-          </button>
+            <input
+              className="input-field"
+              type="email"
+              placeholder="Email *"
+              value={form.email}
+              onChange={onField("email")}
+              required
+            />
+            <input
+              className="input-field"
+              placeholder="Phone"
+              value={form.phone}
+              onChange={onField("phone")}
+            />
+            <input
+              className="input-field"
+              placeholder="Company (optional)"
+              value={form.company}
+              onChange={onField("company")}
+            />
+            <textarea
+              className="input-field min-h-[96px] resize-y"
+              placeholder="Notes (delivery area, occasion, questions…)"
+              value={form.message}
+              onChange={onField("message")}
+            />
+            <button
+              type="submit"
+              disabled={submitting}
+              className="btn-gold w-full disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {submitting ? "Sending…" : "Request offer"}
+            </button>
+          </form>
           <Link
             href="/products"
-            className="block text-center text-sm text-muted hover:text-burgundy mt-3"
+            className="block text-center text-sm text-muted hover:text-bronze mt-3"
           >
-            ← Continue shopping
+            ← Continue browsing
           </Link>
           <p className="text-xs text-muted mt-6">
-            Secure checkout coming soon. To complete an order today, contact us at{" "}
-            <a href="tel:+35799571267" className="link-gold">+357 99 571267</a>.
+            Prefer to talk? Call us at{" "}
+            <a href="tel:+35799571267" className="link-gold">
+              +357 99 571267
+            </a>
+            .
           </p>
         </aside>
       </div>
-    </div>
-  );
-}
-
-function Row({
-  label,
-  value,
-  hint,
-}: {
-  label: string;
-  value: string;
-  hint?: string;
-}) {
-  return (
-    <div className="flex items-baseline justify-between">
-      <dt className="text-muted">
-        {label}
-        {hint && <span className="block text-xs text-muted/70">{hint}</span>}
-      </dt>
-      <dd className="text-ink font-medium">{value}</dd>
     </div>
   );
 }

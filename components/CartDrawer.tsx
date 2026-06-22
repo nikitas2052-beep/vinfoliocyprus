@@ -6,7 +6,6 @@ import Image from "next/image";
 import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
 import { useCart } from "@/lib/store";
 import { getWineById } from "@/lib/wines";
-import { formatPrice } from "@/lib/utils";
 import { toast } from "sonner";
 
 export default function CartDrawer() {
@@ -21,11 +20,6 @@ export default function CartDrawer() {
     const wine = getWineById(item.wineId);
     return { item, wine };
   });
-
-  const subtotal = lineItems.reduce(
-    (sum, { item, wine }) => sum + (wine ? wine.price * item.quantity : 0),
-    0,
-  );
 
   return (
     <AnimatePresence>
@@ -55,7 +49,7 @@ export default function CartDrawer() {
             <header className="flex items-center justify-between p-5 border-b border-line bg-chalk">
               <h2 className="font-serif text-2xl text-ink flex items-center gap-2">
                 <ShoppingBag className="w-5 h-5 text-bronze" />
-                Your Cart
+                Your Selection
               </h2>
               <button
                 onClick={closeCart}
@@ -72,7 +66,7 @@ export default function CartDrawer() {
               ) : lineItems.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center py-12">
                   <div className="wine-seal mb-4">V</div>
-                  <p className="text-muted">Your cart is empty.</p>
+                  <p className="text-muted">Your selection is empty.</p>
                   <Link
                     href="/products"
                     onClick={closeCart}
@@ -140,9 +134,6 @@ export default function CartDrawer() {
                               <Plus className="w-3 h-3" />
                             </button>
                           </div>
-                          <p className="font-serif text-burgundy">
-                            {formatPrice(wine.price * item.quantity)}
-                          </p>
                         </div>
                       </div>
                       <button
@@ -163,19 +154,16 @@ export default function CartDrawer() {
 
             {hydrated && lineItems.length > 0 && (
               <footer className="border-t border-line p-5 space-y-3 bg-chalk">
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted">Subtotal (excl. VAT)</span>
-                  <span className="text-ink font-medium">{formatPrice(subtotal)}</span>
-                </div>
                 <p className="text-xs text-muted">
-                  VAT and shipping calculated at checkout.
+                  No payment now. Send us your selection and we&apos;ll reply
+                  with a personalised offer.
                 </p>
                 <Link
                   href="/cart"
                   onClick={closeCart}
                   className="btn-gold w-full"
                 >
-                  View Cart & Checkout
+                  Request an offer
                 </Link>
               </footer>
             )}
