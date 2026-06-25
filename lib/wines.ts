@@ -755,50 +755,6 @@ export const wines: Wine[] = [
     featured: false,
   },
   {
-    id: "petites-jamelles-blanc",
-    name: "Les Petites Jamelles Blanc",
-    winery: "Les Jamelles",
-    type: "White",
-    country: "France",
-    region: "Sud de la France",
-    year: 2023,
-    sizeMl: 750,
-    price: 4.25,
-    alcohol: 12.0,
-    shortDescription:
-      "Fresh & fruity entry-level Languedoc white: easy daily drinking.",
-    description:
-      "A bright, fruit-forward blend of southern French white varieties. Lemon, peach and white flower notes lead a clean, dry palate.",
-    pairing: "Salads, light pasta, fish goujons, aperitivo snacks.",
-    producerInfo:
-      "Les Petites Jamelles is the everyday tier of the Delaunay portfolio.",
-    image: "/wines/petites-jamelles-blanc.png",
-    stock: stock(34),
-    featured: false,
-  },
-  {
-    id: "petites-jamelles-rouge",
-    name: "Les Petites Jamelles Rouge",
-    winery: "Les Jamelles",
-    type: "Red",
-    country: "France",
-    region: "Sud de la France",
-    year: 2022,
-    sizeMl: 750,
-    price: 4.25,
-    alcohol: 13.0,
-    shortDescription:
-      "Soft, juicy southern French red: strawberry, plum, gentle spice.",
-    description:
-      "A friendly Languedoc red blending Merlot, Syrah and Grenache. Easy red fruit, soft tannins and a clean finish: uncomplicated and very drinkable.",
-    pairing: "Pasta, pizza, charcuterie, simple stews.",
-    producerInfo:
-      "Les Petites Jamelles offers Languedoc charm at an entry price point.",
-    image: "/wines/petites-jamelles-rouge.webp",
-    stock: stock(35),
-    featured: false,
-  },
-  {
     id: "les-jamelles-gewurztraminer",
     name: "Les Jamelles Gewurztraminer Blanc IGP",
     winery: "Les Jamelles",
