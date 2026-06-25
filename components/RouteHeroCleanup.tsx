@@ -23,21 +23,34 @@ export default function RouteHeroCleanup() {
     const w = window as unknown as {
       ScrollTrigger?: { getAll: () => Array<{ kill: (r?: boolean) => void }> };
     };
-    try {
-      w.ScrollTrigger?.getAll().forEach((t) => t.kill(true));
-    } catch {}
 
-    // Remove any leftover GSAP pin spacers (and whatever they still wrap).
-    document.querySelectorAll(".pin-spacer").forEach((el) => el.remove());
+    const sweep = () => {
+      try {
+        w.ScrollTrigger?.getAll().forEach((t) => t.kill(true));
+      } catch {}
+      // Remove any leftover GSAP pin spacers (and whatever they still wrap)…
+      document.querySelectorAll(".pin-spacer").forEach((el) => el.remove());
+      // …and any stray fixed hero section that escaped React's unmount.
+      document
+        .querySelectorAll('section[aria-label="Vinfolio — wine to V"]')
+        .forEach((el) => el.remove());
+      document.body.style.removeProperty("overflow");
+      document.body.style.removeProperty("padding-right");
+      document.documentElement.style.removeProperty("overflow");
+    };
 
-    // Belt & suspenders: also drop a stray fixed hero section if one remains.
-    document
-      .querySelectorAll('section[aria-label="Vinfolio — wine to V"]')
-      .forEach((el) => el.remove());
-
-    document.body.style.removeProperty("overflow");
-    document.body.style.removeProperty("padding-right");
-    document.documentElement.style.removeProperty("overflow");
+    // Run immediately, on the next frame, and after short delays so we also
+    // catch pin artifacts the (network-loaded) GSAP script creates a beat
+    // after navigation on slower/real connections.
+    sweep();
+    const raf = requestAnimationFrame(sweep);
+    const t1 = window.setTimeout(sweep, 150);
+    const t2 = window.setTimeout(sweep, 600);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
   }, [pathname]);
 
   return null;
