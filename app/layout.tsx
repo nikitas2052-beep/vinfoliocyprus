@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import AgeVerificationModal from "@/components/AgeVerificationModal";
+import RouteHeroCleanup from "@/components/RouteHeroCleanup";
 
 const cormorant = Cormorant_Infant({
   subsets: ["latin"],
@@ -85,6 +86,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="min-h-screen flex flex-col bg-paper text-ink">
+        <RouteHeroCleanup />
         <AgeVerificationModal />
         <Header />
         <main className="flex-1">{children}</main>
