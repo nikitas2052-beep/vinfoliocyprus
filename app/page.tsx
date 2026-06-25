@@ -1,7 +1,6 @@
 import HeroVideo from "@/components/HeroVideo";
 import BestSellers from "@/components/BestSellers";
 import HowItWorks from "@/components/HowItWorks";
-import Testimonials from "@/components/Testimonials";
 import GiftBoxesCarousel from "@/components/GiftBoxesCarousel";
 
 export default function HomePage() {
@@ -21,8 +20,6 @@ export default function HomePage() {
       <BestSellers />
 
       <HowItWorks />
-
-      <Testimonials />
 
       {/* Real gift-box carousel sourced from the live vinfolio.com.cy
           /shop slider — 5 boxes with coverflow scroll, matches what
