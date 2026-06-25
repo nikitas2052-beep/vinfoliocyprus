@@ -42,15 +42,6 @@ export const wineries: Winery[] = [
     logo: "/logos/domaine-de-la-motte.png",
   },
   {
-    slug: "domaine-michaut",
-    name: "Domaine Michaut Frères",
-    country: "France",
-    description:
-      "Chablis house producing classic, mineral-driven Burgundy whites from limestone-rich Kimmeridgian soils.",
-    website: "https://chablis-michaut.fr",
-    logo: "/logos/michaut.png",
-  },
-  {
     slug: "dopff-au-moulin",
     name: "Dopff au Moulin",
     country: "France",
