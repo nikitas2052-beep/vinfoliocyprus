@@ -807,6 +807,7 @@ export const wines: Wine[] = [
     region: "Sud de la France",
     year: 2023,
     sizeMl: 750,
+    sizesMl: [250],
     price: 6.75,
     alcohol: 12.5,
     shortDescription:
@@ -829,6 +830,7 @@ export const wines: Wine[] = [
     region: "Central Valley",
     year: 2022,
     sizeMl: 750,
+    sizesMl: [187],
     price: 5.95,
     alcohol: 13.0,
     shortDescription:
@@ -917,6 +919,7 @@ export const wines: Wine[] = [
     region: "Casablanca Valley",
     year: 2022,
     sizeMl: 750,
+    sizesMl: [187],
     price: 7.5,
     alcohol: 13.0,
     shortDescription:
@@ -1357,6 +1360,7 @@ export const wines: Wine[] = [
     region: "Cyprus",
     year: 2022,
     sizeMl: 750,
+    sizesMl: [187],
     price: 5.5,
     alcohol: 13.0,
     shortDescription:
@@ -1445,6 +1449,7 @@ export const wines: Wine[] = [
     region: "Cyprus",
     year: 2023,
     sizeMl: 750,
+    sizesMl: [187],
     price: 5.5,
     alcohol: 11.5,
     shortDescription:
@@ -1511,6 +1516,7 @@ export const wines: Wine[] = [
     region: "Cyprus",
     year: 2023,
     sizeMl: 750,
+    sizesMl: [187],
     price: 5.5,
     alcohol: 12.5,
     shortDescription:
@@ -1579,8 +1585,8 @@ export const wineTypes: Wine["type"][] = [
 
 export const wineCountries = Array.from(new Set(wines.map((w) => w.country)));
 
-export const wineSizes = Array.from(new Set(wines.map((w) => w.sizeMl))).sort(
-  (a, b) => a - b,
-);
+export const wineSizes = Array.from(
+  new Set(wines.flatMap((w) => [w.sizeMl, ...(w.sizesMl ?? [])])),
+).sort((a, b) => a - b);
 
 export const wineriesList = Array.from(new Set(wines.map((w) => w.winery))).sort();

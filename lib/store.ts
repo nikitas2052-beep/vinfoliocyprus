@@ -12,13 +12,18 @@ interface CartState {
   openCart: () => void;
   closeCart: () => void;
   toggleCart: () => void;
-  addItem: (wineId: string, quantity?: number) => void;
-  removeItem: (wineId: string) => void;
-  updateQuantity: (wineId: string, quantity: number) => void;
+  addItem: (wineId: string, quantity?: number, sizeMl?: number) => void;
+  removeItem: (wineId: string, sizeMl?: number) => void;
+  updateQuantity: (wineId: string, quantity: number, sizeMl?: number) => void;
   clearCart: () => void;
-  getQuantity: (wineId: string) => number;
+  getQuantity: (wineId: string, sizeMl?: number) => number;
   getTotalItems: () => number;
 }
+
+// Two cart lines are the same only when both the wine AND the chosen size
+// match (a wine can be requested in more than one bottle size).
+const sameLine = (i: CartItem, wineId: string, sizeMl?: number) =>
+  i.wineId === wineId && i.sizeMl === sizeMl;
 
 export const useCart = create<CartState>()(
   persist(
@@ -30,34 +35,36 @@ export const useCart = create<CartState>()(
       openCart: () => set({ isOpen: true }),
       closeCart: () => set({ isOpen: false }),
       toggleCart: () => set((s) => ({ isOpen: !s.isOpen })),
-      addItem: (wineId, quantity = 1) =>
+      addItem: (wineId, quantity = 1, sizeMl) =>
         set((s) => {
-          const existing = s.items.find((i) => i.wineId === wineId);
+          const existing = s.items.find((i) => sameLine(i, wineId, sizeMl));
           if (existing) {
             return {
               items: s.items.map((i) =>
-                i.wineId === wineId
+                sameLine(i, wineId, sizeMl)
                   ? { ...i, quantity: i.quantity + quantity }
                   : i,
               ),
             };
           }
-          return { items: [...s.items, { wineId, quantity }] };
+          return { items: [...s.items, { wineId, quantity, sizeMl }] };
         }),
-      removeItem: (wineId) =>
-        set((s) => ({ items: s.items.filter((i) => i.wineId !== wineId) })),
-      updateQuantity: (wineId, quantity) =>
+      removeItem: (wineId, sizeMl) =>
+        set((s) => ({
+          items: s.items.filter((i) => !sameLine(i, wineId, sizeMl)),
+        })),
+      updateQuantity: (wineId, quantity, sizeMl) =>
         set((s) => ({
           items:
             quantity <= 0
-              ? s.items.filter((i) => i.wineId !== wineId)
+              ? s.items.filter((i) => !sameLine(i, wineId, sizeMl))
               : s.items.map((i) =>
-                  i.wineId === wineId ? { ...i, quantity } : i,
+                  sameLine(i, wineId, sizeMl) ? { ...i, quantity } : i,
                 ),
         })),
       clearCart: () => set({ items: [] }),
-      getQuantity: (wineId) =>
-        get().items.find((i) => i.wineId === wineId)?.quantity ?? 0,
+      getQuantity: (wineId, sizeMl) =>
+        get().items.find((i) => sameLine(i, wineId, sizeMl))?.quantity ?? 0,
       getTotalItems: () =>
         get().items.reduce((acc, i) => acc + i.quantity, 0),
     }),

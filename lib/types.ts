@@ -20,6 +20,8 @@ export interface Wine {
   region: string;
   year?: number;
   sizeMl: number;
+  /** Additional bottle sizes offered besides the default `sizeMl`. */
+  sizesMl?: number[];
   price: number;
   alcohol: number;
   shortDescription: string;
@@ -50,4 +52,6 @@ export interface Winery {
 export interface CartItem {
   wineId: string;
   quantity: number;
+  /** Chosen bottle size; defaults to the wine's `sizeMl` when absent. */
+  sizeMl?: number;
 }

@@ -78,9 +78,10 @@ export default function CartDrawer() {
               ) : (
                 lineItems.map(({ item, wine }) => {
                   if (!wine) return null;
+                  const ml = item.sizeMl ?? wine.sizeMl;
                   return (
                     <div
-                      key={item.wineId}
+                      key={`${item.wineId}-${ml}`}
                       className="flex gap-4 pb-4 border-b border-line"
                     >
                       <Link
@@ -108,15 +109,13 @@ export default function CartDrawer() {
                           {wine.name}
                         </Link>
                         <p className="text-xs text-muted mt-0.5">
-                          {wine.sizeMl >= 1000
-                            ? `${wine.sizeMl / 1000} L`
-                            : `${wine.sizeMl} ml`}
+                          {ml >= 1000 ? `${ml / 1000} L` : `${ml} ml`}
                         </p>
                         <div className="mt-2 flex items-center justify-between">
                           <div className="inline-flex items-center border border-line rounded-sm">
                             <button
                               onClick={() =>
-                                updateQuantity(item.wineId, item.quantity - 1)
+                                updateQuantity(item.wineId, item.quantity - 1, item.sizeMl)
                               }
                               aria-label="Decrease quantity"
                               className="p-1.5 hover:bg-chalk"
@@ -126,7 +125,7 @@ export default function CartDrawer() {
                             <span className="px-3 text-sm">{item.quantity}</span>
                             <button
                               onClick={() =>
-                                updateQuantity(item.wineId, item.quantity + 1)
+                                updateQuantity(item.wineId, item.quantity + 1, item.sizeMl)
                               }
                               aria-label="Increase quantity"
                               className="p-1.5 hover:bg-chalk"
@@ -138,7 +137,7 @@ export default function CartDrawer() {
                       </div>
                       <button
                         onClick={() => {
-                          removeItem(item.wineId);
+                          removeItem(item.wineId, item.sizeMl);
                           toast("Removed from cart", { description: wine.name });
                         }}
                         aria-label="Remove"

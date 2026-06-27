@@ -54,10 +54,8 @@ export default function CartView() {
     try {
       const wineLines = lines
         .map(({ item, wine }, i) => {
-          const size =
-            wine.sizeMl >= 1000
-              ? `${wine.sizeMl / 1000} L`
-              : `${wine.sizeMl} ml`;
+          const ml = item.sizeMl ?? wine.sizeMl;
+          const size = ml >= 1000 ? `${ml / 1000} L` : `${ml} ml`;
           const vintage = wine.year ? ` (${wine.year})` : "";
           return `${i + 1}. ${item.quantity} x ${wine.name} - ${wine.winery}${vintage} - ${size}`;
         })
@@ -168,9 +166,11 @@ export default function CartView() {
       <div className="grid lg:grid-cols-3 gap-8 mt-8">
         {/* Selected wines */}
         <div className="lg:col-span-2 space-y-4">
-          {lines.map(({ item, wine }) => (
+          {lines.map(({ item, wine }) => {
+            const ml = item.sizeMl ?? wine.sizeMl;
+            return (
             <div
-              key={wine.id}
+              key={`${wine.id}-${ml}`}
               className="card-surface p-4 flex gap-4 items-start"
             >
               <Link
@@ -195,14 +195,12 @@ export default function CartView() {
                 </Link>
                 <p className="text-xs text-muted mt-1">
                   {wine.country} · {wine.region} ·{" "}
-                  {wine.sizeMl >= 1000
-                    ? `${wine.sizeMl / 1000} L`
-                    : `${wine.sizeMl} ml`}
+                  {ml >= 1000 ? `${ml / 1000} L` : `${ml} ml`}
                 </p>
                 <div className="mt-4 flex items-center gap-4 flex-wrap">
                   <div className="inline-flex items-center border border-line rounded-sm">
                     <button
-                      onClick={() => updateQuantity(wine.id, item.quantity - 1)}
+                      onClick={() => updateQuantity(wine.id, item.quantity - 1, item.sizeMl)}
                       aria-label="Decrease"
                       className="p-2 hover:bg-chalk text-bronze"
                     >
@@ -210,7 +208,7 @@ export default function CartView() {
                     </button>
                     <span className="px-4 text-sm">{item.quantity}</span>
                     <button
-                      onClick={() => updateQuantity(wine.id, item.quantity + 1)}
+                      onClick={() => updateQuantity(wine.id, item.quantity + 1, item.sizeMl)}
                       aria-label="Increase"
                       className="p-2 hover:bg-chalk text-bronze"
                     >
@@ -219,7 +217,7 @@ export default function CartView() {
                   </div>
                   <button
                     onClick={() => {
-                      removeItem(wine.id);
+                      removeItem(wine.id, item.sizeMl);
                       toast("Removed", { description: wine.name });
                     }}
                     className="inline-flex items-center gap-1 text-sm text-muted hover:text-wine transition-colors"
@@ -229,7 +227,8 @@ export default function CartView() {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
 
           <button
             onClick={() => {

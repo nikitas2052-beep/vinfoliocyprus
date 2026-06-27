@@ -68,7 +68,7 @@ function GiftCard({ wine, index }: { wine: Wine; index: number }) {
   const onAdd = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    addItem(wine.id, 1);
+    addItem(wine.id, 1, wine.sizeMl);
     toast.success(`${wine.name} added to your request`, {
       action: { label: "View request", onClick: () => openCart() },
     });

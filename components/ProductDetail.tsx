@@ -23,12 +23,17 @@ export default function ProductDetail({
 }) {
   const [tab, setTab] = useState<Tab>("description");
   const [qty, setQty] = useState(1);
+  const sizeOptions = [wine.sizeMl, ...(wine.sizesMl ?? [])];
+  const [size, setSize] = useState(wine.sizeMl);
   const addItem = useCart((s) => s.addItem);
   const openCart = useCart((s) => s.openCart);
 
+  const sizeLabel = (ml: number) =>
+    ml >= 1000 ? `${ml / 1000} L` : `${ml} ml`;
+
   const onAdd = () => {
-    addItem(wine.id, qty);
-    toast.success(`${qty} × ${wine.name} added to your request`, {
+    addItem(wine.id, qty, size);
+    toast.success(`${qty} × ${wine.name} (${sizeLabel(size)}) added to your request`, {
       action: { label: "View request", onClick: () => openCart() },
     });
   };
@@ -92,7 +97,14 @@ export default function ProductDetail({
           </p>
 
           <dl className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <Spec label="Size" value={wine.sizeMl >= 1000 ? `${wine.sizeMl / 1000} L` : `${wine.sizeMl} ml`} />
+            <Spec
+              label="Size"
+              value={
+                sizeOptions.length > 1
+                  ? sizeOptions.map(sizeLabel).join(" / ")
+                  : sizeLabel(wine.sizeMl)
+              }
+            />
             <Spec label="Alcohol" value={`${wine.alcohol}%`} />
             <Spec label="Type" value={wine.type} />
             <Spec
@@ -108,6 +120,30 @@ export default function ProductDetail({
             <p className="text-xs text-muted mt-1">
               Choose your quantity and add it to your request, no payment now.
             </p>
+
+            {sizeOptions.length > 1 && (
+              <div className="mt-5">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-bronze mb-2">
+                  Bottle size
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {sizeOptions.map((ml) => (
+                    <button
+                      key={ml}
+                      onClick={() => setSize(ml)}
+                      className={cn(
+                        "px-4 py-2 text-sm rounded-sm border transition-colors",
+                        size === ml
+                          ? "bg-ink text-paper border-ink"
+                          : "border-line text-ink/80 bg-surface hover:border-ink",
+                      )}
+                    >
+                      {sizeLabel(ml)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <div className="inline-flex items-center border border-line rounded-sm bg-surface">

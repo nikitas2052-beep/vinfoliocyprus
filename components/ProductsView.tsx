@@ -27,7 +27,12 @@ export default function ProductsView() {
       if (country && w.country !== country) return false;
       if (region && w.region !== region) return false;
       if (winery && w.winery !== winery) return false;
-      if (size && String(w.sizeMl) !== size) return false;
+      if (
+        size &&
+        String(w.sizeMl) !== size &&
+        !(w.sizesMl ?? []).map(String).includes(size)
+      )
+        return false;
       if (q) {
         const hay = `${w.name} ${w.winery} ${w.region} ${w.country} ${w.type}`.toLowerCase();
         if (!hay.includes(q)) return false;
