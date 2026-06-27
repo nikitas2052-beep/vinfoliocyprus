@@ -1370,7 +1370,7 @@ export const wines: Wine[] = [
     pairing: "Sheftalia, souvla, halloumi grills, slow-cooked lamb stifado.",
     producerInfo:
       "Yiaskouris Winery is a family-run estate producing PGI Cyprus wines.",
-    image: B("48"),
+    image: "/wines/yiaskouris-mataro-agiorgitiko.png",
     stock: stock(63),
     featured: true,
   },
