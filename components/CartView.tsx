@@ -11,7 +11,9 @@ import { getWineById } from "@/lib/wines";
 // Web3Forms access key is public by design (it lives in the page). Restrict it
 // to this domain in the Web3Forms dashboard for spam protection.
 const WEB3FORMS_KEY = "31b30b5b-bb30-466a-a4f5-87b1563cec91";
-const OFFER_CC = "vinfoliowines@gmail.com";
+// TEMP (testing): send only to the primary inbox (nikitas2052@gmail.com).
+// To also notify the shop, restore: "vinfoliowines@gmail.com"
+const OFFER_CC = "";
 
 export default function CartView() {
   const items = useCart((s) => s.items);
@@ -81,7 +83,7 @@ export default function CartView() {
           from_name: "Vinfolio Website",
           email: form.email,
           replyto: form.email,
-          cc: OFFER_CC,
+          ...(OFFER_CC ? { cc: OFFER_CC } : {}),
           message,
         }),
       });
