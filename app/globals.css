@@ -145,8 +145,11 @@ h1, h2, h3, h4, h5 {
     animation: shimmer 2s linear infinite;
   }
   .bottle-bg {
+    /* Soft cream (no pure-white centre) so bottle photos shot on a white
+       background blend uniformly under mix-blend-multiply instead of
+       showing a bright white box. */
     background:
-      radial-gradient(ellipse at 50% 30%, #FFFFFF 0%, #F9F8F4 60%, #F1EFE7 100%);
+      radial-gradient(ellipse at 50% 30%, #F7F5F0 0%, #F3F1EA 60%, #EEECE4 100%);
   }
   .type-badge {
     @apply inline-flex items-center px-2 py-0.5 text-[10px] uppercase
