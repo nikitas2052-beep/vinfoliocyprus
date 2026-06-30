@@ -63,7 +63,7 @@ export default function ProductDetail({
               fill
               priority
               sizes="(max-width:1024px) 100vw, 50vw"
-              className="object-contain p-8 mix-blend-multiply brightness-110"
+              className="object-contain p-8 mix-blend-multiply"
             />
           )}
           <div className="absolute top-4 right-4 wine-seal !w-14 !h-14 !text-base">

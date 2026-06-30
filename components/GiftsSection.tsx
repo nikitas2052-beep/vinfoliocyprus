@@ -98,7 +98,7 @@ function GiftCard({ wine, index }: { wine: Wine; index: number }) {
               fill
               sizes="(max-width:640px) 33vw, (max-width:1024px) 30vw, 360px"
               loading="lazy"
-              className="object-contain p-2 md:p-4 transition-transform duration-500 hover:scale-105"
+              className="object-contain p-2 md:p-4 transition-transform duration-500 hover:scale-105 mix-blend-multiply"
             />
           )}
         </div>

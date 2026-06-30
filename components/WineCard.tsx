@@ -62,7 +62,7 @@ export default function WineCard({
               alt={wine.name}
               fill
               sizes="(max-width:640px) 100vw, (max-width:1024px) 33vw, 25vw"
-              className="object-contain p-6 transition-transform duration-700 group-hover:scale-105 mix-blend-multiply brightness-110"
+              className="object-contain p-6 transition-transform duration-700 group-hover:scale-105 mix-blend-multiply"
             />
           )}
           <span
