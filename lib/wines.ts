@@ -112,7 +112,7 @@ export const wines: Wine[] = [
     pairing: "Lobster, roasted poultry in cream sauce, scallops, mature Comté.",
     producerInfo:
       "Domaine de la Motte's Premier Cru parcels are among the most sought-after in Chablis, hand-harvested at optimum maturity.",
-    image: "/wines/chablis-premier-cru-de-la-motte.jpg",
+    image: "/wines/chablis-premier-cru-de-la-motte.png",
     stock: stock(4),
     featured: false,
   },
@@ -134,7 +134,7 @@ export const wines: Wine[] = [
     pairing: "Choucroute, sushi, grilled white fish, or aromatic Thai curries.",
     producerInfo:
       "Dopff au Moulin in Riquewihr is a benchmark Alsace producer celebrated for refined varietal expressions.",
-    image: "/wines/riesling-dopff-au-moulin.webp",
+    image: "/wines/riesling-dopff-au-moulin.jpg",
     stock: stock(5),
     featured: false,
   },
@@ -156,7 +156,7 @@ export const wines: Wine[] = [
     pairing: "Crottin de Chavignol, oysters, ceviche, grilled halloumi salad.",
     producerInfo:
       "Family estate practicing sustainable viticulture in the eastern Loire.",
-    image: "/wines/sancerre-blanc-pre-semele.webp",
+    image: "/wines/sancerre-blanc-pre-semele.png",
     stock: stock(6),
     featured: true,
   },
@@ -178,7 +178,7 @@ export const wines: Wine[] = [
     pairing: "Salade niçoise, grilled prawns, tomato bruschetta, summer meze.",
     producerInfo:
       "AIX is produced at Maison Saint AIX, a 100-hectare estate at 420 m elevation in the Coteaux d'Aix en Provence.",
-    image: "/wines/aix-rose-provence.jpg",
+    image: "/wines/aix-rose-provence.png",
     stock: stock(7),
     featured: true,
   },
@@ -420,7 +420,7 @@ export const wines: Wine[] = [
     pairing: "Braised veal, brasato al Barolo, truffle risotto, aged Castelmagno.",
     producerInfo:
       "The Negro family has produced wine in Roero since the 17th century, now in its fourth generation.",
-    image: "/wines/barolo-angelo-negro.png",
+    image: "/wines/barolo-angelo-negro.jpg",
     stock: stock(18),
     featured: true,
   },
@@ -640,7 +640,7 @@ export const wines: Wine[] = [
     pairing: "Aperitif, oysters, fried calamari, fresh goat's cheese.",
     producerInfo:
       "Les Jamelles is the varietal label of Catherine and Laurent Delaunay in Languedoc.",
-    image: "/wines/les-jamelles-champenoise-brut.webp",
+    image: "/wines/les-jamelles-champenoise-brut.jpg",
     stock: stock(28),
     featured: false,
   },
@@ -662,7 +662,7 @@ export const wines: Wine[] = [
     pairing: "Grilled lamb skewers, beef daube, hard sheep's cheese.",
     producerInfo:
       "Les Jamelles works with selected growers across Languedoc-Roussillon.",
-    image: "/wines/les-jamelles-mourvedre.jpg",
+    image: "/wines/les-jamelles-mourvedre.png",
     stock: stock(29),
     featured: false,
   },
@@ -684,7 +684,7 @@ export const wines: Wine[] = [
     pairing: "Grilled steak, lamb burgers, ratatouille.",
     producerInfo:
       "From Les Jamelles' single-varietal Sud de la France collection.",
-    image: "/wines/les-jamelles-syrah.jpg",
+    image: "/wines/les-jamelles-syrah.png",
     stock: stock(30),
     featured: false,
   },
@@ -728,7 +728,7 @@ export const wines: Wine[] = [
     pairing: "Roast chicken, mushroom risotto, mild cheeses.",
     producerInfo:
       "Part of Les Jamelles' pure-varietal collection from Pays d'Oc.",
-    image: "/wines/les-jamelles-merlot.jpg",
+    image: "/wines/les-jamelles-merlot.png",
     stock: stock(32),
     featured: false,
   },
@@ -817,7 +817,7 @@ export const wines: Wine[] = [
     pairing: "Goat's cheese salad, fresh seafood, ceviche, grilled chicken.",
     producerInfo:
       "From Les Jamelles' pure-varietal Pays d'Oc collection.",
-    image: "/wines/les-jamelles-sauvignon-blanc.webp",
+    image: "/wines/les-jamelles-sauvignon-blanc.jpg",
     stock: stock(38),
     featured: false,
   },
@@ -1017,7 +1017,7 @@ export const wines: Wine[] = [
     pairing: "Grilled lamb, beef short ribs, mole-spiced dishes.",
     producerInfo:
       "Ventisquero's Grey series highlights single-vineyard, terroir-driven wines.",
-    image: "/wines/ventisquero-grey-carmenere.webp",
+    image: "/wines/ventisquero-grey-carmenere.png",
     stock: stock(47),
     featured: true,
   },
