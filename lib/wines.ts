@@ -1530,6 +1530,71 @@ export const wines: Wine[] = [
     stock: stock(70),
     featured: false,
   },
+  {
+    id: "les-jamelles-pinot-noir",
+    name: "Les Jamelles Pinot Noir IGP",
+    winery: "Les Jamelles",
+    type: "Red",
+    country: "France",
+    region: "Sud de la France",
+    year: 2023,
+    sizeMl: 750,
+    price: 8.9,
+    alcohol: 13.0,
+    shortDescription:
+      "Burgundian-styled Pays d'Oc Pinot: red berries, silky, fresh.",
+    description:
+      "A varietal Pinot Noir from the south of France by Burgundy-born Catherine Delaunay. The nose is redolent of raspberry and cherry with floral notes and a delicate hint of oak and vanilla. Round and supple on the palate, with crushed red fruit, a touch of jammy plum and well-integrated, rounded tannins, finished by a mineral freshness true to the variety.",
+    pairing: "Roast poultry, duck breast, mushroom risotto, soft cheeses.",
+    producerInfo:
+      "Les Jamelles crafts pure-varietal Pays d'Oc wines; their Pinot Noir reflects Catherine Delaunay's Burgundian roots.",
+    image: "/wines/les-jamelles-pinot-noir.png",
+    stock: stock(71),
+    featured: false,
+  },
+  {
+    id: "les-jamelles-spritz-citron-basilic",
+    name: "Les Jamelles Spritz Citron & Basilic",
+    winery: "Les Jamelles",
+    type: "Sparkling",
+    country: "France",
+    region: "Sud de la France",
+    sizeMl: 750,
+    price: 6.5,
+    alcohol: 5.5,
+    shortDescription:
+      "Light sparkling wine-based spritz: lemon zest & fresh basil, 5.5%.",
+    description:
+      "A ready-to-serve sparkling spritz built from French wine, grape juice and natural aromas, with no added colourants or preservatives (vegan and gluten-free). Pale yellow with fine bubbles; the nose leads with fresh lemon zest lifted by an aromatic basil note. Lively and gently tart on the palate, light and refreshing with a clean, low-sugar finish. Just 5.5% vol, best served well chilled over ice.",
+    pairing: "Aperitivo, summer appetisers, citrus salads, light seafood.",
+    producerInfo:
+      "Les Jamelles' Spritz sits at the crossroads of wine and modern, convivial aperitif moments.",
+    image: "/wines/les-jamelles-spritz.png",
+    stock: stock(72),
+    featured: false,
+  },
+  {
+    id: "cecchi-lobelia-toscana",
+    name: "Cecchi Lobelia Toscana IGT",
+    winery: "Cecchi",
+    type: "White",
+    country: "Italy",
+    region: "Tuscany",
+    year: 2025,
+    sizeMl: 750,
+    price: 13.0,
+    alcohol: 12.0,
+    shortDescription:
+      "Maremma white blend: floral, citrus, saline and fresh.",
+    description:
+      "A fresh, contemporary Tuscan white from Cecchi, blending Trebbiano, Vermentino and Chardonnay grown in the coastal Maremma and aged three months on the lees. Delicate straw-yellow with bright reflections; an intense, fragrant bouquet of elegant flowers and citrus. Sapid and dynamic on the palate, with a fresh, persistent finish carrying light Mediterranean-herb nuances. Presented in a striking bottle decorated directly on the glass with organic inks.",
+    pairing: "Seafood antipasti, grilled fish, fresh cheeses, vegetable risotto.",
+    producerInfo:
+      "Famiglia Cecchi is a historic Tuscan winery founded in 1893, based in Chianti Classico and crafting wines across Tuscany.",
+    image: "/wines/cecchi-lobelia.png",
+    stock: stock(73),
+    featured: false,
+  },
 ];
 
 export function getWineById(id: string): Wine | undefined {

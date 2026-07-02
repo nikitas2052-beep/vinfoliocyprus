@@ -186,4 +186,14 @@ export const wineries: Winery[] = [
     logo: `${LOGO_BASE}/yiaskouris-new-logo.png`,
     logoBg: "#FFFFFF",
   },
+  {
+    slug: "cecchi",
+    name: "Cecchi",
+    country: "Italy",
+    description:
+      "Historic Tuscan family winery founded in 1893, based in Chianti Classico and crafting benchmark Sangiovese alongside contemporary Toscana IGT wines.",
+    website: "https://www.cecchi.net",
+    logo: "/logos/cecchi.jpg",
+    logoBg: "#FFFFFF",
+  },
 ];
