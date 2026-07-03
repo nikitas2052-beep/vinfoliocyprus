@@ -18,9 +18,22 @@ import BottleSilhouette, { isPlaceholderImage } from "./BottleSilhouette";
  *  - 20% smaller cards, 25% reduced padding, 20% shorter bottle image
  *    vs. the standard WineCard
  */
+// Newly added wines to surface first in Best Sellers.
+const HERO_IDS = [
+  "les-jamelles-spritz-citron-basilic",
+  "cecchi-lobelia-toscana",
+  "les-jamelles-pinot-noir",
+];
+
 export default function BestSellers() {
-  // Reuse featured selection; if fewer than 6, pad from the full catalogue
-  let list = getFeaturedWines().slice(0, 6);
+  // Show the newest arrivals first, then fill the 6 slots with featured picks.
+  const hero = HERO_IDS.map((id) => allWines.find((w) => w.id === id)).filter(
+    (w): w is NonNullable<typeof w> => Boolean(w),
+  );
+  let list = [
+    ...hero,
+    ...getFeaturedWines().filter((w) => !HERO_IDS.includes(w.id)),
+  ].slice(0, 6);
   if (list.length < 6) {
     list = [
       ...list,

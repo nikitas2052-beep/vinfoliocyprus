@@ -193,7 +193,6 @@ export const wineries: Winery[] = [
     description:
       "Historic Tuscan family winery founded in 1893, based in Chianti Classico and crafting benchmark Sangiovese alongside contemporary Toscana IGT wines.",
     website: "https://www.cecchi.net",
-    logo: "/logos/cecchi.jpg",
-    logoBg: "#FFFFFF",
+    logo: "/logos/cecchi.png",
   },
 ];
